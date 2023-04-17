@@ -7,12 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6bff9e26-e0ac-45e1-b4e1-1b0a662448ad" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.Shampoo/.idea/avalonia.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Shampoo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Shampoo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shampoo.sln" beforeDir="false" afterPath="$PROJECT_DIR$/Shampoo.sln" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/default/Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/default/Program.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/default/default.csproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/Dockerfile" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +42,7 @@
     ]
   }
 }</component>
-  <component name="RunManager" selected="Docker.Build">
+  <component name="RunManager" selected="Docker.Docker GUI">
     <configuration name="DefaultEntry" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="$PROJECT_DIR$/DefaultEntry/bin/Debug/net6.0/DefaultEntry" />
       <option name="PROGRAM_PARAMETERS" value="" />
@@ -83,19 +79,16 @@
         <option name="Build" />
       </method>
     </configuration>
-    <configuration name="Build" type="docker-deploy" factoryName="dockerfile" server-name="Docker">
+    <configuration name="Docker GUI" type="docker-deploy" factoryName="dockerfile" server-name="Docker">
       <deployment type="dockerfile">
         <settings>
-          <option name="containerName" value="" />
+          <option name="imageTag" value="shampoo-img" />
+          <option name="containerName" value="shampoo" />
           <option name="envVars">
             <list>
               <DockerEnvVarImpl>
                 <option name="name" value="DISPLAY" />
                 <option name="value" value=":0" />
-              </DockerEnvVarImpl>
-              <DockerEnvVarImpl>
-                <option name="name" value="LD_LIBRARY_PATH" />
-                <option name="value" value="./GUI/bin/Debug/net6.0/runtimes/linux-x64/native/" />
               </DockerEnvVarImpl>
             </list>
           </option>
@@ -116,7 +109,7 @@
     <list>
       <item itemvalue=".NET Project.GUI" />
       <item itemvalue=".NET Project.DefaultEntry" />
-      <item itemvalue="Docker.Build" />
+      <item itemvalue="Docker.Docker GUI" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -131,6 +124,7 @@
       <workItem from="1681736538059" duration="42000" />
       <workItem from="1681736638266" duration="432000" />
       <workItem from="1681737106525" duration="5158000" />
+      <workItem from="1681757259913" duration="1694000" />
     </task>
     <servers />
   </component>

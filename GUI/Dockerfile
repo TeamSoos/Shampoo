@@ -7,7 +7,6 @@ COPY ["GUI.csproj", "."]
 RUN dotnet restore "GUI.csproj"
 COPY . .
 WORKDIR "/src/"
-# dotnet libraries
 RUN dotnet build "GUI.csproj" -c Release -o /app/build
 
 FROM build AS publish
