@@ -7,8 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6bff9e26-e0ac-45e1-b4e1-1b0a662448ad" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Shampoo/.idea/avalonia.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Shampoo/.idea/avalonia.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Shampoo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Shampoo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/Dockerfile" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +42,7 @@
     ]
   }
 }</component>
-  <component name="RunManager" selected="Docker.Docker GUI">
+  <component name="RunManager" selected=".NET Project.GUI">
     <configuration name="DefaultEntry" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="$PROJECT_DIR$/DefaultEntry/bin/Debug/net6.0/DefaultEntry" />
       <option name="PROGRAM_PARAMETERS" value="" />
@@ -106,9 +106,53 @@
       <EXTENSION ID="com.jetbrains.rider.docker.debug" isFastModeEnabled="true" isPublishEnabled="true" />
       <method v="2" />
     </configuration>
+    <configuration name="Windows Docker GUI" type="docker-deploy" factoryName="dockerfile" server-name="Docker">
+      <deployment type="dockerfile">
+        <settings>
+          <option name="imageTag" value="shampoo-img-win" />
+          <option name="containerName" value="shampoo-win" />
+          <option name="envVars">
+            <list>
+              <DockerEnvVarImpl>
+                <option name="name" value="DISPLAY" />
+                <option name="value" value=":0" />
+              </DockerEnvVarImpl>
+              <DockerEnvVarImpl>
+                <option name="name" value="PULSE_SERVER" />
+                <option name="value" value="/mnt/wslg/PulseServer" />
+              </DockerEnvVarImpl>
+              <DockerEnvVarImpl>
+                <option name="name" value="WAYLAND_DISPLAY" />
+                <option name="value" value="wayland-0" />
+              </DockerEnvVarImpl>
+              <DockerEnvVarImpl>
+                <option name="name" value="XDG_RUNTIME_DIR" />
+                <option name="value" value="/mnt/wslg/runtime-dir" />
+              </DockerEnvVarImpl>
+            </list>
+          </option>
+          <option name="sourceFilePath" value="GUI/Dockerfile" />
+          <option name="volumeBindings">
+            <list>
+              <DockerVolumeBindingImpl>
+                <option name="containerPath" value="/tmp/.X11-unix" />
+                <option name="hostPath" value="/run/desktop/mnt/host/wslg/.X11-unix" />
+              </DockerVolumeBindingImpl>
+              <DockerVolumeBindingImpl>
+                <option name="containerPath" value="/mnt/wslg" />
+                <option name="hostPath" value="/run/desktop/mnt/host/wslg" />
+              </DockerVolumeBindingImpl>
+            </list>
+          </option>
+        </settings>
+      </deployment>
+      <EXTENSION ID="com.jetbrains.rider.docker.debug" isFastModeEnabled="true" isPublishEnabled="true" />
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue=".NET Project.GUI" />
       <item itemvalue=".NET Project.DefaultEntry" />
+      <item itemvalue="Docker.Windows Docker GUI" />
       <item itemvalue="Docker.Docker GUI" />
     </list>
   </component>
@@ -125,6 +169,7 @@
       <workItem from="1681736638266" duration="432000" />
       <workItem from="1681737106525" duration="5158000" />
       <workItem from="1681757259913" duration="1694000" />
+      <workItem from="1681825367731" duration="314000" />
     </task>
     <servers />
   </component>
