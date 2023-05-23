@@ -5,25 +5,23 @@
     <projectFile>GUI/GUI.csproj</projectFile>
     <projectFile>default/default.csproj</projectFile>
   </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="6bff9e26-e0ac-45e1-b4e1-1b0a662448ad" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/GUI/ViewModels/BasicAppViewModel.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GUI/ViewModels/LoginPageViewModel.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GUI/ViewModels/RouterPage.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GUI/Views/BasicAppView.axaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GUI/Views/BasicAppView.axaml.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GUI/Views/LoginPageView.axaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GUI/Views/LoginPageView.axaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Shampoo/.idea/avalonia.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Shampoo/.idea/avalonia.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.Shampoo/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Logic/SQL/Library.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Shampoo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Shampoo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/GUI.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/GUI.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/ViewModels/MainWindowViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/ViewModels/MainWindowViewModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/Views/MainWindow.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/Views/MainWindow.axaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shampoo.sln" beforeDir="false" afterPath="$PROJECT_DIR$/Shampoo.sln" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="2OYRDqi8NU48Rm9mBcXsbYmcaEr" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -39,16 +37,24 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
     "last_opened_file_path": "/home/link/Shampoo/DefaultEntry/Dockerfile",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "preferences.sourceCode.C#",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
+    ],
     "rider.external.source.directories": [
-      "/home/thepiguy/.config/JetBrains/Rider2022.3/resharper-host/DecompilerCache",
-      "/home/thepiguy/.config/JetBrains/Rider2022.3/resharper-host/SourcesCache",
-      "/home/thepiguy/.local/share/Symbols/src"
+      "/home/link/.config/JetBrains/Rider2023.1/resharper-host/DecompilerCache",
+      "/home/link/.config/JetBrains/Rider2023.1/resharper-host/SourcesCache",
+      "/home/link/.local/share/Symbols/src"
     ]
   }
 }]]></component>
@@ -113,7 +119,7 @@
           </option>
         </settings>
       </deployment>
-      <EXTENSION ID="com.jetbrains.rider.docker.debug" isFastModeEnabled="true" isPublishEnabled="true" />
+      <EXTENSION ID="com.jetbrains.rider.docker.debug" isFastModeEnabled="true" isSslEnabled="false" />
       <method v="2" />
     </configuration>
     <configuration name="Windows Docker GUI" type="docker-deploy" factoryName="dockerfile" server-name="Docker">
@@ -156,7 +162,7 @@
           </option>
         </settings>
       </deployment>
-      <EXTENSION ID="com.jetbrains.rider.docker.debug" isFastModeEnabled="true" isPublishEnabled="true" />
+      <EXTENSION ID="com.jetbrains.rider.docker.debug" isFastModeEnabled="true" isSslEnabled="false" />
       <method v="2" />
     </configuration>
     <list>
@@ -180,6 +186,10 @@
       <workItem from="1681737106525" duration="5158000" />
       <workItem from="1681757259913" duration="1694000" />
       <workItem from="1681825367731" duration="314000" />
+      <workItem from="1684245977814" duration="649000" />
+      <workItem from="1684248699451" duration="342000" />
+      <workItem from="1684749774094" duration="1493000" />
+      <workItem from="1684831707960" duration="602000" />
     </task>
     <servers />
   </component>
@@ -197,6 +207,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
