@@ -3,7 +3,7 @@ using Npgsql;
 namespace Logic.SQL; 
 
 public class Library {
-  class Database
+  public class Database
   {
     /// <summary>
     /// Database class. Facilitates the connection to Postgres.
@@ -13,8 +13,12 @@ public class Library {
 
     private readonly NpgsqlConnection _Conn;
 
-    public Database(string connstr)
+    public Database()
     {
+      DotNetEnv.Env.Load();
+      DotNetEnv.Env.TraversePath().Load();
+      
+      string connstr = DotNetEnv.Env.GetString("SQL_CONN_STR");
       this._ConnectionString = connstr;
       this._Conn = new NpgsqlConnection(connstr);
       this._Conn.Open();
@@ -48,6 +52,52 @@ public class Library {
     {
       var reader = await cmd.ExecuteReaderAsync();
       return reader;
+    }
+    
+    public void ListenToNotif(string connstr)
+    {
+      String notificationName = "testchannel";
+      NpgsqlConnection notificationConnection = new NpgsqlConnection(connstr);
+      notificationConnection.Open();
+      try
+      {
+               
+        if (notificationConnection.State != System.Data.ConnectionState.Open)
+        {
+          Console.WriteLine("Connection to database failed");
+          return;
+        }
+
+        using (NpgsqlCommand cmd = new NpgsqlCommand($"LISTEN {notificationName}", 
+                   notificationConnection))
+        {
+          cmd.ExecuteNonQuery();
+        }
+
+        notificationConnection.Notification += PostgresNotification;
+        notificationConnection.WaitAsync();
+      }   
+      catch(Exception ex)
+      {
+        Console.WriteLine($"Exception thrown with message : {ex.Message}");
+        return;
+      }
+
+      //  wait forever, press enter key to exit program  
+      Console.ReadLine();
+
+      // stop the db notifcation
+      notificationConnection.Notification -= PostgresNotification;
+      using (var command = new NpgsqlCommand($"unlisten {notificationName}", 
+                 notificationConnection))
+      {
+        command.ExecuteNonQuery();
+      }
+      notificationConnection.Close();
+    }
+    static void PostgresNotification(object sender, NpgsqlNotificationEventArgs e)
+    {
+      Console.WriteLine("New Order notification received "+ e.Payload);
     }
   }
 }
