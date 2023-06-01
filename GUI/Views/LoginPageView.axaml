@@ -11,9 +11,11 @@
     <Design.DataContext>
         <vm:LoginPageViewModel />
     </Design.DataContext>
+    
+    
 
     <DockPanel>
-        <TabControl DockPanel.Dock="Top">
+        <TabControl DockPanel.Dock="Top" HorizontalAlignment="Center">
             <TabItem Header="Staff login">
                 <StackPanel Margin="0,40,0,0" Spacing="{Binding FormContentSpacing}" HorizontalAlignment="Center"
                             VerticalAlignment="Center">
@@ -30,7 +32,7 @@
                     <Button Width="{Binding FormContentWidth}" Content="Log in" />
                 </StackPanel>
             </TabItem>
-            <TabItem Header="Guest login">
+            <TabItem Header="Manager login">
                 <StackPanel Margin="0,40,0,0" Spacing="{Binding FormContentSpacing}" HorizontalAlignment="Center"
                             VerticalAlignment="Center">
                     <TextBlock Width="{Binding FormContentWidth}" Text="Log in" FontWeight="Black" />
