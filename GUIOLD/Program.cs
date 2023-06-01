@@ -2,7 +2,7 @@
 using Avalonia.ReactiveUI;
 using System;
 
-namespace RoutedApp;
+namespace GUI;
 
 class Program {
 	// Initialization code. Don't use any Avalonia, third-party APIs or any

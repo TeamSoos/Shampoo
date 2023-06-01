@@ -1,10 +1,10 @@
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
-using RoutedApp.ViewModels;
-using RoutedApp.Views;
+using GUI.ViewModels;
+using GUI.Views;
 
-namespace RoutedApp;
+namespace GUI;
 
 public partial class App : Application {
 	public override void Initialize() {

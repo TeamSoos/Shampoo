@@ -10,6 +10,7 @@
         <entry key="RoutedApp/App.axaml" value="RoutedApp/RoutedApp.csproj" />
         <entry key="RoutedApp/Views/FirstPage.axaml" value="RoutedApp/RoutedApp.csproj" />
         <entry key="RoutedApp/Views/MainWindow.axaml" value="RoutedApp/RoutedApp.csproj" />
+        <entry key="RoutedApp/Views/SecondPage.axaml" value="RoutedApp/RoutedApp.csproj" />
       </map>
     </option>
   </component>

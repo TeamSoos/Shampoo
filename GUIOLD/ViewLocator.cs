@@ -1,9 +1,9 @@
 using System;
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
-using RoutedApp.ViewModels;
+using GUI.ViewModels;
 
-namespace RoutedApp;
+namespace GUI;
 
 public class ViewLocator : IDataTemplate {
 	public IControl Build(object data) {
