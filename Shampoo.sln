@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DefaultEntry", "DefaultEntr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUI", "GUI\GUI.csproj", "{CE7EC8E2-89A3-41A3-A4CD-D37C27F98234}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logic", "Logic\Logic.csproj", "{1A9F9F23-FF9B-4BEC-96A8-C782342C449D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{CE7EC8E2-89A3-41A3-A4CD-D37C27F98234}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CE7EC8E2-89A3-41A3-A4CD-D37C27F98234}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CE7EC8E2-89A3-41A3-A4CD-D37C27F98234}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A9F9F23-FF9B-4BEC-96A8-C782342C449D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A9F9F23-FF9B-4BEC-96A8-C782342C449D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A9F9F23-FF9B-4BEC-96A8-C782342C449D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A9F9F23-FF9B-4BEC-96A8-C782342C449D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
