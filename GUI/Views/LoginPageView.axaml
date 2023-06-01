@@ -7,20 +7,29 @@
              x:CompileBindings="True"
              x:DataType="vm:LoginPageViewModel"
              mc:Ignorable="d">
+             <!-- Background="{Binding RelativeSource={RelativeSource Self}, Converter={StaticResource GradientConverter}}" -->
 
     <Design.DataContext>
         <vm:LoginPageViewModel />
     </Design.DataContext>
+             
+    <UserControl.Background>
+        <LinearGradientBrush StartPoint="0%,0%" EndPoint="0%,100%"> 
+            <GradientStop Offset="0" Color="#1E1E2E" />
+            <GradientStop Offset="1" Color="#45475A" />
+        </LinearGradientBrush>
+    </UserControl.Background>
+             
+    <UserControl.Styles>
+        
+    </UserControl.Styles>
     
-    
-
-    <DockPanel>
+    <DockPanel LastChildFill="True">
         <TabControl DockPanel.Dock="Top" HorizontalAlignment="Center">
             <TabItem Header="Staff login">
                 <StackPanel Margin="0,40,0,0" Spacing="{Binding FormContentSpacing}" HorizontalAlignment="Center"
                             VerticalAlignment="Center">
-                    <TextBlock Width="{Binding FormContentWidth}" Text="Log in" FontWeight="Black" />
-                    <TextBox Width="{Binding FormContentWidth}" Watermark="Staff login key" PasswordChar="*" />
+                    <TextBox Width="{Binding FormContentWidth}" Watermark="Login Key" PasswordChar="*" />
                     <Button Width="{Binding FormContentWidth}" Content="Log in" />
                 </StackPanel>
             </TabItem>
