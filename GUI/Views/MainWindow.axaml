@@ -1,4 +1,5 @@
 <Window xmlns="https://github.com/avaloniaui"
+        xmlns:rxui="clr-namespace:Avalonia.ReactiveUI;assembly=Avalonia.ReactiveUI"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="using:GUI.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -12,11 +13,13 @@
     <Design.DataContext>
         <vm:MainWindowViewModel />
     </Design.DataContext>
-
+    
     <DockPanel>
-
-        <TransitioningContentControl Content="{Binding CurrentPage}" DockPanel.Dock="Top" />
-        <Button IsVisible="{Binding IsVisible}" Content="SWITCH TO APP VIEW (DEBUG)" Command="{Binding NavigateToApp}"
-                DockPanel.Dock="Bottom" />
+        <rxui:RoutedViewHost>
+            
+        </rxui:RoutedViewHost>
+        <Button Content="Back" VerticalAlignment="Bottom" />
+        <Button Content="Forward" VerticalAlignment="Bottom" />
     </DockPanel>
+    
 </Window>

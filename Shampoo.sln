@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DefaultEntry", "DefaultEntr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUI", "GUI\GUI.csproj", "{CE7EC8E2-89A3-41A3-A4CD-D37C27F98234}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoutedApp", "RoutedApp\RoutedApp.csproj", "{9EA7E7F8-D7A3-485C-AFA0-FA82A528EB53}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{CE7EC8E2-89A3-41A3-A4CD-D37C27F98234}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CE7EC8E2-89A3-41A3-A4CD-D37C27F98234}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CE7EC8E2-89A3-41A3-A4CD-D37C27F98234}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9EA7E7F8-D7A3-485C-AFA0-FA82A528EB53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EA7E7F8-D7A3-485C-AFA0-FA82A528EB53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EA7E7F8-D7A3-485C-AFA0-FA82A528EB53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EA7E7F8-D7A3-485C-AFA0-FA82A528EB53}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
