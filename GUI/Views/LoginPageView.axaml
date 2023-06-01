@@ -7,19 +7,28 @@
              x:CompileBindings="True"
              x:DataType="vm:LoginPageViewModel"
              mc:Ignorable="d">
+             <!-- Background="{Binding RelativeSource={RelativeSource Self}, Converter={StaticResource GradientConverter}}" -->
 
     <Design.DataContext>
         <vm:LoginPageViewModel />
     </Design.DataContext>
-
-    <DockPanel>
-        <TabControl DockPanel.Dock="Top">
+             
+    <UserControl.Background>
+        <LinearGradientBrush StartPoint="0%,0%" EndPoint="0%,100%"> 
+            <GradientStop Offset="0" Color="#1E1E2E" />
+            <GradientStop Offset="1" Color="#45475A" />
+        </LinearGradientBrush>
+    </UserControl.Background>
+             
+    <DockPanel LastChildFill="True">
+        <TabControl DockPanel.Dock="Top" HorizontalAlignment="Center">
             <TabItem Header="Staff login">
                 <StackPanel Margin="0,40,0,0" Spacing="{Binding FormContentSpacing}" HorizontalAlignment="Center"
                             VerticalAlignment="Center">
-                    <TextBlock Width="{Binding FormContentWidth}" Text="Log in" FontWeight="Black" />
-                    <TextBox Width="{Binding FormContentWidth}" Watermark="Staff login key" PasswordChar="*" />
-                    <Button Width="{Binding FormContentWidth}" Content="Log in" />
+                    <TextBox Width="{Binding FormContentWidth}" Watermark="Login Key" PasswordChar="*" Text="{Binding Text}"/>
+                    <Button Width="{Binding FormContentWidth}" 
+                            Command="{Binding LoginStaff}"
+                            Content="Log in" />
                 </StackPanel>
             </TabItem>
             <TabItem Header="Admin login">
@@ -30,7 +39,7 @@
                     <Button Width="{Binding FormContentWidth}" Content="Log in" />
                 </StackPanel>
             </TabItem>
-            <TabItem Header="Guest login">
+            <TabItem Header="Manager login">
                 <StackPanel Margin="0,40,0,0" Spacing="{Binding FormContentSpacing}" HorizontalAlignment="Center"
                             VerticalAlignment="Center">
                     <TextBlock Width="{Binding FormContentWidth}" Text="Log in" FontWeight="Black" />
@@ -40,5 +49,6 @@
                 </StackPanel>
             </TabItem>
         </TabControl>
+        <TextBlock Width="{Binding FormContentWidth}" Text="Error: Invalid credentials" FontWeight="Black" IsVisible="{Binding ErrorIsVisible}" />
     </DockPanel>
 </UserControl>
