@@ -1,38 +1,34 @@
-﻿using System.Windows.Input;
+﻿using System.Collections.Generic;
+using System.Reactive;
 using ReactiveUI;
 
-namespace GUI.ViewModels;
+namespace RoutedApp.ViewModels;
 
-public class MainWindowViewModel : ViewModelBase {
+public class MainWindowViewModel : ReactiveObject, IHostScreen {
+  public string Greeting =>
+    "Uh oh, something went wrong! Do not fret, for a restart of the app shall fix this predicament!!";
 
+  public RoutingState Router { get; } = new RoutingState();
+
+  public void GoNext(RoutablePage page) {
+    stack.GoTo(page);
+    Router.Navigate.Execute(page);
+  }
+
+  readonly NavigationStack stack;
+
+  public ReactiveCommand<Unit, IRoutableViewModel> GoBackPage { get; }
+  
   public MainWindowViewModel() {
-    _CurrentPage = new LoginPageViewModel();
-    NavigateToApp = ReactiveCommand.Create(GotoApp);
-  }
-  
-  private RouterPage _CurrentPage;
+    stack = new NavigationStack(new FirstPageViewModel(this));
 
-  RouterPage CurrentPage {
-    get => _CurrentPage;
-    set => this.RaiseAndSetIfChanged(ref _CurrentPage, value);
-  }
-
-  
-  public int FormContentWidth => 350;
-  public int FormContentSpacing => 10;
-
-  public ICommand NavigateToApp { get; }
-
-  bool _visible = true;
-  bool IsVisible {
-    get => _visible;
-    set => this.RaiseAndSetIfChanged(ref _visible, value);
-  }
-
-  public void GotoApp() {
-    
-    // Auth logic goes here
-    CurrentPage = new BasicAppViewModel();
-    IsVisible = false;
+    // Navigate to the first page
+    Router.Navigate.Execute(new FirstPageViewModel(this));
+    GoBackPage = ReactiveCommand.CreateFromObservable(
+      () => {
+        var _ = stack.Pop();
+        return Router.Navigate.Execute(stack.GetTopPage());
+      }
+    );
   }
 }

@@ -1,10 +1,12 @@
 <Window xmlns="https://github.com/avaloniaui"
+        xmlns:rxui="clr-namespace:Avalonia.ReactiveUI;assembly=Avalonia.ReactiveUI"
+        xmlns:app="clr-namespace:RoutedApp"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:vm="using:GUI.ViewModels"
+        xmlns:vm="using:RoutedApp.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-        x:Class="GUI.Views.MainWindow"
+        x:Class="RoutedApp.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
         Title="GUI">
@@ -67,8 +69,18 @@
 
     <DockPanel LastChildFill="True">
 
-        <TransitioningContentControl Content="{Binding CurrentPage}" DockPanel.Dock="Top" />
-        <!-- <Button IsVisible="{Binding IsVisible}" Content="SWITCH TO APP VIEW (DEBUG)" Command="{Binding NavigateToApp}" -->
-        <!-- DockPanel.Dock="Bottom" /> -->
+        <rxui:RoutedViewHost Router="{Binding Router}">
+            <rxui:RoutedViewHost.DefaultContent>
+                <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </rxui:RoutedViewHost.DefaultContent>
+
+            <rxui:RoutedViewHost.ViewLocator>
+                <app:AppViewLocator />
+            </rxui:RoutedViewHost.ViewLocator>
+
+        </rxui:RoutedViewHost>
+        
+        <Button Content="Back" Command="{Binding GoBackPage}" />
+
     </DockPanel>
 </Window>
