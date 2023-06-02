@@ -5,8 +5,11 @@
       <map>
         <entry key="GUI/App.axaml" value="GUI/GUI.csproj" />
         <entry key="GUI/Views/BasicAppView.axaml" value="GUI/GUI.csproj" />
+        <entry key="GUI/Views/FirstPage.axaml" value="GUI/GUI.csproj" />
         <entry key="GUI/Views/LoginPageView.axaml" value="GUI/GUI.csproj" />
         <entry key="GUI/Views/MainWindow.axaml" value="GUI/GUI.csproj" />
+        <entry key="GUI/Views/OrderingView.axaml" value="GUI/GUI.csproj" />
+        <entry key="GUI/Views/SecondPage.axaml" value="GUI/GUI.csproj" />
         <entry key="RoutedApp/App.axaml" value="RoutedApp/RoutedApp.csproj" />
         <entry key="RoutedApp/Views/FirstPage.axaml" value="RoutedApp/RoutedApp.csproj" />
         <entry key="RoutedApp/Views/MainWindow.axaml" value="RoutedApp/RoutedApp.csproj" />

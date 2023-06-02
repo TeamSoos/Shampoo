@@ -8,10 +8,6 @@
              x:DataType="vm:OrderingViewModel"
              mc:Ignorable="d">
 
-    <Design.DataContext>
-        <vm:OrderingViewModel />
-    </Design.DataContext>
-             
     <UserControl.Background>
         <LinearGradientBrush StartPoint="0%,0%" EndPoint="0%,100%"> 
             <GradientStop Offset="0" Color="#1E1E2E" />
