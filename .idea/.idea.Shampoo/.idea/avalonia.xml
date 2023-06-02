@@ -4,7 +4,9 @@
     <option name="projectPerEditor">
       <map>
         <entry key="GUI/App.axaml" value="GUI/GUI.csproj" />
+        <entry key="GUI/ViewModels/CardControl.axaml" value="GUI/GUI.csproj" />
         <entry key="GUI/Views/BasicAppView.axaml" value="GUI/GUI.csproj" />
+        <entry key="GUI/Views/CardControl.axaml" value="GUI/GUI.csproj" />
         <entry key="GUI/Views/FirstPage.axaml" value="GUI/GUI.csproj" />
         <entry key="GUI/Views/LoginPageView.axaml" value="GUI/GUI.csproj" />
         <entry key="GUI/Views/MainWindow.axaml" value="GUI/GUI.csproj" />
