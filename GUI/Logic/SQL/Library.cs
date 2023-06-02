@@ -1,3 +1,5 @@
+using System;
+using System.Threading.Tasks;
 using Npgsql;
 
 namespace Logic.SQL; 

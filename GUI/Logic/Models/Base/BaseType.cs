@@ -1,3 +1,5 @@
+using System;
+
 namespace Logic.Models.Base; 
 
 /// <summary>

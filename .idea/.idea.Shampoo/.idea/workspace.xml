@@ -11,34 +11,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6bff9e26-e0ac-45e1-b4e1-1b0a662448ad" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/RoutedApp/NavigationStack.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RoutedApp/ViewModels/IHostScreen.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RoutedApp/ViewModels/SecondPageViewModel.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RoutedApp/Views/SecondPage.axaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RoutedApp/Views/SecondPage.axaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Shampoo/.idea/avalonia.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Shampoo/.idea/avalonia.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Shampoo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Shampoo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/App.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/GUIOLD/App.axaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/App.axaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GUIOLD/App.axaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/Assets/avalonia-logo.ico" beforeDir="false" afterPath="$PROJECT_DIR$/GUIOLD/Assets/avalonia-logo.ico" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/GUIOLD/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/GUI.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/GUIOLD/GUIOLD.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GUIOLD/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/ViewLocator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GUIOLD/ViewLocator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/ViewModels/MainWindowViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GUIOLD/ViewModels/MainWindowViewModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/ViewModels/ViewModelBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GUIOLD/ViewModels/ViewModelBase.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/Views/MainWindow.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/GUIOLD/Views/MainWindow.axaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/Views/MainWindow.axaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GUIOLD/Views/MainWindow.axaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/app.manifest" beforeDir="false" afterPath="$PROJECT_DIR$/GUIOLD/app.manifest" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoutedApp/AppViewLocator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/RoutedApp/AppViewLocator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoutedApp/ViewLocator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/RoutedApp/ViewLocator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoutedApp/ViewModels/FirstPageViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/RoutedApp/ViewModels/FirstPageViewModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoutedApp/ViewModels/MainWindowViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/RoutedApp/ViewModels/MainWindowViewModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoutedApp/ViewModels/RoutablePage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/RoutedApp/ViewModels/RoutablePage.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoutedApp/ViewModels/ViewModelBase.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoutedApp/Views/FirstPage.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/RoutedApp/Views/FirstPage.axaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoutedApp/Views/MainWindow.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/RoutedApp/Views/MainWindow.axaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shampoo.sln" beforeDir="false" afterPath="$PROJECT_DIR$/Shampoo.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/Logic/Models/Base/BaseType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/Logic/Models/Base/BaseType.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/Logic/Models/Item/ItemType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/Logic/Models/Item/ItemType.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/Logic/SQL/Library.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/Logic/SQL/Library.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,14 +25,11 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="router-kunal" />
       </map>
     </option>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/12a9d9f4eb3ebc8fe0ef6f2fdd8a63e1e5552aec6f1f1f6488ce4746a7599/ExpressionObserverBuilder.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/5eafb5b85df26dd22b9b6bbf088b181cfc9017234c2106431847e2289167/IScreen.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9e48c385a0f8c4d27705158a41832ed686216b07b40ba171e89b41411bcc4dc/RxApp.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/GUIOLD/Views/MainWindow.axaml" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="2OYRDqi8NU48Rm9mBcXsbYmcaEr" />
@@ -66,31 +40,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "router-kunal",
-    "last_opened_file_path": "/home/link/Shampoo/DefaultEntry/Dockerfile",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.sourceCode.C#",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;router-kunal&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/link/Shampoo/DefaultEntry/Dockerfile&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.C#&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "rider.external.source.directories": [
-      "/home/thepiguy/.config/JetBrains/Rider2022.3/resharper-host/DecompilerCache",
-      "/home/thepiguy/.config/JetBrains/Rider2022.3/resharper-host/SourcesCache",
-      "/home/thepiguy/.local/share/Symbols/src"
+  &quot;keyToStringList&quot;: {
+    &quot;rider.external.source.directories&quot;: [
+      &quot;/home/thepiguy/.config/JetBrains/Rider2022.3/resharper-host/DecompilerCache&quot;,
+      &quot;/home/thepiguy/.config/JetBrains/Rider2022.3/resharper-host/SourcesCache&quot;,
+      &quot;/home/thepiguy/.local/share/Symbols/src&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected=".NET Project.GUI">
     <configuration name="DefaultEntry" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="$PROJECT_DIR$/DefaultEntry/bin/Debug/net6.0/DefaultEntry" />
@@ -186,13 +160,14 @@
           </option>
         </settings>
       </deployment>
-      <EXTENSION ID="com.jetbrains.rider.docker.debug" isFastModeEnabled="true" isSslEnabled="false" />
+      <EXTENSION ID="com.jetbrains.rider.docker.debug" isFastModeEnabled="true" isPublishEnabled="true" />
       <method v="2" />
     </configuration>
     <list>
       <item itemvalue=".NET Project.GUI" />
       <item itemvalue=".NET Project.GUIOLD" />
       <item itemvalue=".NET Project.DefaultEntry" />
+      <item itemvalue="Docker.GUIOLD/Dockerfile: Compose Deployment" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -213,6 +188,7 @@
       <workItem from="1685015875309" duration="973000" />
       <workItem from="1685457556857" duration="1911000" />
       <workItem from="1685608122818" duration="4302000" />
+      <workItem from="1685709787306" duration="632000" />
     </task>
     <servers />
   </component>
@@ -220,6 +196,9 @@
     <option name="version" value="3" />
   </component>
   <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName=".env" />
+  </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
