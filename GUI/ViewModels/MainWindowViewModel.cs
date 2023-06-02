@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Reactive;
+using GUI.ViewModels;
 using ReactiveUI;
 
 namespace RoutedApp.ViewModels;
@@ -20,10 +21,10 @@ public class MainWindowViewModel : ReactiveObject, IHostScreen {
   public ReactiveCommand<Unit, IRoutableViewModel> GoBackPage { get; }
   
   public MainWindowViewModel() {
-    stack = new NavigationStack(new FirstPageViewModel(this));
+    stack = new NavigationStack(new LoginPageViewModel(this));
 
     // Navigate to the first page
-    Router.Navigate.Execute(new FirstPageViewModel(this));
+    Router.Navigate.Execute(new LoginPageViewModel(this));
     GoBackPage = ReactiveCommand.CreateFromObservable(
       () => {
         var _ = stack.Pop();

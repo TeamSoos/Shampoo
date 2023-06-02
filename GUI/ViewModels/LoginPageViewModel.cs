@@ -6,10 +6,11 @@ using Avalonia.Controls;
 using Logic.SQL;
 using Npgsql;
 using ReactiveUI;
+using RoutedApp.ViewModels;
 
 namespace GUI.ViewModels;
 
-public class LoginPageViewModel : RouterPage {
+public class LoginPageViewModel : RoutablePage {
   private string _text;
 
   public string Text
@@ -28,7 +29,8 @@ public class LoginPageViewModel : RouterPage {
     set => this.RaiseAndSetIfChanged(ref _visible, value);
   }
 
-  public LoginPageViewModel() {
+  public LoginPageViewModel(IHostScreen screen) {
+    HostScreen = screen;
     LoginStaff = ReactiveCommand.Create(loginStaff);
   }
   
@@ -36,9 +38,6 @@ public class LoginPageViewModel : RouterPage {
   public int FormContentWidth => 350;
   public int FormContentSpacing => 10;
   // END STYLING
-  public override bool CanNavigate() {
-    return true;
-  }
 
   private async Task loginStaff() {
     ErrorIsVisible = false;
@@ -61,6 +60,11 @@ public class LoginPageViewModel : RouterPage {
         // We have an ID, let's check if it's one of the staff
         if (staff.Contains(reader["job"].ToString()!)) {
           Console.WriteLine("Staff access!");
+
+          if (reader["job"].ToString()! == "chef") {
+            HostScreen.GoNext(new OrderingViewModel(HostScreen));
+            return;
+          }
         }
         else {
           Console.WriteLine("Not staff!");
@@ -70,4 +74,5 @@ public class LoginPageViewModel : RouterPage {
 
     ErrorIsVisible = true;
   }
+  public override IHostScreen HostScreen { get; }
 }

@@ -3,11 +3,14 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
+using Avalonia.ReactiveUI;
+using GUI.ViewModels;
+using RoutedApp.ViewModels;
 
 namespace GUI.Views; 
 
 
-public partial class LoginPageView : UserControl {
+public partial class LoginPageView : ReactiveUserControl<LoginPageViewModel> {
   private TextBlock staffLoginBox;
   // Styling
   public int FormContentWidth => 350;

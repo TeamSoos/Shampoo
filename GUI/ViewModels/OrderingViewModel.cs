@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Avalonia.Media;
 using ReactiveUI;
+using RoutedApp.ViewModels;
 
 namespace GUI.ViewModels;
 
-public class OrderingViewModel : RouterPage {
+public class OrderingViewModel : RoutablePage {
   private ItemListViewModel _currentOrderItemsList;
   public ItemListViewModel CurrentOrderItemsList {
     get => _currentOrderItemsList;
@@ -22,7 +23,8 @@ public class OrderingViewModel : RouterPage {
   public int FormContentSpacing => 10;
   // END STYLING
 
-  public OrderingViewModel() {
+  public OrderingViewModel(IHostScreen screen) { 
+      HostScreen = screen;
     CurrentOrderItemsList = new ItemListViewModel(
         new List<ListItem>() {
             new() { Title = "Bread", Notes = "notes: no bread", Status = "Orange"},
@@ -41,8 +43,5 @@ public class OrderingViewModel : RouterPage {
     );
   }
   
-  
-  public override bool CanNavigate() {
-    return true;
-  }
+  public override IScreen HostScreen { get; }
 }

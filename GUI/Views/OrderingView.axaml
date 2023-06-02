@@ -18,8 +18,9 @@
             <GradientStop Offset="1" Color="#1E1E2E" />
         </LinearGradientBrush>
     </UserControl.Background>
-             
-    <DockPanel LastChildFill="True">
+    
+    <DockPanel VerticalAlignment="Stretch" LastChildFill="True">
+        
         <StackPanel>
             <Grid Margin="10">
                 <Grid.ColumnDefinitions>
@@ -38,7 +39,8 @@
                     FontWeight="Thin" 
                     HorizontalAlignment="Left" />
             </StackPanel>
-            <Grid VerticalAlignment="Stretch">
+            <DockPanel LastChildFill="True">
+            <Grid DockPanel.Dock="Top" VerticalAlignment="Stretch" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="auto" />
@@ -108,6 +110,7 @@
 
                 </StackPanel>
             </Grid>
+            </DockPanel>
             <Grid Margin="10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>

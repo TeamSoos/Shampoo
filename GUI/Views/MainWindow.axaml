@@ -68,7 +68,7 @@
     </Design.DataContext>
 
     <DockPanel LastChildFill="True">
-
+        <!-- <Button Content="Back" Command="{Binding GoBackPage}" /> -->
         <rxui:RoutedViewHost Router="{Binding Router}">
             <rxui:RoutedViewHost.DefaultContent>
                 <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center" />
@@ -79,8 +79,5 @@
             </rxui:RoutedViewHost.ViewLocator>
 
         </rxui:RoutedViewHost>
-        
-        <Button Content="Back" Command="{Binding GoBackPage}" />
-
     </DockPanel>
 </Window>
