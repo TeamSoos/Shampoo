@@ -26,7 +26,15 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Text="Orders" FontWeight="Black" HorizontalAlignment="Left" />
-                <TextBlock Grid.Column="2" Text="Logout" FontWeight="Black" HorizontalAlignment="Right" />
+                <Button 
+                    FontWeight="Black" 
+                    HorizontalAlignment="Right" 
+                    Background="#00000000"
+                    Foreground="#ffffff"
+                    Command="{Binding LogoutUser}"
+                    Grid.Column="2">
+                    Logout
+                </Button>
             </Grid>
 
             <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" Margin="10">

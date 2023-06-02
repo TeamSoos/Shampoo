@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Reactive;
+using Avalonia.Notification;
 using GUI.ViewModels;
 using ReactiveUI;
 
@@ -15,6 +16,16 @@ public class MainWindowViewModel : ReactiveObject, IHostScreen {
     stack.GoTo(page);
     Router.Navigate.Execute(page);
   }
+  public bool mobileUI { get; set; }
+  public INotificationMessageManager Manager { get; } = new NotificationMessageManager();
+
+  public INotificationMessageManager notificationManager {
+    get
+    {
+      return this.Manager;
+    }
+  }
+  public string CurrentUser { get; set; }
 
   readonly NavigationStack stack;
 

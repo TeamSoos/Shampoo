@@ -1,0 +1,115 @@
+<UserControl x:Class="GUI.Views.TablesView"
+             xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:views="clr-namespace:GUI.ViewModels"
+             x:CompileBindings="True"
+             d:DesignWidth="360" d:DesignHeight="800"
+             x:DataType="views:TablesViewModel"
+             mc:Ignorable="d">
+
+    <UserControl.Background>
+        <LinearGradientBrush StartPoint="0%,0%" EndPoint="0%,100%">
+            <GradientStop Offset="0" Color="#1E1E2E" />
+            <GradientStop Offset="1" Color="#1E1E2E" />
+        </LinearGradientBrush>
+    </UserControl.Background>
+
+
+    <UserControl.Styles>
+        <Style Selector="Button">
+            <Setter Property="Background" Value="#1E1E2E" />
+            <Setter Property="Foreground" Value="#B4BEFE" />
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+
+        <Style Selector="Button:focus">
+            <Setter Property="Background" Value="#1E1E2E" />
+            <Setter Property="Foreground" Value="#B4BEFE" />
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+    </UserControl.Styles>
+
+
+    <DockPanel VerticalAlignment="Stretch" LastChildFill="True">
+        <StackPanel DockPanel.Dock="Top" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Grid Margin="10" HorizontalAlignment="Center" VerticalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                 <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch">
+                    <Button HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="5" Width="100" Height="100" Background="#B4BEFE" Foreground="#000000">1</Button>
+                    <Button HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="5" Width="100" Height="100" Background="#B4BEFE" Foreground="#000000">3</Button>
+                    <Button HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="5" Width="100" Height="100" Background="#B4BEFE" Foreground="#000000">5</Button>
+                    <Button HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="5" Width="100" Height="100" Background="#B4BEFE" Foreground="#000000">7</Button>
+                    <Button HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="5" Width="100" Height="100" Background="#B4BEFE" Foreground="#000000">9</Button>
+                </StackPanel>
+
+                <StackPanel Grid.Column="2" Orientation="Vertical" HorizontalAlignment="Stretch">
+                    <Button HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="5" Width="100" Height="100" Background="#B4BEFE" Foreground="#000000">2</Button>
+                    <Button HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="5" Width="100" Height="100" Background="#B4BEFE" Foreground="#000000">4</Button>
+                    <Button HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="5" Width="100" Height="100" Background="#B4BEFE" Foreground="#000000">6</Button>
+                    <Button HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="5" Width="100" Height="100" Background="#B4BEFE" Foreground="#000000">8</Button>
+                    <Button HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="5" Width="100" Height="100" Background="#B4BEFE" Foreground="#000000">10</Button>
+                </StackPanel>
+
+            </Grid>
+                
+        </StackPanel>
+        <StackPanel
+                    DockPanel.Dock="Bottom"
+                    Background="#B4BEFE"
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Stretch">
+                    <Border
+                        HorizontalAlignment="Stretch"
+                        Padding="2"
+                        CornerRadius="40">
+                        <Button 
+                            HorizontalContentAlignment="Center" 
+                            VerticalContentAlignment="Center"
+                            Height="50" 
+                            CornerRadius="10" 
+                            HorizontalAlignment="Stretch">
+                            My Tables
+                        </Button>
+                    </Border>
+                    <Border
+                        HorizontalAlignment="Stretch"
+                        Padding="2"
+                        CornerRadius="40">
+                        <Button 
+                            HorizontalContentAlignment="Center" 
+                            VerticalContentAlignment="Center"
+                            Height="50" 
+                            CornerRadius="10" 
+                            HorizontalAlignment="Stretch">
+                            Reservations
+                        </Button>
+                    </Border>
+                    <Border
+                        HorizontalAlignment="Stretch"
+                        Padding="2"
+                        CornerRadius="40">
+                        <Button 
+                            HorizontalContentAlignment="Center" 
+                            VerticalContentAlignment="Center"
+                            Height="50" 
+                            CornerRadius="10" 
+                            Command="{Binding LogoutUser}"
+                            HorizontalAlignment="Stretch">
+                            Logout
+                        </Button>
+                    </Border>
+                </StackPanel>
+    </DockPanel>
+
+</UserControl>

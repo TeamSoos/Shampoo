@@ -1,3 +1,4 @@
+using GUI.ViewModels;
 using ReactiveUI;
 
 namespace RoutedApp.ViewModels; 

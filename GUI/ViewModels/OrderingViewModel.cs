@@ -1,13 +1,16 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Reactive;
 using Avalonia.Media;
+using Avalonia.Notification;
 using ReactiveUI;
 using RoutedApp.ViewModels;
 
 namespace GUI.ViewModels;
 
 public class OrderingViewModel : RoutablePage {
+  public ReactiveCommand<Unit, Unit> LogoutUser { get; set; }
   private ItemListViewModel _currentOrderItemsList;
   public ItemListViewModel CurrentOrderItemsList {
     get => _currentOrderItemsList;
@@ -23,16 +26,19 @@ public class OrderingViewModel : RoutablePage {
   public int FormContentSpacing => 10;
   // END STYLING
 
-  public OrderingViewModel(IHostScreen screen) { 
-      HostScreen = screen;
+  public OrderingViewModel(IHostScreen screen) {
+    LogoutUser = ReactiveCommand.Create(logoutUser);
+    HostScreen = screen;
     CurrentOrderItemsList = new ItemListViewModel(
         new List<ListItem>() {
-            new() { Title = "Bread", Notes = "notes: no bread", Status = "Orange"},
+            new() { Title = "Bread", Notes = "notes: no bread", Status = "Orange" },
         }
     );
     NextOrdersCardList = new CardListViewModel(
         new List<CardItem>() {
-            new() { Title = "Order nm 01", Description = @"1x - steak 1x - deer soup 1x - coca cola   notes: wants extra bread" },
+            new() {
+                Title = "Order nm 01", Description = @"1x - steak 1x - deer soup 1x - coca cola   notes: wants extra bread"
+            },
             new() { Title = "Card 2", Description = "Description 2" }
         }
     );
@@ -42,6 +48,18 @@ public class OrderingViewModel : RoutablePage {
         }
     );
   }
-  
-  public override IScreen HostScreen { get; }
+  public void logoutUser() {
+    HostScreen.notificationManager.CreateMessage()
+        .Animates(true)
+        .Background("#B4BEFE")
+        .Foreground("#1E1E2E")
+        .HasMessage(
+            $"Logging out. Good bye {HostScreen.CurrentUser}")
+        .Dismiss().WithDelay(TimeSpan.FromSeconds(5))
+        .Queue();
+    HostScreen.GoNext(new LoginPageViewModel(HostScreen));
+  }
+
+
+  public override IHostScreen HostScreen { get; }
 }

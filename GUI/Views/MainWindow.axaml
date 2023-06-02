@@ -5,7 +5,8 @@
         xmlns:vm="using:RoutedApp.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        xmlns:controls="clr-namespace:Avalonia.Notification.Controls;assembly=Notification.Avalonia"
+        mc:Ignorable="d" d:DesignWidth="360" d:DesignHeight="800"
         x:Class="RoutedApp.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
@@ -67,9 +68,20 @@
         <vm:MainWindowViewModel />
     </Design.DataContext>
 
-    <DockPanel LastChildFill="True">
+    <Grid VerticalAlignment="Stretch">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <Border ZIndex="1">
+            <controls:NotificationMessageContainer Manager="{Binding Manager}" />
+        </Border>
         <!-- <Button Content="Back" Command="{Binding GoBackPage}" /> -->
-        <rxui:RoutedViewHost Router="{Binding Router}">
+        <rxui:RoutedViewHost Router="{Binding Router}" VerticalAlignment="Stretch">
             <rxui:RoutedViewHost.DefaultContent>
                 <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center" />
             </rxui:RoutedViewHost.DefaultContent>
@@ -79,5 +91,5 @@
             </rxui:RoutedViewHost.ViewLocator>
 
         </rxui:RoutedViewHost>
-    </DockPanel>
+    </Grid>
 </Window>
