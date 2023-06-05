@@ -11,27 +11,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6bff9e26-e0ac-45e1-b4e1-1b0a662448ad" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.Shampoo/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GUI/Logic/Models/Employee/EmployeeSQL.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GUI/Logic/Models/Employee/EmployeeType.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GUI/Logic/Models/Table/TableSQL.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GUI/Logic/Models/Table/TableType.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GUI/ViewModels/PopUpReservation.axaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GUI/ViewModels/PopUpReservation.axaml.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GUI/ViewModels/SelectTableViewModel.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GUI/Views/SelectTableView.axaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GUI/Views/SelectTableView.axaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Shampoo/.idea/avalonia.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Shampoo/.idea/avalonia.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Shampoo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Shampoo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/AppViewLocator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/AppViewLocator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/ViewModels/IHostScreen.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/ViewModels/IHostScreen.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/ViewModels/MainWindowViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/ViewModels/MainWindowViewModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/ViewModels/TablesViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/ViewModels/TablesViewModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/Views/MainWindow.axaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/Views/MainWindow.axaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/Views/SecondPage.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/Views/SecondPage.axaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/Views/SecondPage.axaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/Views/SecondPage.axaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/Views/TablesView.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/Views/TablesView.axaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/Views/TablesView.axaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/Views/TablesView.axaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/ViewModels/SelectTableViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/ViewModels/SelectTableViewModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/Views/SelectTableView.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/Views/SelectTableView.axaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -229,7 +211,7 @@
       <workItem from="1685457556857" duration="1911000" />
       <workItem from="1685608122818" duration="4302000" />
       <workItem from="1685709787306" duration="632000" />
-      <workItem from="1685955260072" duration="14672000" />
+      <workItem from="1685955260072" duration="15715000" />
     </task>
     <task id="LOCAL-00001" summary="You make me suffer.&#10;Implemented: Table view&#10;Reworked: Login, Order view">
       <created>1685737846217</created>
@@ -238,7 +220,21 @@
       <option name="project" value="LOCAL" />
       <updated>1685737846217</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Implemented table view properly">
+      <created>1685972005538</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1685972005538</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Create the button to go to the next page in SelectTableView">
+      <created>1685972595851</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1685972595851</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -250,11 +246,43 @@
     <option featureType="com.intellij.fileTypeFactory" implementationName=".env" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="origin/order" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="main" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/order" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -263,7 +291,9 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="You make me suffer.&#10;Implemented: Table view&#10;Reworked: Login, Order view" />
-    <option name="LAST_COMMIT_MESSAGE" value="You make me suffer.&#10;Implemented: Table view&#10;Reworked: Login, Order view" />
+    <MESSAGE value="Implemented table view properly" />
+    <MESSAGE value="Create the button to go to the next page in SelectTableView" />
+    <option name="LAST_COMMIT_MESSAGE" value="Create the button to go to the next page in SelectTableView" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -21,6 +21,12 @@ public class SelectTableViewModel : RoutablePage {
     get { return selected_index; }
     set { this.RaiseAndSetIfChanged(ref selected_index, value); }
   }
+  public int currentTable;
+
+  public int CurrentTable {
+    get { return currentTable; }
+    set { this.RaiseAndSetIfChanged(ref currentTable, value); }
+  } 
   
   public ReactiveCommand<Unit, Unit> CreateOrder { get; set; }
 
@@ -29,6 +35,7 @@ public class SelectTableViewModel : RoutablePage {
 #pragma warning restore CS8618
     
     HostScreen = screen;
+    CurrentTable = screen.CurrentTable;
     CreateOrder = ReactiveCommand.Create(createOrder);
 
     // Initialize the ComboBoxItems collection
@@ -44,6 +51,7 @@ public class SelectTableViewModel : RoutablePage {
     string current_employee = HostScreen.CurrentUser;
 
     // Move to your page here
+    Console.WriteLine($"{Employee} for {table_id} by {current_employee}");
   }
 
   void loadWaiters() {
