@@ -40,7 +40,6 @@ public class TablesViewModel : RoutablePage {
     // I think if I remove the wait, it starts to work fine
     // nvm can't async set the colours of the tables
     loadTables();
-    
   }
 
   void loadTables() {
