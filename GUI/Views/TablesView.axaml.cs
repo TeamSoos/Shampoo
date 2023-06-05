@@ -19,4 +19,8 @@ public partial class TablesView : ReactiveUserControl<TablesViewModel> {
   private void InitializeComponent() {
     AvaloniaXamlLoader.Load(this);
   }
+
+  public T get_by_name<T>(string name) where T : class, IControl {
+    return this.FindControl<T>(name);
+  }
 }

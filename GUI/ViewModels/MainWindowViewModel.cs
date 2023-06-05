@@ -26,6 +26,7 @@ public class MainWindowViewModel : ReactiveObject, IHostScreen {
     }
   }
   public string CurrentUser { get; set; }
+  public int CurrentTable { get; set; }
 
   readonly NavigationStack stack;
 
@@ -33,6 +34,7 @@ public class MainWindowViewModel : ReactiveObject, IHostScreen {
   
   public MainWindowViewModel() {
     stack = new NavigationStack(new LoginPageViewModel(this));
+    
 
     // Navigate to the first page
     Router.Navigate.Execute(new LoginPageViewModel(this));

@@ -1,17 +1,20 @@
+using Avalonia;
+using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using Avalonia.ReactiveUI;
+using GUI.ViewModels;
 using ReactiveUI;
 using RoutedApp.ViewModels;
 
 namespace GUI.Views; 
 
-public partial class SecondPage : ReactiveUserControl<SecondPageViewModel> {
-  public SecondPage() {
+public partial class SelectTableView : ReactiveUserControl<SelectTableViewModel> {
+  public SelectTableView() {
     InitializeComponent();
   }
 
   private void InitializeComponent() {
-		this.WhenActivated(_ => {});
+    this.WhenActivated(_ => {});
     AvaloniaXamlLoader.Load(this);
   }
 }
