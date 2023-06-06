@@ -75,7 +75,7 @@
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        
+
                         <Button
                             Grid.Column="0"
                             HorizontalContentAlignment="Center"
@@ -83,17 +83,19 @@
                             Width="100"
                             Height="50"
                             CornerRadius="10"
+                            Command="{Binding GoBack}"
                             HorizontalAlignment="Stretch">
                             Back
                         </Button>
 
                         <Button
-                            Grid.Column="1" 
+                            Grid.Column="1"
                             HorizontalContentAlignment="Center"
                             VerticalContentAlignment="Center"
                             Height="50"
                             CornerRadius="10"
-                            HorizontalAlignment="Stretch">
+                            HorizontalAlignment="Stretch"
+                            Command="{Binding CreateOrder}">
                             Create Order
                         </Button>
                     </Grid>
@@ -104,6 +106,7 @@
                         Height="50"
                         Margin="20"
                         CornerRadius="10"
+                        Command="{Binding GoBack}"
                         HorizontalAlignment="Stretch">
                         Reserve
                     </Button>

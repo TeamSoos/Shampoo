@@ -15,6 +15,7 @@ public class AppViewLocator : ReactiveUI.IViewLocator {
 		TablesViewModel context => new TablesView {DataContext = context},
 		SelectTableViewModel context => new SelectTableView {DataContext = context},
 		SecondPageViewModel context => new SecondPage {DataContext = context},
+		OrderMenuViewModel context => new OrderMenu {DataContext = context},
 		_ => throw new ArgumentOutOfRangeException($"you forgot to add {nameof(viewModel)} to AppViewLocator"),
 	};
 }

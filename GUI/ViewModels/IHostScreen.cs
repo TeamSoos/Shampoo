@@ -6,6 +6,7 @@ namespace GUI.ViewModels;
 
 public interface IHostScreen : IScreen {
   public void GoNext(RoutablePage page);
+  public void GoBack();
   public bool mobileUI { get; set; }
 
   public INotificationMessageManager notificationManager { get; }
