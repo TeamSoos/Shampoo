@@ -1,5 +1,6 @@
 using System;
 using System.Reactive;
+using GUI.ViewModels;
 using ReactiveUI;
 
 namespace RoutedApp.ViewModels;

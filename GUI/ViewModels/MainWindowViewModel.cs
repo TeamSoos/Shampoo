@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Reactive;
+using Avalonia.Notification;
 using GUI.ViewModels;
 using ReactiveUI;
 
@@ -16,15 +18,31 @@ public class MainWindowViewModel : ReactiveObject, IHostScreen {
     Router.Navigate.Execute(page);
   }
 
+  public void GoBack() {
+    GoBackPage.Execute().Subscribe();
+  }
+
+  public bool mobileUI { get; set; }
+  public INotificationMessageManager Manager { get; } = new NotificationMessageManager();
+
+  public INotificationMessageManager notificationManager {
+    get { return this.Manager; }
+  }
+
+  public string CurrentUser { get; set; }
+  public int CurrentTable { get; set; }
+
   readonly NavigationStack stack;
 
   public ReactiveCommand<Unit, IRoutableViewModel> GoBackPage { get; }
-  
+
   public MainWindowViewModel() {
     stack = new NavigationStack(new LoginPageViewModel(this));
 
+
     // Navigate to the first page
-    Router.Navigate.Execute(new LoginPageViewModel(this));
+    //Router.Navigate.Execute(new LoginPageViewModel(this));
+    Router.Navigate.Execute(new OrderMenuViewModel(this));
     GoBackPage = ReactiveCommand.CreateFromObservable(
       () => {
         var _ = stack.Pop();

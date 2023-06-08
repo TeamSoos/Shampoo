@@ -3,6 +3,7 @@ using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using RoutedApp.ViewModels;
 using RoutedApp.Views;
+using MainWindow = GUI.Views.MainWindow;
 
 namespace RoutedApp;
 
