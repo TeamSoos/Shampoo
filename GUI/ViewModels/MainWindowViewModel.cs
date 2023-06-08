@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Reactive;
 using Avalonia.Notification;
 using GUI.ViewModels;
+using GUI.Views;
 using ReactiveUI;
 
 namespace RoutedApp.ViewModels;
@@ -37,12 +38,11 @@ public class MainWindowViewModel : ReactiveObject, IHostScreen {
   public ReactiveCommand<Unit, IRoutableViewModel> GoBackPage { get; }
 
   public MainWindowViewModel() {
-    stack = new NavigationStack(new LoginPageViewModel(this));
+    stack = new NavigationStack(new NewPageViewModel(this));
 
 
     // Navigate to the first page
-    //Router.Navigate.Execute(new LoginPageViewModel(this));
-    Router.Navigate.Execute(new OrderMenuViewModel(this));
+    Router.Navigate.Execute(new LoginPageViewModel(this));
     GoBackPage = ReactiveCommand.CreateFromObservable(
       () => {
         var _ = stack.Pop();

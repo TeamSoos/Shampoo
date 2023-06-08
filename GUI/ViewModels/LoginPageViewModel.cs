@@ -22,7 +22,7 @@ public class LoginPageViewModel : RoutablePage {
     set => _text = value;
   }
 
-  private List<string> staff = new List<string>() { "chef", "barman", "waiter"};
+  private List<string> staff = new List<string>() { "admin", "chef", "barman", "waiter"};
 
   public ICommand LoginStaff { get; }
 
@@ -89,6 +89,10 @@ public class LoginPageViewModel : RoutablePage {
             case "waiter":
               Console.WriteLine("Waiter");
               HostScreen.GoNext(new TablesViewModel(HostScreen));
+              return;
+            case "admin":
+              Console.WriteLine("Admin");
+              HostScreen.GoNext(new NewPageViewModel(HostScreen));
               return;
           }
 

@@ -7,8 +7,11 @@
         <entry key="GUI/ViewModels/PopUpReservation.axaml" value="GUI/GUI.csproj" />
         <entry key="GUI/Views/BasicAppView.axaml" value="GUI/GUI.csproj" />
         <entry key="GUI/Views/FirstPage.axaml" value="GUI/GUI.csproj" />
+        <entry key="GUI/Views/InventoryAddItem.axaml" value="GUI/GUI.csproj" />
+        <entry key="GUI/Views/InventoryItemsList.axaml" value="GUI/GUI.csproj" />
         <entry key="GUI/Views/LoginPageView.axaml" value="GUI/GUI.csproj" />
         <entry key="GUI/Views/MainWindow.axaml" value="GUI/GUI.csproj" />
+        <entry key="GUI/Views/NewPage.axaml" value="GUI/GUI.csproj" />
         <entry key="GUI/Views/NotificationUserControl.axaml" value="GUI/GUI.csproj" />
         <entry key="GUI/Views/OrderMenu.axaml" value="GUI/GUI.csproj" />
         <entry key="GUI/Views/OrderingView.axaml" value="GUI/GUI.csproj" />

@@ -11,25 +11,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6bff9e26-e0ac-45e1-b4e1-1b0a662448ad" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/GUI/ViewModels/OrderMenuViewModel.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GUI/Views/OrderMenu.axaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GUI/Views/OrderMenu.axaml.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GUI/ViewModels/InventoryAddItemViewModel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GUI/ViewModels/InventoryItemsListViewModel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GUI/Views/InventoryAddItem.axaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GUI/Views/InventoryAddItem.axaml.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GUI/Views/InventoryItemsList.axaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GUI/Views/InventoryItemsList.axaml.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GUI/Views/NewPage.axaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GUI/Views/NewPage.axaml.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GUI/Views/NewPageViewModel.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Shampoo/.idea/avalonia.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Shampoo/.idea/avalonia.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Shampoo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Shampoo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/App.axaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/App.axaml.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GUI/AppViewLocator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/AppViewLocator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/GUI.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/GUI.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/Logic/Models/Employee/EmployeeSQL.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/Logic/Models/Employee/EmployeeSQL.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/Logic/Models/Employee/EmployeeType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/Logic/Models/Employee/EmployeeType.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/Logic/Models/Table/TableSQL.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/Logic/Models/Table/TableSQL.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/Logic/Models/Table/TableType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/Logic/Models/Table/TableType.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/ViewModels/IHostScreen.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/ViewModels/IHostScreen.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/ViewModels/LoginPageViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/ViewModels/LoginPageViewModel.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GUI/ViewModels/MainWindowViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/ViewModels/MainWindowViewModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/ViewModels/SelectTableViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/ViewModels/SelectTableViewModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/ViewModels/TablesViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/ViewModels/TablesViewModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/Views/MainWindow.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/Views/MainWindow.axaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/Views/MainWindow.axaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/Views/MainWindow.axaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/Views/SelectTableView.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/Views/SelectTableView.axaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,17 +39,17 @@
     </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="router-kunal" />
+        <entry key="$PROJECT_DIR$" value="order" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/77cef97caa1e474db05b0d81b673a93e950400/d7/21f17df0/Task.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/77cef97caa1e474db05b0d81b673a93e950400/ec/3565753a/Collection`1.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/c27cde167adc4c638ca6987550cd83e12000/57/edfdcf4a/IServiceProvider.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9e48c385a0f8c4d27705158a41832ed686216b07b40ba171e89b41411bcc4dc/RxApp.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/GUIOLD/Views/MainWindow.axaml" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://diff.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://diff.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://diff.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://diff.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectId" id="2OYRDqi8NU48Rm9mBcXsbYmcaEr" />
@@ -65,34 +60,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;order&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/link/Shampoo/DefaultEntry/Dockerfile&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.C#&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "inventory-dana",
+    "last_opened_file_path": "/home/link/Shampoo/DefaultEntry/Dockerfile",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.sourceCode.C#",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
     ],
-    &quot;rider.external.source.directories&quot;: [
-      &quot;/home/thepiguy/.config/JetBrains/Rider2023.1/resharper-host/DecompilerCache&quot;,
-      &quot;/home/thepiguy/.config/JetBrains/Rider2023.1/resharper-host/SourcesCache&quot;,
-      &quot;/home/thepiguy/.local/share/Symbols/src&quot;
+    "rider.external.source.directories": [
+      "/home/thepiguy/.config/JetBrains/Rider2023.1/resharper-host/DecompilerCache",
+      "/home/thepiguy/.config/JetBrains/Rider2023.1/resharper-host/SourcesCache",
+      "/home/thepiguy/.local/share/Symbols/src"
     ]
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected=".NET Project.GUI">
     <configuration name="DefaultEntry" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="$PROJECT_DIR$/DefaultEntry/bin/Debug/net6.0/DefaultEntry" />
@@ -271,7 +266,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/order" />
+                        <option value="origin/inventory-dana" />
                       </list>
                     </value>
                   </entry>
