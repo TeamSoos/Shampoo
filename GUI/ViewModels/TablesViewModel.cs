@@ -46,12 +46,11 @@ public class TablesViewModel : RoutablePage {
     List<TableType> tables = new List<TableType>();
     Task.Run(async () =>
     {
-      
       // Populate table state
       tables = await TableType.getAll();
-
       Console.WriteLine("Done setting states");
     }).Wait();
+    
     string empty = "#B5ECA1";
     string taken = "#F38BA8";
     string reserved = "#B4BEFE";

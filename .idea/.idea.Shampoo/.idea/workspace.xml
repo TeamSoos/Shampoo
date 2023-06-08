@@ -12,8 +12,10 @@
   <component name="ChangeListManager">
     <list default="true" id="6bff9e26-e0ac-45e1-b4e1-1b0a662448ad" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Shampoo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Shampoo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/ViewModels/SelectTableViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/ViewModels/SelectTableViewModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/Views/SelectTableView.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/Views/SelectTableView.axaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/ViewModels/TablesViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/ViewModels/TablesViewModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/Views/MainWindow.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/Views/MainWindow.axaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/Views/OrderingView.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/Views/OrderingView.axaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,20 +36,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/d6802cf07bd84ac7b4c46f822ed20f42d000/42/0bcbca64/NotificationMessageBuilderLinq.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/178e2a71efb192fa916d514f7c54f6a771a7ec79127dfbc13398afb24967d8/IRoutableViewModel.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3e8a0e4448c350abd0f084481bc43043cd87b63f9043ca7343997477181153/RoutedViewHost.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3fc08e292f47f62ab1f7f73d3ea699921ae256974fa4f8e87865ec4bb50f4/Button.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/421680e1613c12c2dd44baf2784517784574013d8a735c7bdc73ae709fdb92/IReactiveObject.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/75d9828791f39e474c67594193d0da72a24f54dc4333d5164e8a8b1550f99bd7/Unit.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9156f7f7d7fe31ecb86103c74e89e22a5242a153d4ccf14e354685cb3fb7b5/Task.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9e48c385a0f8c4d27705158a41832ed686216b07b40ba171e89b41411bcc4dc/RxApp.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/c4c8b852b01958439e7e69e984404fdf83de3e6cc60b175ae89e7ed8c1c9d53/ControlExtensions.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/c7ff1ec62dc2803db984bf46f82ce0c0a3eedcebc8e4dc2b6c962586094e2c7/ReactiveCommand.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/cb2f03d4479eceb38bf4e4ea81f6de2c8c4b571d86b54a7cbf37f2253455e/AvaloniaObject.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/cf3639f2692e1e555ab6a4f4c6860cd269376d8cb71a2d561f7893fd7fc9f/Visual.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/e8deadb495721889fc7466e0168b3752ea441ea7dda885ccb05b99a518b879/Color.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f36724d2e12b56ff0d73dd63d47dd2212a2c78223d4a2b475d856c31ae8cd/ReactiveObject.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/GUIOLD/Views/MainWindow.axaml" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
@@ -59,34 +48,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "order",
-    "last_opened_file_path": "/home/link/Shampoo/DefaultEntry/Dockerfile",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.sourceCode.C#",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;order&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/link/Shampoo/DefaultEntry/Dockerfile&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.C#&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "postgresql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
     ],
-    "rider.external.source.directories": [
-      "/home/link/.config/JetBrains/Rider2023.1/resharper-host/DecompilerCache",
-      "/home/link/.config/JetBrains/Rider2023.1/resharper-host/SourcesCache",
-      "/home/link/.local/share/Symbols/src"
+    &quot;rider.external.source.directories&quot;: [
+      &quot;/home/link/.config/JetBrains/Rider2023.1/resharper-host/DecompilerCache&quot;,
+      &quot;/home/link/.config/JetBrains/Rider2023.1/resharper-host/SourcesCache&quot;,
+      &quot;/home/link/.local/share/Symbols/src&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected=".NET Project.GUI">
     <configuration name="DefaultEntry" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="$PROJECT_DIR$/DefaultEntry/bin/Debug/net6.0/DefaultEntry" />
@@ -111,6 +100,9 @@
       <option name="PROGRAM_PARAMETERS" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/GUI/bin/Debug/net6.0" />
       <option name="PASS_PARENT_ENVS" value="1" />
+      <envs>
+        <env name="AVALONIA_SCREEN_SCALE_FACTORS" value="'XWAYLAND0=2'" />
+      </envs>
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <option name="USE_MONO" value="0" />
       <option name="RUNTIME_ARGUMENTS" value="" />
@@ -211,7 +203,10 @@
       <workItem from="1685457556857" duration="1911000" />
       <workItem from="1685608122818" duration="4302000" />
       <workItem from="1685709787306" duration="632000" />
-      <workItem from="1685955260072" duration="15715000" />
+      <workItem from="1685955260072" duration="19295000" />
+      <workItem from="1686043397410" duration="1187000" />
+      <workItem from="1686044735628" duration="155000" />
+      <workItem from="1686067137108" duration="4603000" />
     </task>
     <task id="LOCAL-00001" summary="You make me suffer.&#10;Implemented: Table view&#10;Reworked: Login, Order view">
       <created>1685737846217</created>
@@ -234,7 +229,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685972595851</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Improve the button logic and add table id">
+      <created>1685972911369</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1685972911369</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -293,7 +295,8 @@
     <MESSAGE value="You make me suffer.&#10;Implemented: Table view&#10;Reworked: Login, Order view" />
     <MESSAGE value="Implemented table view properly" />
     <MESSAGE value="Create the button to go to the next page in SelectTableView" />
-    <option name="LAST_COMMIT_MESSAGE" value="Create the button to go to the next page in SelectTableView" />
+    <MESSAGE value="Improve the button logic and add table id" />
+    <option name="LAST_COMMIT_MESSAGE" value="Improve the button logic and add table id" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

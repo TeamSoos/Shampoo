@@ -25,6 +25,7 @@
         </Style>
         
         <Style Selector="Button">
+            <Setter Property="FontFamily" Value="Montserrat"/>
             <Setter Property="Background" Value="#B4BEFE"/>
             <Setter Property="Foreground" Value="#1E1E2E"/>
             <Setter Property="FontWeight" Value="Bold"/>
@@ -37,6 +38,7 @@
         </Style>
         
         <Style Selector="TextBox">
+            <Setter Property="FontFamily" Value="Montserrat"/>
             <Setter Property="Background" Value="#00000000"/>
             <Setter Property="Foreground" Value="#CDD6F4"/>
             <Setter Property="FontWeight" Value="Bold"/>
@@ -60,6 +62,14 @@
         </Style>
         <Style Selector="TabItem:selected /template/ ContentPresenter#PART_ContentPresenter">
             <!-- <Setter Property="Background" Value="#f0f0f0"/> -->
+        </Style>
+        
+        <Style Selector="TextBlock">
+            <Setter Property="FontFamily" Value="Montserrat"/>
+        </Style>
+        
+        <Style Selector="CheckBox">
+            <Setter Property="FontFamily" Value="Montserrat"/>
         </Style>
 
     </Window.Styles>
