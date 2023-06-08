@@ -72,7 +72,7 @@
 
                         <ComboBox
                             Margin="10, -5, 0, 0"
-                            Items="{Binding ComboBoxItems}" SelectedIndex="{Binding SelectedIndex}" />
+                            Items="{Binding ComboBoxItems}" SelectedIndex="0" />
                     </StackPanel>
 
                     <StackPanel
@@ -82,7 +82,7 @@
                         <TextBlock
                             FontSize="20"
                             Foreground="#1E1E2E">
-                            No. of guests:
+                            Number of guests:
                         </TextBlock>
                         <NumericUpDown Value="0" Minimum="0" Maximum="100" Margin="10, -5, 0, 0" />
 
@@ -102,12 +102,13 @@
                             Width="100"
                             Height="50"
                             CornerRadius="10"
+                            Command="{Binding GoBack}"
                             HorizontalAlignment="Stretch">
                             Back
                         </Button>
 
                         <Button
-                            Grid.Column="1" 
+                            Grid.Column="1"
                             HorizontalContentAlignment="Center"
                             VerticalContentAlignment="Center"
                             Height="50"
@@ -124,6 +125,7 @@
                         Height="50"
                         Margin="20"
                         CornerRadius="10"
+                        Command="{Binding GoBack}"
                         HorizontalAlignment="Stretch">
                         Reserve
                     </Button>

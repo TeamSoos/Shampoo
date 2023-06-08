@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Drawing.Printing;
 using System.Reactive;
 using System.Reflection;
+using System.Threading.Tasks;
 using Avalonia.Controls;
 using Avalonia.LogicalTree;
 using Avalonia.Media;
@@ -20,21 +21,22 @@ namespace GUI.ViewModels;
 public class TablesViewModel : RoutablePage {
   // Styling
   public int FormContentWidth => 350;
+
   public int FormContentSpacing => 10;
   // END STYLING
-  
+
   /*
    * This is for the function TableSel
    * to wait until all the table
    * states have been loaded
    */
   public bool tablesLoaded = false;
-  
+
   public TablesViewModel(IHostScreen screen) {
     LogoutUser = ReactiveCommand.Create(logoutUser);
     TableSel = ReactiveCommand.Create<string>(tableSelect);
     HostScreen = screen;
-    
+
     // We now want to inform the buttons of their states
     // F*ck this takes a while to load, need to offload it somehow
     // I think if I remove the wait, it starts to work fine
@@ -48,6 +50,7 @@ public class TablesViewModel : RoutablePage {
     {
       // Populate table state
       tables = await TableType.getAll();
+
       Console.WriteLine("Done setting states");
     }).Wait();
     
@@ -58,18 +61,17 @@ public class TablesViewModel : RoutablePage {
     foreach (var table in tables) {
       Console.WriteLine($"Processing table {table.number} {table.status}");
       string propertyName = $"Colour{table.number}";
-      string colourValue = table.status switch
-      {
-          Status.reserved => reserved,
-          Status.empty => empty,
-          Status.occupied => taken,
-          _ => throw new ArgumentOutOfRangeException()
+      string colourValue = table.status switch {
+        Status.reserved => reserved,
+        Status.empty => empty,
+        Status.occupied => taken,
+        _ => throw new ArgumentOutOfRangeException()
       };
 
       // Set the property dynamically using reflection
       PropertyInfo property = GetType().GetProperty(propertyName)!;
       property.SetValue(this, colourValue);
-        
+
       Console.WriteLine($"Set to {colourValue}");
       // switch (table.number) {
       //   case 1:
@@ -84,10 +86,10 @@ public class TablesViewModel : RoutablePage {
   }
 
   // Helper class
-  bool IsNumeric(string content)
-  {
+  bool IsNumeric(string content) {
     return int.TryParse(content, out _);
   }
+
   public ReactiveCommand<Unit, Unit> LogoutUser { get; set; }
   public ReactiveCommand<string, Unit> TableSel { get; set; }
 
@@ -103,13 +105,13 @@ public class TablesViewModel : RoutablePage {
 
   public void logoutUser() {
     HostScreen.notificationManager.CreateMessage()
-        .Animates(true)
-        .Background("#B4BEFE")
-        .Foreground("#1E1E2E")
-        .HasMessage(
-            $"Logging out. Good bye {HostScreen.CurrentUser}")
-        .Dismiss().WithDelay(TimeSpan.FromSeconds(5))
-        .Queue();
+      .Animates(true)
+      .Background("#B4BEFE")
+      .Foreground("#1E1E2E")
+      .HasMessage(
+        $"Logging out. Good bye {HostScreen.CurrentUser}")
+      .Dismiss().WithDelay(TimeSpan.FromSeconds(5))
+      .Queue();
     HostScreen.GoNext(new LoginPageViewModel(HostScreen));
   }
 
@@ -146,35 +148,41 @@ public class TablesViewModel : RoutablePage {
     get => colour5;
     set { this.RaiseAndSetIfChanged(ref colour5, value); }
   }
+
   private string colour5;
 
   public string Colour6 {
     get => colour6;
     set { this.RaiseAndSetIfChanged(ref colour6, value); }
   }
+
   private string colour6;
 
   public string Colour7 {
     get => colour7;
     set { this.RaiseAndSetIfChanged(ref colour7, value); }
   }
+
   private string colour7;
 
   public string Colour8 {
     get => colour8;
     set { this.RaiseAndSetIfChanged(ref colour8, value); }
   }
+
   private string colour8;
 
   public string Colour9 {
     get => colour9;
     set { this.RaiseAndSetIfChanged(ref colour9, value); }
   }
+
   private string colour9;
 
   public string Colour10 {
     get => colour10;
     set { this.RaiseAndSetIfChanged(ref colour10, value); }
   }
+
   private string colour10;
 }

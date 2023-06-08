@@ -11,11 +11,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6bff9e26-e0ac-45e1-b4e1-1b0a662448ad" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/GUI/ViewModels/OrderMenuViewModel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GUI/Views/OrderMenu.axaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GUI/Views/OrderMenu.axaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Shampoo/.idea/avalonia.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Shampoo/.idea/avalonia.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Shampoo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Shampoo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/App.axaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/App.axaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/AppViewLocator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/AppViewLocator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/GUI.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/GUI.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/Logic/Models/Employee/EmployeeSQL.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/Logic/Models/Employee/EmployeeSQL.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/Logic/Models/Employee/EmployeeType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/Logic/Models/Employee/EmployeeType.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/Logic/Models/Table/TableSQL.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/Logic/Models/Table/TableSQL.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/Logic/Models/Table/TableType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/Logic/Models/Table/TableType.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/ViewModels/IHostScreen.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/ViewModels/IHostScreen.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/ViewModels/MainWindowViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/ViewModels/MainWindowViewModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/ViewModels/SelectTableViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/ViewModels/SelectTableViewModel.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GUI/ViewModels/TablesViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/ViewModels/TablesViewModel.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GUI/Views/MainWindow.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/Views/MainWindow.axaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/Views/OrderingView.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/Views/OrderingView.axaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/Views/MainWindow.axaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/Views/MainWindow.axaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/Views/SelectTableView.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/Views/SelectTableView.axaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,7 +50,10 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9156f7f7d7fe31ecb86103c74e89e22a5242a153d4ccf14e354685cb3fb7b5/Task.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/77cef97caa1e474db05b0d81b673a93e950400/d7/21f17df0/Task.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/77cef97caa1e474db05b0d81b673a93e950400/ec/3565753a/Collection`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/c27cde167adc4c638ca6987550cd83e12000/57/edfdcf4a/IServiceProvider.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9e48c385a0f8c4d27705158a41832ed686216b07b40ba171e89b41411bcc4dc/RxApp.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/GUIOLD/Views/MainWindow.axaml" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
@@ -70,9 +87,9 @@
       &quot;postgresql&quot;
     ],
     &quot;rider.external.source.directories&quot;: [
-      &quot;/home/link/.config/JetBrains/Rider2023.1/resharper-host/DecompilerCache&quot;,
-      &quot;/home/link/.config/JetBrains/Rider2023.1/resharper-host/SourcesCache&quot;,
-      &quot;/home/link/.local/share/Symbols/src&quot;
+      &quot;/home/thepiguy/.config/JetBrains/Rider2023.1/resharper-host/DecompilerCache&quot;,
+      &quot;/home/thepiguy/.config/JetBrains/Rider2023.1/resharper-host/SourcesCache&quot;,
+      &quot;/home/thepiguy/.local/share/Symbols/src&quot;
     ]
   }
 }</component>
@@ -100,9 +117,6 @@
       <option name="PROGRAM_PARAMETERS" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/GUI/bin/Debug/net6.0" />
       <option name="PASS_PARENT_ENVS" value="1" />
-      <envs>
-        <env name="AVALONIA_SCREEN_SCALE_FACTORS" value="'XWAYLAND0=2'" />
-      </envs>
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <option name="USE_MONO" value="0" />
       <option name="RUNTIME_ARGUMENTS" value="" />
@@ -203,10 +217,10 @@
       <workItem from="1685457556857" duration="1911000" />
       <workItem from="1685608122818" duration="4302000" />
       <workItem from="1685709787306" duration="632000" />
-      <workItem from="1685955260072" duration="19295000" />
-      <workItem from="1686043397410" duration="1187000" />
-      <workItem from="1686044735628" duration="155000" />
-      <workItem from="1686067137108" duration="4603000" />
+      <workItem from="1685955260072" duration="14672000" />
+      <workItem from="1685973299307" duration="6783000" />
+      <workItem from="1686055621099" duration="15000" />
+      <workItem from="1686055638783" duration="12239000" />
     </task>
     <task id="LOCAL-00001" summary="You make me suffer.&#10;Implemented: Table view&#10;Reworked: Login, Order view">
       <created>1685737846217</created>
@@ -215,28 +229,7 @@
       <option name="project" value="LOCAL" />
       <updated>1685737846217</updated>
     </task>
-    <task id="LOCAL-00002" summary="Implemented table view properly">
-      <created>1685972005538</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1685972005538</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Create the button to go to the next page in SelectTableView">
-      <created>1685972595851</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1685972595851</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Improve the button logic and add table id">
-      <created>1685972911369</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1685972911369</updated>
-    </task>
-    <option name="localTasksCounter" value="5" />
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -292,6 +285,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="You make me suffer.&#10;Implemented: Table view&#10;Reworked: Login, Order view" />
     <MESSAGE value="Implemented table view properly" />
     <MESSAGE value="Create the button to go to the next page in SelectTableView" />

@@ -1,5 +1,9 @@
+using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Reactive;
+using System.Threading.Tasks;
 using Avalonia.Controls;
 using GUI.Logic.Models.Employee;
 using ReactiveUI;
@@ -30,6 +34,8 @@ public class SelectTableViewModel : RoutablePage {
   
   public ReactiveCommand<Unit, Unit> CreateOrder { get; set; }
 
+  public ReactiveCommand<Unit, Unit> GoBack { get; }
+
 #pragma warning disable CS8618
   public SelectTableViewModel(IHostScreen screen) {
 #pragma warning restore CS8618
@@ -37,6 +43,15 @@ public class SelectTableViewModel : RoutablePage {
     HostScreen = screen;
     CurrentTable = screen.CurrentTable;
     CreateOrder = ReactiveCommand.Create(createOrder);
+
+    CreateOrder = ReactiveCommand.Create(() => {
+      HostScreen.GoNext(new OrderMenuViewModel(HostScreen));
+    });
+    
+    GoBack = ReactiveCommand.Create(() => {
+      HostScreen.GoBack();
+    });
+
 
     // Initialize the ComboBoxItems collection
     ComboBoxItems = new ObservableCollection<ComboBoxItem>();
@@ -57,15 +72,13 @@ public class SelectTableViewModel : RoutablePage {
   void loadWaiters() {
     // Collect all waiters
     List<EmployeeType> employees = new List<EmployeeType>();
-    Task.Run(async () =>
-    {
+    Task.Run(async () => {
       employees = await EmployeeType.getAll("waiter");
 
       Console.WriteLine("Done getting waiters");
     }).Wait();
 
-    foreach (var employee in employees) {
-      ComboBoxItem item = new ComboBoxItem { Content = employee.name };
+    foreach (ComboBoxItem item in employees.Select(employee => new ComboBoxItem { Content = employee.name })) {
       ComboBoxItems.Add(item);
     }
   }

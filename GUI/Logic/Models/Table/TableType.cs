@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Logic.Models.Base;
 
 namespace GUI.Logic.Models.Table;

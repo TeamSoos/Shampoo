@@ -7,73 +7,73 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:controls="clr-namespace:Avalonia.Notification.Controls;assembly=Notification.Avalonia"
         mc:Ignorable="d" d:DesignWidth="360" d:DesignHeight="800"
-        x:Class="RoutedApp.Views.MainWindow"
+        x:Class="GUI.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
         Title="GUI">
 
     <Window.Styles>
-        
+
         <Style Selector="TabItem">
-            <Setter Property="FontSize" Value="12"/>
-            <Setter Property="Height" Value="34"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="Height" Value="34" />
+            <Setter Property="VerticalAlignment" Value="Center" />
             <!-- <Setter Property="Background" Value="#2B579A"/> -->
-            <Setter Property="Foreground" Value="#A6ADC8"/>
-            <Setter Property="Margin" Value="0 0 0 0"/>
-            <Setter Property="Padding" Value="10 0"/>
+            <Setter Property="Foreground" Value="#A6ADC8" />
+            <Setter Property="Margin" Value="0 0 0 0" />
+            <Setter Property="Padding" Value="10 0" />
         </Style>
         
         <Style Selector="Button">
-            <Setter Property="FontFamily" Value="Montserrat"/>
-            <Setter Property="Background" Value="#B4BEFE"/>
-            <Setter Property="Foreground" Value="#1E1E2E"/>
-            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontFamily" Value="Montserrat" />
+            <Setter Property="Background" Value="#B4BEFE" />
+            <Setter Property="Foreground" Value="#1E1E2E" />
+            <Setter Property="FontWeight" Value="Bold" />
         </Style>
         
         <Style Selector="Button:focus">
-            <Setter Property="Background" Value="#B4BEFE"/>
-            <Setter Property="Foreground" Value="#1E1E2E"/>
-            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Background" Value="#B4BEFE" />
+            <Setter Property="Foreground" Value="#1E1E2E" />
+            <Setter Property="FontWeight" Value="Bold" />
         </Style>
         
         <Style Selector="TextBox">
-            <Setter Property="FontFamily" Value="Montserrat"/>
-            <Setter Property="Background" Value="#00000000"/>
-            <Setter Property="Foreground" Value="#CDD6F4"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="BorderThickness" Value="2"/>
-            <Setter Property="BorderBrush" Value="#CDD6F4"/>
+            <Setter Property="FontFamily" Value="Montserrat" />
+            <Setter Property="Background" Value="#00000000" />
+            <Setter Property="Foreground" Value="#CDD6F4" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="BorderThickness" Value="2" />
+            <Setter Property="BorderBrush" Value="#CDD6F4" />
         </Style>
         
         <Style Selector="TabItem:focus">
             <!-- <Setter Property="Foreground" Value="#2B579A"/> -->
-            <Setter Property="Margin" Value="0 0 0 0"/>
-            <Setter Property="Padding" Value="10 0"/>
+            <Setter Property="Margin" Value="0 0 0 0" />
+            <Setter Property="Padding" Value="10 0" />
         </Style>
         <Style Selector="TabItem:focus /template/ ContentPresenter#PART_ContentPresenter">
             <!-- <Setter Property="Background" Value="#f0f0f0"/> -->
         </Style>
 
         <Style Selector="TabItem:selected">
-            <Setter Property="Foreground" Value="#CDD6F4"/>
-            <Setter Property="Margin" Value="0 0 0 0"/>
-            <Setter Property="Padding" Value="10 0"/>
+            <Setter Property="Foreground" Value="#CDD6F4" />
+            <Setter Property="Margin" Value="0 0 0 0" />
+            <Setter Property="Padding" Value="10 0" />
         </Style>
         <Style Selector="TabItem:selected /template/ ContentPresenter#PART_ContentPresenter">
             <!-- <Setter Property="Background" Value="#f0f0f0"/> -->
         </Style>
-        
+
         <Style Selector="TextBlock">
-            <Setter Property="FontFamily" Value="Montserrat"/>
+            <Setter Property="FontFamily" Value="Montserrat" />
         </Style>
-        
+
         <Style Selector="CheckBox">
-            <Setter Property="FontFamily" Value="Montserrat"/>
+            <Setter Property="FontFamily" Value="Montserrat" />
         </Style>
 
     </Window.Styles>
-    
+
     <Design.DataContext>
         <vm:MainWindowViewModel />
     </Design.DataContext>
