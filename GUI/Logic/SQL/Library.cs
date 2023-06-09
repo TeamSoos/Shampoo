@@ -56,6 +56,11 @@ public class Library {
       return reader;
     }
     
+    public async void Store(NpgsqlCommand cmd)
+    {
+      await cmd.ExecuteNonQueryAsync();
+    }
+    
     public void ListenToNotif(string connstr)
     {
       String notificationName = "testchannel";

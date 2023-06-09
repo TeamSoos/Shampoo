@@ -82,9 +82,9 @@
                         <TextBlock
                             FontSize="20"
                             Foreground="#1E1E2E">
-                            Number of guests:
+                            Guests:
                         </TextBlock>
-                        <NumericUpDown Value="0" Minimum="0" Maximum="100" Margin="10, -5, 0, 0" />
+                        <NumericUpDown Value="{Binding GuestCount}" Minimum="0" Maximum="100" Margin="10, -5, 0, 0" />
 
                     </StackPanel>
 
@@ -125,7 +125,7 @@
                         Height="50"
                         Margin="20"
                         CornerRadius="10"
-                        Command="{Binding GoBack}"
+                        Command="{Binding GoToReserve}"
                         HorizontalAlignment="Stretch">
                         Reserve
                     </Button>

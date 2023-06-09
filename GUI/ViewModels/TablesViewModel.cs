@@ -31,11 +31,26 @@ public class TablesViewModel : RoutablePage {
    * states have been loaded
    */
   public bool tablesLoaded = false;
+  
+  /*
+   * This basically holds the state information
+   * of the tables. This is for us to check
+   * if the table that was clicked has been taken
+   * or something, idk
+   */
+
+  private List<TableType> Tables;
 
   public TablesViewModel(IHostScreen screen) {
+    HostScreen = screen;
     LogoutUser = ReactiveCommand.Create(logoutUser);
     TableSel = ReactiveCommand.Create<string>(tableSelect);
-    HostScreen = screen;
+    Refresh = ReactiveCommand.Create(loadTables);
+    Reservations = ReactiveCommand.Create(() =>
+    {
+      HostScreen.GoNext(new ReservationsViewModel(HostScreen));
+    });
+    
 
     // We now want to inform the buttons of their states
     // F*ck this takes a while to load, need to offload it somehow
@@ -53,6 +68,7 @@ public class TablesViewModel : RoutablePage {
 
       Console.WriteLine("Done setting states");
     }).Wait();
+    Tables = tables;
     
     string empty = "#B5ECA1";
     string taken = "#F38BA8";
@@ -85,18 +101,35 @@ public class TablesViewModel : RoutablePage {
     }
   }
 
-  // Helper class
+  // Helper func
   bool IsNumeric(string content) {
     return int.TryParse(content, out _);
   }
 
   public ReactiveCommand<Unit, Unit> LogoutUser { get; set; }
+  public ReactiveCommand<Unit, Unit> Reservations { get; set; }
   public ReactiveCommand<string, Unit> TableSel { get; set; }
+  
+  public ReactiveCommand<Unit, Unit>  Refresh { get; set; }
 
   public void tableSelect(string button) {
     Console.WriteLine($"Button pressed: {button}");
 
     int button_id = int.Parse(button);
+
+    foreach (TableType table in Tables) {
+      if (table.number == button_id && table.status != Status.empty) {
+        HostScreen.notificationManager.CreateMessage()
+            .Animates(true)
+            .Background("#B4BEFE")
+            .Foreground("#1E1E2E")
+            .HasMessage(
+                $"Sorry, this table is already occupied or reserved")
+            .Dismiss().WithDelay(TimeSpan.FromSeconds(2))
+            .Queue();
+        return;
+      }
+    }
 
     HostScreen.CurrentTable = button_id;
     

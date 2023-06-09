@@ -30,19 +30,33 @@ public class SelectTableViewModel : RoutablePage {
   public int CurrentTable {
     get { return currentTable; }
     set { this.RaiseAndSetIfChanged(ref currentTable, value); }
-  } 
+  }
+
+  public int guestCount = 0;
+  public int GuestCount {
+    get { return guestCount; }
+    set {this.RaiseAndSetIfChanged(ref guestCount, value);}
+  }
   
   public ReactiveCommand<Unit, Unit> CreateOrder { get; set; }
 
   public ReactiveCommand<Unit, Unit> GoBack { get; }
+  
+  public ReactiveCommand<Unit, Unit> GoToReserve { get; }
 
 #pragma warning disable CS8618
   public SelectTableViewModel(IHostScreen screen) {
 #pragma warning restore CS8618
-    
+
+    GuestCount = 0;
     HostScreen = screen;
     CurrentTable = screen.CurrentTable;
     CreateOrder = ReactiveCommand.Create(createOrder);
+    GoToReserve = ReactiveCommand.Create(() =>
+    {
+      HostScreen.GuestCount = GuestCount;
+      HostScreen.GoNext(new ReserveTableViewModel(HostScreen));
+    });
 
     CreateOrder = ReactiveCommand.Create(() => {
       HostScreen.GoNext(new OrderMenuViewModel(HostScreen));
