@@ -1,5 +1,6 @@
 using Avalonia.Markup.Xaml;
 using Avalonia.ReactiveUI;
+using GUI.ViewModels;
 using ReactiveUI;
 using RoutedApp.ViewModels;
 

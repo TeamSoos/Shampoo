@@ -1,5 +1,8 @@
+using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Reactive;
+using System.Threading.Tasks;
 using GUI.Logic.Models.Reservation;
 using ReactiveUI;
 using RoutedApp.ViewModels;

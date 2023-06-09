@@ -37,7 +37,7 @@ public class LoginPageViewModel : RoutablePage {
   public LoginPageViewModel(IHostScreen screen) {
     MobileUIRequested = false;
     HostScreen = screen;
-    LoginStaff = ReactiveCommand.Create(loginStaff);
+    LoginStaff = ReactiveCommand.Create(loginStaffTask);
   }
   
   // Styling
@@ -45,7 +45,7 @@ public class LoginPageViewModel : RoutablePage {
   public int FormContentSpacing => 10;
   // END STYLING
 
-  private async Task loginStaff() {
+  private async Task loginStaffTask() {
     Console.WriteLine($"Login key: {Text}");
     Library.Database db = new Library.Database();
 

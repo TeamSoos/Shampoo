@@ -11,25 +11,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6bff9e26-e0ac-45e1-b4e1-1b0a662448ad" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/GUI/ViewModels/OrderMenuViewModel.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GUI/Views/OrderMenu.axaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GUI/Views/OrderMenu.axaml.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GUI/Logic/Models/Menu/MenuSql.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GUI/Logic/Models/Menu/MenuType.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GUI/ViewModels/OrderMenuViewOrderViewModel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GUI/Views/OrderMenuViewOrder.axaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GUI/Views/OrderMenuViewOrder.axaml.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Shampoo/.idea/avalonia.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Shampoo/.idea/avalonia.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Shampoo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Shampoo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/App.axaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/App.axaml.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GUI/AppViewLocator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/AppViewLocator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/GUI.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/GUI.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/Logic/Models/Employee/EmployeeSQL.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/Logic/Models/Employee/EmployeeSQL.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/Logic/Models/Employee/EmployeeType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/Logic/Models/Employee/EmployeeType.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/Logic/Models/Table/TableSQL.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/Logic/Models/Table/TableSQL.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/Logic/Models/Table/TableType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/Logic/Models/Table/TableType.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/ViewModels/IHostScreen.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/ViewModels/IHostScreen.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/ViewModels/MainWindowViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/ViewModels/MainWindowViewModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/ViewModels/SelectTableViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/ViewModels/SelectTableViewModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/Logic/Models/Reservation/Reservation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/Logic/Models/Reservation/Reservation.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/Logic/Models/Reservation/ReservationSQL.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/Logic/Models/Reservation/ReservationSQL.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/Logic/UIController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/Logic/UIController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/NavigationStack.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/NavigationStack.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/ViewModels/FirstPageViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/ViewModels/FirstPageViewModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/ViewModels/LoginPageViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/ViewModels/LoginPageViewModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/ViewModels/OrderMenuViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/ViewModels/OrderMenuViewModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/ViewModels/OrderingViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/ViewModels/OrderingViewModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/ViewModels/ReservationsViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/ViewModels/ReservationsViewModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/ViewModels/ReserveTableViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/ViewModels/ReserveTableViewModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/ViewModels/RoutablePage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/ViewModels/RoutablePage.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/ViewModels/SecondPageViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/ViewModels/SecondPageViewModel.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GUI/ViewModels/TablesViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/ViewModels/TablesViewModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/Views/MainWindow.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/Views/MainWindow.axaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/Views/MainWindow.axaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/Views/MainWindow.axaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/Views/SelectTableView.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/Views/SelectTableView.axaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/Views/FirstPage.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/Views/FirstPage.axaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/Views/FirstPage.axaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/Views/FirstPage.axaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/Views/OrderMenu.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/Views/OrderMenu.axaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/Views/SecondPage.axaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/Views/SecondPage.axaml.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,11 +56,11 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/77cef97caa1e474db05b0d81b673a93e950400/d7/21f17df0/Task.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/77cef97caa1e474db05b0d81b673a93e950400/ec/3565753a/Collection`1.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/c27cde167adc4c638ca6987550cd83e12000/57/edfdcf4a/IServiceProvider.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9e48c385a0f8c4d27705158a41832ed686216b07b40ba171e89b41411bcc4dc/RxApp.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/GUIOLD/Views/MainWindow.axaml" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://diff.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://diff.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://diff.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://diff.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectId" id="2OYRDqi8NU48Rm9mBcXsbYmcaEr" />
@@ -87,8 +93,8 @@
       &quot;postgresql&quot;
     ],
     &quot;rider.external.source.directories&quot;: [
-      &quot;/home/thepiguy/.config/JetBrains/Rider2023.1/resharper-host/DecompilerCache&quot;,
-      &quot;/home/thepiguy/.config/JetBrains/Rider2023.1/resharper-host/SourcesCache&quot;,
+      &quot;/home/thepiguy/.config/JetBrains/Rider2022.3/resharper-host/DecompilerCache&quot;,
+      &quot;/home/thepiguy/.config/JetBrains/Rider2022.3/resharper-host/SourcesCache&quot;,
       &quot;/home/thepiguy/.local/share/Symbols/src&quot;
     ]
   }
@@ -188,7 +194,7 @@
           </option>
         </settings>
       </deployment>
-      <EXTENSION ID="com.jetbrains.rider.docker.debug" isFastModeEnabled="true" isSslEnabled="false" />
+      <EXTENSION ID="com.jetbrains.rider.docker.debug" isFastModeEnabled="true" isPublishEnabled="true" />
       <method v="2" />
     </configuration>
     <list>
@@ -221,6 +227,7 @@
       <workItem from="1685973299307" duration="6783000" />
       <workItem from="1686055621099" duration="15000" />
       <workItem from="1686055638783" duration="12239000" />
+      <workItem from="1686212001548" duration="10125000" />
     </task>
     <task id="LOCAL-00001" summary="You make me suffer.&#10;Implemented: Table view&#10;Reworked: Login, Order view">
       <created>1685737846217</created>
@@ -241,26 +248,6 @@
     <option featureType="com.intellij.fileTypeFactory" implementationName=".env" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
-    <option name="RECENT_FILTERS">
-      <map>
-        <entry key="Branch">
-          <value>
-            <list>
-              <RecentGroup>
-                <option name="FILTER_VALUES">
-                  <option value="origin/order" />
-                </option>
-              </RecentGroup>
-              <RecentGroup>
-                <option name="FILTER_VALUES">
-                  <option value="main" />
-                </option>
-              </RecentGroup>
-            </list>
-          </value>
-        </entry>
-      </map>
-    </option>
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
@@ -278,6 +265,26 @@
                 </map>
               </option>
             </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="origin/order" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="main" />
+                </option>
+              </RecentGroup>
+            </list>
           </value>
         </entry>
       </map>

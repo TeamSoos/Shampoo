@@ -43,7 +43,7 @@ public class TablesViewModel : RoutablePage {
 
   public TablesViewModel(IHostScreen screen) {
     HostScreen = screen;
-    LogoutUser = ReactiveCommand.Create(logoutUser);
+    LogoutUser = ReactiveCommand.Create(logoutUserAction);
     TableSel = ReactiveCommand.Create<string>(tableSelect);
     Refresh = ReactiveCommand.Create(loadTables);
     Reservations = ReactiveCommand.Create(() =>
@@ -136,7 +136,7 @@ public class TablesViewModel : RoutablePage {
     HostScreen.GoNext(new SelectTableViewModel(HostScreen));
   }
 
-  public void logoutUser() {
+  public void logoutUserAction() {
     HostScreen.notificationManager.CreateMessage()
       .Animates(true)
       .Background("#B4BEFE")
