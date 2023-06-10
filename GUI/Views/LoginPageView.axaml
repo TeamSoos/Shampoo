@@ -26,6 +26,7 @@
                         <TextBox Width="{Binding FormContentWidth}" Watermark="Login Key" PasswordChar="*" Text="{Binding Text}"/>
                         <Button Width="{Binding FormContentWidth}" 
                                 Command="{Binding LoginStaff}"
+                                IsDefault="True"
                                 Content="Log in" />
                     </StackPanel>
                 </TabItem>
