@@ -2,10 +2,10 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 
-namespace GUI.Views; 
+namespace GUI.ViewModels; 
 
-public partial class BasicAppView : UserControl {
-  public BasicAppView() {
+public partial class PopUpReservation : UserControl {
+  public PopUpReservation() {
     InitializeComponent();
   }
 

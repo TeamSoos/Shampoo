@@ -2,9 +2,9 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DefaultEntry", "DefaultEntry\DefaultEntry.csproj", "{5C673119-37BA-4138-8300-A023FCDC1EDC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUI", "GUI\GUI.csproj", "{CE7EC8E2-89A3-41A3-A4CD-D37C27F98234}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUIOLD", "GUIOLD\GUIOLD.csproj", "{CE7EC8E2-89A3-41A3-A4CD-D37C27F98234}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logic", "Logic\Logic.csproj", "{1A9F9F23-FF9B-4BEC-96A8-C782342C449D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUI", "GUI\GUI.csproj", "{9EA7E7F8-D7A3-485C-AFA0-FA82A528EB53}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,9 +20,9 @@ Global
 		{CE7EC8E2-89A3-41A3-A4CD-D37C27F98234}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CE7EC8E2-89A3-41A3-A4CD-D37C27F98234}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CE7EC8E2-89A3-41A3-A4CD-D37C27F98234}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1A9F9F23-FF9B-4BEC-96A8-C782342C449D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1A9F9F23-FF9B-4BEC-96A8-C782342C449D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1A9F9F23-FF9B-4BEC-96A8-C782342C449D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1A9F9F23-FF9B-4BEC-96A8-C782342C449D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9EA7E7F8-D7A3-485C-AFA0-FA82A528EB53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EA7E7F8-D7A3-485C-AFA0-FA82A528EB53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EA7E7F8-D7A3-485C-AFA0-FA82A528EB53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EA7E7F8-D7A3-485C-AFA0-FA82A528EB53}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

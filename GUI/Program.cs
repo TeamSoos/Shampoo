@@ -1,9 +1,8 @@
 ﻿using Avalonia;
 using Avalonia.ReactiveUI;
 using System;
-using Logic.SQL;
 
-namespace GUI;
+namespace RoutedApp;
 
 class Program {
 	// Initialization code. Don't use any Avalonia, third-party APIs or any
@@ -11,7 +10,6 @@ class Program {
 	// yet and stuff might break.
 	[STAThread]
 	public static void Main(string[] args) {
-		Library.Database db = new Library.Database();
 		BuildAvaloniaApp()
 				.StartWithClassicDesktopLifetime(args);
 	}
