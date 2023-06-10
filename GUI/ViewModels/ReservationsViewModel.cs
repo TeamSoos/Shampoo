@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Reactive;
 using System.Threading.Tasks;
+using Avalonia.Notification;
 using GUI.Logic.Models.Reservation;
 using ReactiveUI;
 using RoutedApp.ViewModels;
@@ -39,12 +40,24 @@ public class ReservationsViewModel : RoutablePage {
     DeleteSelected = ReactiveCommand.Create(() =>
     {
       // Can be optimized
+      int count = 0;
       foreach (ReservationCardItem reservation in ReservationsList.Items) {
         if (reservation.Selected == "True") {
           Console.WriteLine($"TO DELETE {reservation.Selected} - {reservation.Title}");
           Reservation.Delete(reservation.Table);
-        }
+          count++;
+        } 
       }
+      HostScreen.notificationManager.CreateMessage()
+          .Animates(true)
+          .Background("#B4BEFE")
+          .Foreground("#1E1E2E")
+          .HasMessage(
+              $"Deleted {count} reservations!")
+          .Dismiss().WithDelay(TimeSpan.FromSeconds(5))
+          .Queue();
+      // Update the list, no worky :(
+      loadReservations();
     });
     
     ReservationsList = new ReservationsModel(
