@@ -72,7 +72,7 @@
 
                         <ComboBox
                             Margin="10, -5, 0, 0"
-                            Items="{Binding ComboBoxItems}" SelectedIndex="0" />
+                            Items="{Binding ComboBoxItems}" SelectedIndex="{Binding SelectedIndex}" />
                     </StackPanel>
 
                     <StackPanel

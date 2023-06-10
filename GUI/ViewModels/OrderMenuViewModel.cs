@@ -40,6 +40,8 @@ public class OrderMenuViewModel : RoutablePage {
 	public ReactiveCommand<Unit, Unit> getDinner { get; }
 	public ReactiveCommand<Unit, Unit> getDrinks { get; }
 	public ReactiveCommand<Unit, Unit> viewOrder { get; }
+	public ReactiveCommand<Unit, Unit> GoBack { get; }
+	
 
 	public List<Menu> _listItems;
 
@@ -48,8 +50,13 @@ public class OrderMenuViewModel : RoutablePage {
 		set { this.RaiseAndSetIfChanged(ref _listItems, value); }
 	}
 
-	public OrderMenuViewModel(IHostScreen screen) {
+	string Waiter;
+	int Table;
 
+	public OrderMenuViewModel(IHostScreen screen, string waiter, int table) {
+		Waiter = waiter;
+		Table = table;
+		
 		// List items for the menu
 		_listItems =
 			new List<Menu> {
@@ -67,6 +74,9 @@ public class OrderMenuViewModel : RoutablePage {
 		colour2 = defaultbtnc;
 		colour3 = defaultbtnc;
 
+		GoBack = ReactiveCommand.Create(() => {
+			HostScreen.GoBack();
+		});
 
 		viewOrder = ReactiveCommand.Create(() => {
 			HostScreen.GoNext(new OrderMenuViewOrderViewModel(HostScreen, ListItems));
