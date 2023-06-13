@@ -31,11 +31,19 @@ public class MainWindowViewModel : ReactiveObject, IHostScreen {
     GoBackPage.Execute().Subscribe();
   }
 
+  public bool mobileUI { get; set; }
   public INotificationMessageManager Manager { get; } = new NotificationMessageManager();
 
   public INotificationMessageManager notificationManager {
     get { return this.Manager; }
   }
+
+  public string CurrentUser { get; set; }
+  public int CurrentTable { get; set; }
+
+  readonly NavigationStack stack;
+
+  public ReactiveCommand<Unit, IRoutableViewModel> GoBackPage { get; }
 
   public MainWindowViewModel() {
     stack = new NavigationStack(new LoginPageViewModel(this));
