@@ -9,6 +9,7 @@ using GUI.Views;
 using Logic.SQL;
 using Npgsql;
 using ReactiveUI;
+using RoutedApp.Logic;
 using RoutedApp.ViewModels;
 
 namespace GUI.ViewModels;
@@ -36,7 +37,7 @@ public class LoginPageViewModel : RoutablePage {
   public LoginPageViewModel(IHostScreen screen) {
     MobileUIRequested = false;
     HostScreen = screen;
-    LoginStaff = ReactiveCommand.Create(loginStaff);
+    LoginStaff = ReactiveCommand.Create(loginStaffTask);
   }
   
   // Styling
@@ -44,7 +45,7 @@ public class LoginPageViewModel : RoutablePage {
   public int FormContentSpacing => 10;
   // END STYLING
 
-  private async Task loginStaff() {
+  private async Task loginStaffTask() {
     Console.WriteLine($"Login key: {Text}");
     Library.Database db = new Library.Database();
 
@@ -67,6 +68,9 @@ public class LoginPageViewModel : RoutablePage {
 
           if (MobileUIRequested) {
             Console.WriteLine("User requested mobile interface");
+            // end me...
+            UIController ncontroller = UIController.GetInstance(null);
+            ncontroller.ResizeWindow(400, 800);
           }
 
           HostScreen.mobileUI = MobileUIRequested;

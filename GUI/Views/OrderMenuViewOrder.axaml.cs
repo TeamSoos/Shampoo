@@ -4,17 +4,16 @@ using Avalonia.Markup.Xaml;
 using Avalonia.ReactiveUI;
 using GUI.ViewModels;
 using ReactiveUI;
-using RoutedApp.ViewModels;
 
-namespace RoutedApp.Views; 
+namespace GUI.Views; 
 
-public partial class FirstPage : ReactiveUserControl<FirstPageViewModel> {
-	public FirstPage() {
+public partial class OrderMenuViewOrder : ReactiveUserControl<OrderMenuViewOrderViewModel> {
+	public OrderMenuViewOrder() {
 		InitializeComponent();
 	}
 
 	private void InitializeComponent() {
-		this.WhenActivated(_ => {});
+		this.WhenActivated(_ => { });
 		AvaloniaXamlLoader.Load(this);
 	}
 }

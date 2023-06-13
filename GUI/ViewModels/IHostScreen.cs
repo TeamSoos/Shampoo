@@ -12,4 +12,6 @@ public interface IHostScreen : IScreen {
   public INotificationMessageManager notificationManager { get; }
   string CurrentUser { get; set; }
   int CurrentTable { get; set; }
+  
+  int GuestCount { get; set; }
 }

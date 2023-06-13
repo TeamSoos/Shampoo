@@ -27,7 +27,7 @@ public class OrderingViewModel : RoutablePage {
   // END STYLING
 
   public OrderingViewModel(IHostScreen screen) {
-    LogoutUser = ReactiveCommand.Create(logoutUser);
+    LogoutUser = ReactiveCommand.Create(logoutUserAction);
     HostScreen = screen;
     CurrentOrderItemsList = new ItemListViewModel(
         new List<ListItem>() {
@@ -48,7 +48,7 @@ public class OrderingViewModel : RoutablePage {
         }
     );
   }
-  public void logoutUser() {
+  public void logoutUserAction() {
     HostScreen.notificationManager.CreateMessage()
         .Animates(true)
         .Background("#B4BEFE")

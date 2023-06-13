@@ -96,9 +96,10 @@
                             HorizontalContentAlignment="Center" 
                             VerticalContentAlignment="Center"
                             Height="50" 
+                            Command="{Binding Refresh}"
                             CornerRadius="10" 
                             HorizontalAlignment="Stretch">
-                            My Tables
+                            Refresh
                         </Button>
                     </Border>
                     <Border
@@ -111,8 +112,9 @@
                             VerticalContentAlignment="Center"
                             Height="50" 
                             CornerRadius="10" 
+                            Command="{Binding Reservations}"
                             HorizontalAlignment="Stretch">
-                            Reservations [defect]
+                            Reservations
                         </Button>
                     </Border>
                     <Border

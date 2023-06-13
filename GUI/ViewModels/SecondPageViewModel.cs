@@ -1,7 +1,6 @@
-using GUI.ViewModels;
-using ReactiveUI;
+using RoutedApp.ViewModels;
 
-namespace RoutedApp.ViewModels; 
+namespace GUI.ViewModels; 
 
 public class SecondPageViewModel: RoutablePage {
 

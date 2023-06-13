@@ -3,8 +3,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModels="clr-namespace:RoutedApp.ViewModels"
+             xmlns:viewModels1="clr-namespace:GUI.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="RoutedApp.Views.FirstPage"
-             x:DataType="viewModels:FirstPageViewModel">
+             x:DataType="viewModels1:FirstPageViewModel">
     <Button Content="Go to second page" Command="{Binding A}" />
 </UserControl>

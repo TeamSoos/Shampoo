@@ -20,6 +20,9 @@ public class AppViewLocator : ReactiveUI.IViewLocator {
 		InventoryItemsListViewModel context => new InventoryItemsList {DataContext = context},
 		InventoryAddItemViewModel context => new InventoryAddItem {DataContext = context},
 		
+		OrderMenuViewOrderViewModel context => new OrderMenuViewOrder {DataContext = context},
+		ReserveTableViewModel context => new ReserveTable {DataContext = context},
+		ReservationsViewModel context => new ReservationsView {DataContext = context},
 		_ => throw new ArgumentOutOfRangeException($"you forgot to add {nameof(viewModel)} to AppViewLocator"),
 	};
 }

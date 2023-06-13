@@ -1,9 +1,4 @@
-using System;
-using System.Reactive;
-using GUI.ViewModels;
-using ReactiveUI;
-
-namespace RoutedApp.ViewModels;
+namespace GUI.ViewModels;
 
 public class FirstPageViewModel : RoutablePage {
   public override IHostScreen HostScreen { get; }

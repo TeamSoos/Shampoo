@@ -67,7 +67,9 @@
         </ItemsControl>
 
         <!-- Bottom Button -->
-        <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" Content="View Order"
-                Margin="6" />
+        <Button Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Content="View Order"
+                Margin="6" Command="{Binding viewOrder}" />
+        <Button Grid.Row="2" Grid.Column="0" HorizontalAlignment="Stretch" Content="Back"
+                Margin="6" Command="{Binding GoBack}" />
     </Grid>
 </UserControl>

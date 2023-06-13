@@ -1,5 +1,3 @@
-using System;
-using System.Threading.Tasks;
 using Npgsql;
 
 namespace Logic.SQL; 
@@ -13,7 +11,7 @@ public class Library {
     /// </summary>
     private String _ConnectionString;
 
-    public readonly NpgsqlConnection Conn;
+    private readonly NpgsqlConnection _Conn;
 
     public Database()
     {
@@ -22,13 +20,13 @@ public class Library {
       
       string connstr = DotNetEnv.Env.GetString("SQL_CONN_STR");
       this._ConnectionString = connstr;
-      this.Conn = new NpgsqlConnection(connstr);
-      this.Conn.Open();
+      this._Conn = new NpgsqlConnection(connstr);
+      this._Conn.Open();
     }
 
     public async void Test()
     {
-      var cmd = new NpgsqlCommand("SELECT * FROM items WHERE id=($1)", Conn)
+      var cmd = new NpgsqlCommand("SELECT * FROM items WHERE id=($1)", _Conn)
       {
           Parameters =
           {
@@ -54,11 +52,6 @@ public class Library {
     {
       var reader = await cmd.ExecuteReaderAsync();
       return reader;
-    }
-    
-    public async void Store(NpgsqlCommand cmd)
-    {
-      await cmd.ExecuteNonQueryAsync();
     }
     
     public void ListenToNotif(string connstr)

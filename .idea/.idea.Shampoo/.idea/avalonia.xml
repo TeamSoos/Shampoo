@@ -14,6 +14,7 @@
         <entry key="GUI/Views/NewPage.axaml" value="GUI/GUI.csproj" />
         <entry key="GUI/Views/NotificationUserControl.axaml" value="GUI/GUI.csproj" />
         <entry key="GUI/Views/OrderMenu.axaml" value="GUI/GUI.csproj" />
+        <entry key="GUI/Views/OrderMenuViewOrder.axaml" value="GUI/GUI.csproj" />
         <entry key="GUI/Views/OrderingView.axaml" value="GUI/GUI.csproj" />
         <entry key="GUI/Views/ReserveTableView.axaml" value="GUI/GUI.csproj" />
         <entry key="GUI/Views/SecondPage.axaml" value="GUI/GUI.csproj" />
