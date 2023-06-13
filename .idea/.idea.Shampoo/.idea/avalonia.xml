@@ -4,9 +4,26 @@
     <option name="projectPerEditor">
       <map>
         <entry key="GUI/App.axaml" value="GUI/GUI.csproj" />
+        <entry key="GUI/ViewModels/PopUpReservation.axaml" value="GUI/GUI.csproj" />
         <entry key="GUI/Views/BasicAppView.axaml" value="GUI/GUI.csproj" />
+        <entry key="GUI/Views/FirstPage.axaml" value="GUI/GUI.csproj" />
+        <entry key="GUI/Views/InventoryAddItem.axaml" value="GUI/GUI.csproj" />
+        <entry key="GUI/Views/InventoryItemsList.axaml" value="GUI/GUI.csproj" />
         <entry key="GUI/Views/LoginPageView.axaml" value="GUI/GUI.csproj" />
         <entry key="GUI/Views/MainWindow.axaml" value="GUI/GUI.csproj" />
+        <entry key="GUI/Views/NewPage.axaml" value="GUI/GUI.csproj" />
+        <entry key="GUI/Views/NotificationUserControl.axaml" value="GUI/GUI.csproj" />
+        <entry key="GUI/Views/OrderMenu.axaml" value="GUI/GUI.csproj" />
+        <entry key="GUI/Views/OrderMenuViewOrder.axaml" value="GUI/GUI.csproj" />
+        <entry key="GUI/Views/OrderingView.axaml" value="GUI/GUI.csproj" />
+        <entry key="GUI/Views/ReserveTableView.axaml" value="GUI/GUI.csproj" />
+        <entry key="GUI/Views/SecondPage.axaml" value="GUI/GUI.csproj" />
+        <entry key="GUI/Views/SelectTableView.axaml" value="GUI/GUI.csproj" />
+        <entry key="GUI/Views/TablesView.axaml" value="GUI/GUI.csproj" />
+        <entry key="RoutedApp/App.axaml" value="RoutedApp/RoutedApp.csproj" />
+        <entry key="RoutedApp/Views/FirstPage.axaml" value="RoutedApp/RoutedApp.csproj" />
+        <entry key="RoutedApp/Views/MainWindow.axaml" value="RoutedApp/RoutedApp.csproj" />
+        <entry key="RoutedApp/Views/SecondPage.axaml" value="RoutedApp/RoutedApp.csproj" />
       </map>
     </option>
   </component>
