@@ -15,12 +15,7 @@ public class MainWindowViewModel : ReactiveObject, IHostScreen {
   public RoutingState Router { get; } = new RoutingState();
 
   public bool mobileUI { get; set; }
-  public string CurrentUser { get; set; }
-  public int CurrentTable { get; set; }
   public int GuestCount { get; set; }
-  readonly NavigationStack stack;
-
-  public ReactiveCommand<Unit, IRoutableViewModel> GoBackPage { get; }
 
 
   public void GoNext(RoutablePage page) {

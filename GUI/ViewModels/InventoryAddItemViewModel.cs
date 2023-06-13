@@ -2,6 +2,7 @@
 using System.Reactive;
 using Avalonia.Notification;
 using GUI.Views;
+using Logic.Models.Item;
 using ReactiveUI;
 using RoutedApp.ViewModels;
 
@@ -52,6 +53,9 @@ public class InventoryAddItemViewModel: RoutablePage
         
         AddButton = ReactiveCommand.Create(() =>
         {
+            int.TryParse(ItemID, out int id);
+            int.TryParse(ItemQuantity, out int quantity);
+            ItemSQL.add_by_id(id, quantity);
             HostScreen.GoNext(new NewPageViewModel(HostScreen));
             
             HostScreen.notificationManager.CreateMessage()

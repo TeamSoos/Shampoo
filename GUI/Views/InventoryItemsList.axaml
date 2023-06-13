@@ -2,7 +2,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:GUI.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="viewModels:InventoryItemsListViewModel"
              x:Class="GUI.Views.InventoryItemsList">
    
    <UserControl.Background>
@@ -81,7 +83,47 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <TextBlock FontSize="16" Text="Inventory" FontWeight="Black" HorizontalAlignment="Left" />
-            <Button Grid.Column="1"  Content="Logout" FontWeight="Black" HorizontalAlignment="Right" />
+            <Button Grid.Column="1" Command="{Binding LogoutUser}"  Content="Logout" FontWeight="Black" HorizontalAlignment="Right" />
+            
+            <ScrollViewer 
+                Height="500"
+                VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Auto">
+                <StackPanel>
+                    <ItemsControl Items="{Binding AllItems.Items}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                
+                                <Border
+                                    HorizontalAlignment="Stretch"
+                                    BorderThickness="0,0,0,2" BorderBrush="#A6ADC8"
+                                    Margin="5"
+                                    Padding="10">
+
+                                    <Grid Margin="2" HorizontalAlignment="Stretch">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Ellipse Grid.Column="0" Width="10" Height="10" Fill="{Binding Status}" />
+                                        <TextBlock Grid.Column="1" Foreground="#B4BEFE" Text=" x" />
+                                        <TextBlock Grid.Column="2" Foreground="#B4BEFE" Text="{Binding Count}" />
+                                        <TextBlock Grid.Column="3" Foreground="#B4BEFE" Text=" " />
+                                        <TextBlock Grid.Column="4" Foreground="#B4BEFE" Text="{Binding Title}"
+                                                   FontWeight="Bold" />
+                                        <TextBlock Grid.Column="6" Foreground="#B4BEFE" Text="{Binding Notes}" />
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </ScrollViewer>
         </Grid>
         
         <Grid
@@ -91,8 +133,10 @@
             
 
             <Grid Grid.Row="3"  ColumnDefinitions="Auto, *" Margin="0,50,0,0" VerticalAlignment="Stretch">
-                <Button Grid.Column="0" Margin="0,0,5,0" HorizontalAlignment="Stretch">Back</Button>
-                <Button Grid.Column="1"  HorizontalAlignment="Stretch">Margherita</Button>
+                <Button Command="{Binding GoBack}" Grid.Column="0" Margin="0,0,5,0" HorizontalAlignment="Stretch">Back</Button>
+                <Button Grid.Column="1"  
+                        Command="{Binding AddItem}"
+                        HorizontalAlignment="Stretch">Add Item</Button>
 
             </Grid>
             
