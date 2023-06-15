@@ -1,0 +1,23 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:GUI.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="viewModels:PaymentsViewModel"
+             x:Class="GUI.Views.Payments">
+    
+    <Grid ColumnDefinitions="*,*" RowDefinitions="*,Auto,Auto,Auto">
+        <StackPanel>
+            <TextBlock Text="{Binding Waiter}"></TextBlock>
+            <TextBlock Text="{Binding }"></TextBlock>
+            <TextBlock Text="{Binding Waiter}"></TextBlock>
+        </StackPanel>
+        
+        <Button Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="1" Content="Split Bill" HorizontalAlignment="Stretch" Margin="8" Padding="2,8"/>
+        <Button Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="1" Content="Pay" HorizontalAlignment="Stretch" Margin="8" Padding="2,8"/>
+        <Button Grid.Row="2" Grid.ColumnSpan="2" Content="Preview Order" HorizontalAlignment="Stretch" Margin="8" Padding="2,8"/>
+        <Button Grid.Row="3" Grid.ColumnSpan="2" Content="Back" HorizontalAlignment="Stretch" Margin="8" Padding="2,8"/>
+    </Grid>
+</UserControl>
+

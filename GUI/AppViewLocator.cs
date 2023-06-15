@@ -20,7 +20,7 @@ public class AppViewLocator : IViewLocator {
             ReservationsViewModel context => new ReservationsView { DataContext = context },
             InventoryItemsListViewModel context => new InventoryItemsList { DataContext = context },
             InventoryAddItemViewModel context => new InventoryAddItem { DataContext = context },
-
+            PaymentsViewModel context => new Payments {DataContext = context},
             _ => throw new ArgumentOutOfRangeException($"you forgot to add {nameof(viewModel)} to AppViewLocator")
         };
     }
