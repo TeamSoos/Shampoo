@@ -175,7 +175,7 @@ public class TablesViewModel : RoutablePage {
         return int.TryParse(content, out _);
     }
 
-    public void tableSelect(string button) {
+    public async void tableSelect(string button) {
         Console.WriteLine($"Button pressed: {button}");
 
         int button_id = int.Parse(button);
