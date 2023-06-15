@@ -5,7 +5,7 @@ using Avalonia.Notification;
 using ExCSS;
 using GUI.ViewModels;
 using ReactiveUI;
-using RoutedApp.ViewModels;
+using GUI.ViewModels;
 
 namespace GUI.Views;
 

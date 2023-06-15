@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 using System.Reactive;
 using Logic.Models.Item;
 using ReactiveUI;
-using RoutedApp.ViewModels;
+using GUI.ViewModels;
 
 namespace GUI.ViewModels;
 
