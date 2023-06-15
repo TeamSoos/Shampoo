@@ -1,13 +1,10 @@
-﻿using RoutedApp.ViewModels;
+﻿namespace GUI.ViewModels;
 
-namespace GUI.ViewModels;
+public class InventoryItemsListViewModel : RoutablePage {
 
-public class InventoryItemsListViewModel: RoutablePage
-{
-    public override IHostScreen HostScreen { get; }
-
-    public InventoryItemsListViewModel(IHostScreen screen)
-    {
+    public InventoryItemsListViewModel(IHostScreen screen) {
         HostScreen = screen;
     }
+
+    public override IHostScreen HostScreen { get; }
 }

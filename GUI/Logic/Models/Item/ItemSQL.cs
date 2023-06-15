@@ -1,5 +1,4 @@
-namespace Logic.Models.Item; 
+namespace Logic.Models.Item;
 
 public class ItemSQL {
-  
 }

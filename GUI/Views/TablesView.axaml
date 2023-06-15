@@ -29,7 +29,7 @@
             <Setter Property="Foreground" Value="#B4BEFE" />
             <Setter Property="FontWeight" Value="Bold" />
         </Style>
-        
+
         <Style Selector="views|PopUpReservation">
             <Setter Property="Template">
                 <ControlTemplate>
@@ -60,78 +60,98 @@
 
                 <!-- Fuckery ahead, be warned -->
                 <!-- Probably should move styling out of the element ey? -->
-                
-                 <StackPanel
-                     x:Name = "ColumnLeft"
-                     Orientation="Vertical" HorizontalAlignment="Stretch">
-                     <Button Content="1" Command="{Binding TableSel}" CommandParameter="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="5" Width="100" Height="100" Background="{Binding Colour1}" Foreground="#1E1E2E" />
-                     <Button Content="3" Command="{Binding TableSel}" CommandParameter="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="5" Width="100" Height="100" Background="{Binding Colour3}" Foreground="#1E1E2E" />
-                     <Button Content="5" Command="{Binding TableSel}" CommandParameter="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="5" Width="100" Height="100" Background="{Binding Colour5}" Foreground="#1E1E2E" />
-                     <Button Content="7" Command="{Binding TableSel}" CommandParameter="7" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="5" Width="100" Height="100" Background="{Binding Colour7}" Foreground="#1E1E2E" />
-                     <Button Content="9" Command="{Binding TableSel}" CommandParameter="9" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="5" Width="100" Height="100" Background="{Binding Colour9}" Foreground="#1E1E2E" />
-                 </StackPanel>
 
-                <StackPanel 
-                    x:Name = "ColumnRight"
+                <StackPanel
+                    x:Name="ColumnLeft"
+                    Orientation="Vertical" HorizontalAlignment="Stretch">
+                    <Button Content="1" Command="{Binding TableSel}" CommandParameter="1"
+                            HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="5"
+                            Width="100" Height="100" Background="{Binding Colour1}" Foreground="#1E1E2E" />
+                    <Button Content="3" Command="{Binding TableSel}" CommandParameter="3"
+                            HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="5"
+                            Width="100" Height="100" Background="{Binding Colour3}" Foreground="#1E1E2E" />
+                    <Button Content="5" Command="{Binding TableSel}" CommandParameter="5"
+                            HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="5"
+                            Width="100" Height="100" Background="{Binding Colour5}" Foreground="#1E1E2E" />
+                    <Button Content="7" Command="{Binding TableSel}" CommandParameter="7"
+                            HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="5"
+                            Width="100" Height="100" Background="{Binding Colour7}" Foreground="#1E1E2E" />
+                    <Button Content="9" Command="{Binding TableSel}" CommandParameter="9"
+                            HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="5"
+                            Width="100" Height="100" Background="{Binding Colour9}" Foreground="#1E1E2E" />
+                </StackPanel>
+
+                <StackPanel
+                    x:Name="ColumnRight"
                     Grid.Row="0" Grid.Column="2" Orientation="Vertical" HorizontalAlignment="Stretch">
-                    <Button Content="2" Command="{Binding TableSel}" CommandParameter="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="5" Width="100" Height="100" Background="{Binding Colour2}" Foreground="#1E1E2E" />
-                    <Button Content="4" Command="{Binding TableSel}" CommandParameter="4" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="5" Width="100" Height="100" Background="{Binding Colour4}" Foreground="#1E1E2E" />
-                    <Button Content="6" Command="{Binding TableSel}" CommandParameter="6" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="5" Width="100" Height="100" Background="{Binding Colour6}" Foreground="#1E1E2E" />
-                    <Button Content="8" Command="{Binding TableSel}" CommandParameter="8" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="5" Width="100" Height="100" Background="{Binding Colour8}" Foreground="#1E1E2E" />
-                    <Button Content="10" Command="{Binding TableSel}" CommandParameter="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="5" Width="100" Height="100" Background="{Binding Colour10}" Foreground="#1E1E2E" />
+                    <Button Content="2" Command="{Binding TableSel}" CommandParameter="2"
+                            HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="5"
+                            Width="100" Height="100" Background="{Binding Colour2}" Foreground="#1E1E2E" />
+                    <Button Content="4" Command="{Binding TableSel}" CommandParameter="4"
+                            HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="5"
+                            Width="100" Height="100" Background="{Binding Colour4}" Foreground="#1E1E2E" />
+                    <Button Content="6" Command="{Binding TableSel}" CommandParameter="6"
+                            HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="5"
+                            Width="100" Height="100" Background="{Binding Colour6}" Foreground="#1E1E2E" />
+                    <Button Content="8" Command="{Binding TableSel}" CommandParameter="8"
+                            HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="5"
+                            Width="100" Height="100" Background="{Binding Colour8}" Foreground="#1E1E2E" />
+                    <Button Content="10" Command="{Binding TableSel}" CommandParameter="10"
+                            HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="5"
+                            Width="100" Height="100" Background="{Binding Colour10}" Foreground="#1E1E2E" />
                 </StackPanel>
             </Grid>
-                
+
         </StackPanel>
         <StackPanel
-                    DockPanel.Dock="Bottom"
-                    Background="#B4BEFE"
-                    VerticalAlignment="Bottom"
+            DockPanel.Dock="Bottom"
+            Background="#B4BEFE"
+            VerticalAlignment="Bottom"
+            HorizontalAlignment="Stretch">
+            <Border
+                HorizontalAlignment="Stretch"
+                Padding="2"
+                CornerRadius="40">
+                <Button
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    Height="50"
+                    Command="{Binding Refresh}"
+                    CornerRadius="10"
                     HorizontalAlignment="Stretch">
-                    <Border
-                        HorizontalAlignment="Stretch"
-                        Padding="2"
-                        CornerRadius="40">
-                        <Button 
-                            HorizontalContentAlignment="Center" 
-                            VerticalContentAlignment="Center"
-                            Height="50" 
-                            Command="{Binding Refresh}"
-                            CornerRadius="10" 
-                            HorizontalAlignment="Stretch">
-                            Refresh
-                        </Button>
-                    </Border>
-                    <Border
-                        HorizontalAlignment="Stretch"
-                        Padding="2"
-                        CornerRadius="40">
-                        <Button 
-                            Name="reservation"
-                            HorizontalContentAlignment="Center" 
-                            VerticalContentAlignment="Center"
-                            Height="50" 
-                            CornerRadius="10" 
-                            Command="{Binding Reservations}"
-                            HorizontalAlignment="Stretch">
-                            Reservations
-                        </Button>
-                    </Border>
-                    <Border
-                        HorizontalAlignment="Stretch"
-                        Padding="2"
-                        CornerRadius="40">
-                        <Button 
-                            HorizontalContentAlignment="Center" 
-                            VerticalContentAlignment="Center"
-                            Height="50" 
-                            CornerRadius="10" 
-                            Command="{Binding LogoutUser}"
-                            HorizontalAlignment="Stretch">
-                            Logout
-                        </Button>
-                    </Border>
-                </StackPanel>
+                    Refresh
+                </Button>
+            </Border>
+            <Border
+                HorizontalAlignment="Stretch"
+                Padding="2"
+                CornerRadius="40">
+                <Button
+                    Name="reservation"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    Height="50"
+                    CornerRadius="10"
+                    Command="{Binding Reservations}"
+                    HorizontalAlignment="Stretch">
+                    Reservations
+                </Button>
+            </Border>
+            <Border
+                HorizontalAlignment="Stretch"
+                Padding="2"
+                CornerRadius="40">
+                <Button
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    Height="50"
+                    CornerRadius="10"
+                    Command="{Binding LogoutUser}"
+                    HorizontalAlignment="Stretch">
+                    Logout
+                </Button>
+            </Border>
+        </StackPanel>
     </DockPanel>
 
 </UserControl>

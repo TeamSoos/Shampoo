@@ -132,11 +132,11 @@
                 </Grid.ColumnDefinitions>
 
                 <StackPanel Orientation="Horizontal">
-                    <Ellipse Grid.Column="0" Width="10" Height="10" Fill="White" />
+                    <Ellipse Width="10" Height="10" Fill="White" />
                     <TextBlock Foreground="#B4BEFE" Text="  Not started    " FontWeight="Thin" />
-                    <Ellipse Grid.Column="0" Width="10" Height="10" Fill="Orange" />
+                    <Ellipse Width="10" Height="10" Fill="Orange" />
                     <TextBlock Foreground="#B4BEFE" Text="  Not started    " FontWeight="Thin" />
-                    <Ellipse Grid.Column="0" Width="10" Height="10" Fill="LimeGreen" />
+                    <Ellipse Width="10" Height="10" Fill="LimeGreen" />
                     <TextBlock Foreground="#B4BEFE" Text="  Not started    " FontWeight="Thin" />
                     <TextBlock Foreground="#B4BEFE" Text="  Tap an item to change status    " FontWeight="Thin" />
                 </StackPanel>

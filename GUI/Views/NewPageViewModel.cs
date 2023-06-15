@@ -1,34 +1,27 @@
 ﻿using System;
 using System.Reactive;
-using System.Windows.Input;
 using Avalonia.Notification;
-using ExCSS;
 using GUI.ViewModels;
 using ReactiveUI;
-using RoutedApp.ViewModels;
 
 namespace GUI.Views;
 
-public class NewPageViewModel: RoutablePage
-{
+public class NewPageViewModel : RoutablePage {
+
+    public NewPageViewModel(IHostScreen screen) {
+        HostScreen = screen;
+        Logout = ReactiveCommand.Create(logoutUser);
+
+        // this () => {}  is a closure
+
+        AddItemButton = ReactiveCommand.Create(() => { HostScreen.GoNext(new InventoryAddItemViewModel(HostScreen)); });
+    }
+
     public override IHostScreen HostScreen { get; }
 
     public ReactiveCommand<Unit, Unit> Logout { get; set; }
     public ReactiveCommand<Unit, Unit> AddItemButton { get; set; }
 
-    public NewPageViewModel(IHostScreen screen)
-    {
-        HostScreen = screen;
-        Logout = ReactiveCommand.Create(logoutUser);
-        
-        // this () => {}  is a closure
-
-        AddItemButton = ReactiveCommand.Create(() =>
-        {
-            HostScreen.GoNext(new InventoryAddItemViewModel(HostScreen));
-        });
-    }
-    
     public void logoutUser() {
         HostScreen.notificationManager.CreateMessage()
             .Animates(true)

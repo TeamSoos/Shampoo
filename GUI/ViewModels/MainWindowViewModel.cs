@@ -1,62 +1,52 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Reactive;
+﻿using System.Reactive;
 using Avalonia.Notification;
-using GUI.ViewModels;
 using ReactiveUI;
+using RoutedApp;
 
-namespace RoutedApp.ViewModels;
+namespace GUI.ViewModels;
 
 public class MainWindowViewModel : ReactiveObject, IHostScreen {
-  public string Greeting =>
-    "Uh oh, something went wrong! Do not fret, for a restart of the app shall fix this predicament!!";
 
-  public RoutingState Router { get; } = new RoutingState();
+    readonly NavigationStack stack;
 
-  public bool mobileUI { get; set; }
-  public string CurrentUser { get; set; }
-  public int CurrentTable { get; set; }
-  public int GuestCount { get; set; }
-  readonly NavigationStack stack;
-
-  public ReactiveCommand<Unit, IRoutableViewModel> GoBackPage { get; }
+    public MainWindowViewModel() {
+        stack = new NavigationStack(new LoginPageViewModel(this));
 
 
-  public void GoNext(RoutablePage page) {
-    stack.GoTo(page);
-    Router.Navigate.Execute(page);
-  }
+        // Navigate to the first page
+        Router.Navigate.Execute(new LoginPageViewModel(this));
+        // Router.Navigate.Execute(new OrderMenuViewModel(this));
+        GoBackPage = ReactiveCommand.CreateFromObservable(
+            () => {
+                RoutablePage _ = stack.Pop();
+                return Router.Navigate.Execute(stack.GetTopPage());
+            }
+        );
+    }
 
-  public void GoBack() {
-    GoBackPage.Execute().Subscribe();
-  }
+    public string Greeting =>
+        "Uh oh, something went wrong! Do not fret, for a restart of the app shall fix this predicament!!";
 
-  public bool mobileUI { get; set; }
-  public INotificationMessageManager Manager { get; } = new NotificationMessageManager();
+    public INotificationMessageManager Manager { get; } = new NotificationMessageManager();
 
-  public INotificationMessageManager notificationManager {
-    get { return this.Manager; }
-  }
+    public ReactiveCommand<Unit, IRoutableViewModel> GoBackPage { get; }
 
-  public string CurrentUser { get; set; }
-  public int CurrentTable { get; set; }
+    public RoutingState Router { get; } = new RoutingState();
 
-  readonly NavigationStack stack;
+    public void GoNext(RoutablePage page) {
+        stack.GoTo(page);
+        Router.Navigate.Execute(page);
+    }
 
-  public ReactiveCommand<Unit, IRoutableViewModel> GoBackPage { get; }
+    public void GoBack() {
+        GoBackPage.Execute();
+    }
 
-  public MainWindowViewModel() {
-    stack = new NavigationStack(new LoginPageViewModel(this));
+    public bool mobileUI { get; set; }
 
+    public INotificationMessageManager notificationManager => Manager;
 
-    // Navigate to the first page
-    Router.Navigate.Execute(new LoginPageViewModel(this));
-    // Router.Navigate.Execute(new OrderMenuViewModel(this));
-    GoBackPage = ReactiveCommand.CreateFromObservable(
-      () => {
-        var _ = stack.Pop();
-        return Router.Navigate.Execute(stack.GetTopPage());
-      }
-    );
-  }
+    public string CurrentUser { get; set; }
+    public int CurrentTable { get; set; }
+    public int GuestCount { get; set; }
 }

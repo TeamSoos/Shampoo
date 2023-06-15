@@ -26,7 +26,7 @@
             <Setter Property="Foreground" Value="#B4BEFE" />
             <Setter Property="FontWeight" Value="Bold" />
         </Style>
-        
+
     </UserControl.Styles>
 
 
@@ -60,56 +60,56 @@
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
             </Grid>
-                
+
         </StackPanel>
         <StackPanel
-                    DockPanel.Dock="Bottom"
-                    Background="#B4BEFE"
-                    VerticalAlignment="Bottom"
+            DockPanel.Dock="Bottom"
+            Background="#B4BEFE"
+            VerticalAlignment="Bottom"
+            HorizontalAlignment="Stretch">
+            <Border
+                HorizontalAlignment="Stretch"
+                Padding="2"
+                CornerRadius="40">
+                <Button
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    Height="50"
+                    CornerRadius="10"
+                    Command="{Binding DeleteSelected}"
                     HorizontalAlignment="Stretch">
-                    <Border
-                        HorizontalAlignment="Stretch"
-                        Padding="2"
-                        CornerRadius="40">
-                        <Button 
-                            HorizontalContentAlignment="Center" 
-                            VerticalContentAlignment="Center"
-                            Height="50" 
-                            CornerRadius="10" 
-                            Command="{Binding DeleteSelected}"
-                            HorizontalAlignment="Stretch">
-                            Delete Selected
-                        </Button>
-                    </Border>
-                    <Border
-                        HorizontalAlignment="Stretch"
-                        Padding="2"
-                        CornerRadius="40">
-                        <Button 
-                            Name="reservation"
-                            HorizontalContentAlignment="Center" 
-                            VerticalContentAlignment="Center"
-                            Height="50" 
-                            CornerRadius="10" 
-                            HorizontalAlignment="Stretch">
-                            Refresh
-                        </Button>
-                    </Border>
-                    <Border
-                        HorizontalAlignment="Stretch"
-                        Padding="2"
-                        CornerRadius="40">
-                        <Button 
-                            HorizontalContentAlignment="Center" 
-                            VerticalContentAlignment="Center"
-                            Height="50" 
-                            CornerRadius="10" 
-                            Command="{Binding GoBack}"
-                            HorizontalAlignment="Stretch">
-                            Back
-                        </Button>
-                    </Border>
-                </StackPanel>
+                    Delete Selected
+                </Button>
+            </Border>
+            <Border
+                HorizontalAlignment="Stretch"
+                Padding="2"
+                CornerRadius="40">
+                <Button
+                    Name="reservation"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    Height="50"
+                    CornerRadius="10"
+                    HorizontalAlignment="Stretch">
+                    Refresh
+                </Button>
+            </Border>
+            <Border
+                HorizontalAlignment="Stretch"
+                Padding="2"
+                CornerRadius="40">
+                <Button
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    Height="50"
+                    CornerRadius="10"
+                    Command="{Binding GoBack}"
+                    HorizontalAlignment="Stretch">
+                    Back
+                </Button>
+            </Border>
+        </StackPanel>
     </DockPanel>
 
 </UserControl>

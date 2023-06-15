@@ -7,24 +7,25 @@
              x:CompileBindings="True"
              x:DataType="vm:LoginPageViewModel"
              mc:Ignorable="d">
-             <!-- Background="{Binding RelativeSource={RelativeSource Self}, Converter={StaticResource GradientConverter}}" -->
+    <!-- Background="{Binding RelativeSource={RelativeSource Self}, Converter={StaticResource GradientConverter}}" -->
 
     <UserControl.Background>
-        <LinearGradientBrush StartPoint="0%,0%" EndPoint="0%,100%"> 
+        <LinearGradientBrush StartPoint="0%,0%" EndPoint="0%,100%">
             <GradientStop Offset="0" Color="#1E1E2E" />
             <GradientStop Offset="1" Color="#45475A" />
         </LinearGradientBrush>
     </UserControl.Background>
-             
+
     <DockPanel LastChildFill="True">
         <StackPanel>
-            <Image Height="50" Width="50" Source="{SvgImage /Assets/logo.svg}"></Image>
+            <Image Height="50" Width="50" Source="{SvgImage /Assets/logo.svg}" />
             <TabControl DockPanel.Dock="Top" HorizontalAlignment="Center">
                 <TabItem Header="Staff login">
                     <StackPanel Margin="0,40,0,0" Spacing="{Binding FormContentSpacing}" HorizontalAlignment="Center"
                                 VerticalAlignment="Center">
-                        <TextBox Width="{Binding FormContentWidth}" Watermark="Login Key" PasswordChar="*" Text="{Binding Text}"/>
-                        <Button Width="{Binding FormContentWidth}" 
+                        <TextBox Width="{Binding FormContentWidth}" Watermark="Login Key" PasswordChar="*"
+                                 Text="{Binding Text}" />
+                        <Button Width="{Binding FormContentWidth}"
                                 Command="{Binding LoginStaff}"
                                 IsDefault="True"
                                 Content="Log in" />
@@ -48,8 +49,8 @@
                     </StackPanel>
                 </TabItem>
             </TabControl>
-            <CheckBox 
-                DockPanel.Dock="Bottom" 
+            <CheckBox
+                DockPanel.Dock="Bottom"
                 IsChecked="{Binding MobileUIRequested}"
                 HorizontalAlignment="Center">
                 Mobile interface
