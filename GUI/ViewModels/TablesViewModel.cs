@@ -180,30 +180,30 @@ public class TablesViewModel : RoutablePage {
 
         int button_id = int.Parse(button);
 
-        foreach (TableType table in Tables) {
-            if (table.number == button_id && table.status == Status.occupied) {
-                HostScreen.notificationManager.CreateMessage()
-                    .Animates(true)
-                    .Background("#B4BEFE")
-                    .Foreground("#1E1E2E")
-                    .HasMessage(
-                        "Sorry, this table is already occupied")
-                    .Dismiss().WithDelay(TimeSpan.FromSeconds(2))
-                    .Queue();
-                return;
-            }
-
-            if (table.number == button_id && table.status == Status.reserved) {
-                HostScreen.notificationManager.CreateMessage()
-                    .Animates(true)
-                    .Background("#B4BEFE")
-                    .Foreground("#1E1E2E")
-                    .HasMessage(
-                        "Notice! This table is reserved for someone at [TIME_HERE]")
-                    .Dismiss().WithDelay(TimeSpan.FromSeconds(5))
-                    .Queue();
-            }
-        }
+    foreach (TableType table in Tables) {
+      if (table.number == button_id && table.status == Status.occupied) {
+        HostScreen.notificationManager.CreateMessage()
+            .Animates(true)
+            .Background("#B4BEFE")
+            .Foreground("#1E1E2E")
+            .HasMessage(
+                $"Sorry, this table is already occupied")
+            .Dismiss().WithDelay(TimeSpan.FromSeconds(2))
+            .Queue();
+        return;
+      }
+      if (table.number == button_id && table.status == Status.reserved) {
+        DateTime time = await TableSQL.get_reservation_time(table.number);
+        HostScreen.notificationManager.CreateMessage()
+            .Animates(true)
+            .Background("#B4BEFE")
+            .Foreground("#1E1E2E")
+            .HasMessage(
+                $"Notice! This table is reserved for someone at [{time:hh:mm}]")
+            .Dismiss().WithDelay(TimeSpan.FromSeconds(5))
+            .Queue();
+      }
+    }
 
         HostScreen.CurrentTable = button_id;
 
