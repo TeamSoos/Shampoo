@@ -24,6 +24,23 @@ public class TableSQL {
 
     return tables;
   }
+  
+  public async static Task<DateTime> get_reservation_time(int id) {
+    Library.Database db = new Library.Database();
+
+    var cmd = new NpgsqlCommand("SELECT time FROM table_reservations WHERE table_id=($1)", db.Conn) {
+        Parameters = {
+            new() { Value = id }
+        }
+    };
+
+    var reader = await db.Query(cmd);
+    await reader.ReadAsync();
+    DateTime table_data = reader.GetDateTime(0);
+    await reader.CloseAsync();
+
+    return table_data;
+  }
   public async static Task<Dictionary<string, dynamic>> get_by_id(int id) {
     Library.Database db = new Library.Database();
 

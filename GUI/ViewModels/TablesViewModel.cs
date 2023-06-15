@@ -112,7 +112,7 @@ public class TablesViewModel : RoutablePage {
   
   public ReactiveCommand<Unit, Unit>  Refresh { get; set; }
 
-  public void tableSelect(string button) {
+  public async void tableSelect(string button) {
     Console.WriteLine($"Button pressed: {button}");
 
     int button_id = int.Parse(button);
@@ -130,12 +130,13 @@ public class TablesViewModel : RoutablePage {
         return;
       }
       if (table.number == button_id && table.status == Status.reserved) {
+        DateTime time = await TableSQL.get_reservation_time(table.number);
         HostScreen.notificationManager.CreateMessage()
             .Animates(true)
             .Background("#B4BEFE")
             .Foreground("#1E1E2E")
             .HasMessage(
-                $"Notice! This table is reserved for someone at [TIME_HERE]")
+                $"Notice! This table is reserved for someone at [{time:hh:mm}]")
             .Dismiss().WithDelay(TimeSpan.FromSeconds(5))
             .Queue();
       }

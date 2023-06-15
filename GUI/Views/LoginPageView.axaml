@@ -19,35 +19,14 @@
     <DockPanel LastChildFill="True">
         <StackPanel>
             <Image Height="50" Width="50" Source="{SvgImage /Assets/logo.svg}"></Image>
-            <TabControl DockPanel.Dock="Top" HorizontalAlignment="Center">
-                <TabItem Header="Staff login">
-                    <StackPanel Margin="0,40,0,0" Spacing="{Binding FormContentSpacing}" HorizontalAlignment="Center"
-                                VerticalAlignment="Center">
-                        <TextBox Width="{Binding FormContentWidth}" Watermark="Login Key" PasswordChar="*" Text="{Binding Text}"/>
-                        <Button Width="{Binding FormContentWidth}" 
-                                Command="{Binding LoginStaff}"
-                                IsDefault="True"
-                                Content="Log in" />
-                    </StackPanel>
-                </TabItem>
-                <TabItem Header="Admin login">
-                    <StackPanel Margin="0,40,0,0" Spacing="{Binding FormContentSpacing}" HorizontalAlignment="Center"
-                                VerticalAlignment="Center">
-                        <TextBlock Width="{Binding FormContentWidth}" Text="Log in" FontWeight="Black" />
-                        <TextBox Width="{Binding FormContentWidth}" Watermark="Admin login key" PasswordChar="*" />
-                        <Button Width="{Binding FormContentWidth}" Content="Log in" />
-                    </StackPanel>
-                </TabItem>
-                <TabItem Header="Manager login">
-                    <StackPanel Margin="0,40,0,0" Spacing="{Binding FormContentSpacing}" HorizontalAlignment="Center"
-                                VerticalAlignment="Center">
-                        <TextBlock Width="{Binding FormContentWidth}" Text="Log in" FontWeight="Black" />
-                        <TextBox Width="{Binding FormContentWidth}" Watermark="Name" PasswordChar="*" />
-                        <TextBox Width="{Binding FormContentWidth}" Watermark="Receipt id" PasswordChar="*" />
-                        <Button Width="{Binding FormContentWidth}" Content="View our survey" />
-                    </StackPanel>
-                </TabItem>
-            </TabControl>
+            <StackPanel Margin="0,40,0,0" Spacing="{Binding FormContentSpacing}" HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+                <TextBox Width="{Binding FormContentWidth}" Watermark="Login Key" PasswordChar="*" Text="{Binding Text}"/>
+                <Button Width="{Binding FormContentWidth}" 
+                        Command="{Binding LoginStaff}"
+                        IsDefault="True"
+                        Content="Log in" />
+            </StackPanel>
             <CheckBox 
                 DockPanel.Dock="Bottom" 
                 IsChecked="{Binding MobileUIRequested}"
