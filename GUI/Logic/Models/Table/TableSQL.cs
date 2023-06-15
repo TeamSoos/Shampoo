@@ -10,7 +10,7 @@ public class TableSQL {
   public async static Task<List<TableType>> get_all() {
     Library.Database db = new Library.Database();
 
-    var cmd = new NpgsqlCommand("SELECT id FROM restaurant_table", db.Conn);
+    var cmd = new NpgsqlCommand("SELECT * FROM restaurant_table", db.Conn);
 
 
     var reader = await db.Query(cmd);
@@ -18,7 +18,7 @@ public class TableSQL {
 
     while (reader.Read())
     {
-      TableType table = new TableType((int)reader["id"]);
+      TableType table = TableType.raw((int)reader["number"], (string)reader["status"]);
       tables.Add(table);
     }
 

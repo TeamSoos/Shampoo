@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using ExCSS;
 using Logic.Models.Base;
 
 namespace GUI.Logic.Models.Table;
@@ -12,13 +13,19 @@ public enum Status {
   reserved
 }
 
-public class TableType : BaseType {
+public class TableType  {
   
   public int number;
   public Status status;
-  
+  private TableType(int number, string status){
+    
+    this.number = number;
+    // error handling goes to shit but oh well
+    this.status = Enum.Parse<Status>(status, ignoreCase: true);
+  }
 
-  public TableType(int id) : base(id) {
+
+  public TableType(int id)  {
     Task.Run(async () =>
     {
       Dictionary<string, dynamic> table_data = await TableSQL.get_by_id(id);
@@ -26,6 +33,10 @@ public class TableType : BaseType {
       // error handling goes to shit but oh well
       status = Enum.Parse<Status>(table_data["status"], ignoreCase: true);
     }).Wait();
+  }
+
+  public static TableType raw(int number, string status) {
+    return new TableType(number, status);
   }
 
   public static async Task<List<TableType>> getAll() {
@@ -40,7 +51,4 @@ public class TableType : BaseType {
     return await TableSQL.get_all();
   }
 
-  public override T getByID<T>(int id) {
-    throw new NotImplementedException();
-  }
 }
