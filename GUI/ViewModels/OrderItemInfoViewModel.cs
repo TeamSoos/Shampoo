@@ -21,10 +21,14 @@ public class OrderItemInfoViewModel : RoutablePage {
     public OrderItemInfoViewModel(IHostScreen screen, MenuType item, Action<int> add, Action<string> addNote) {
         HostScreen = screen;
         Note = "";
-        Name = item.Name;
+        Name = $"{item.Name} - €{item.Price:C}";
 
         AddToOrder = ReactiveCommand.Create(() => { add(OrderAmount); });
-        AddNote = ReactiveCommand.Create(() => { addNote(Note); });
+        AddNote = ReactiveCommand.Create(() => {
+            if (Note != "") {
+                addNote(Note);
+            }
+        });
         GoBack = ReactiveCommand.Create(() => { HostScreen.GoBack(); });
     }
 }

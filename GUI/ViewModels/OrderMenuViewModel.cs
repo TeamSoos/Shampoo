@@ -19,7 +19,6 @@ public class OrderMenuViewModel : RoutablePage {
 
     readonly string defaultbtnc = "#B4BEFE";
     int Table;
-
     string Waiter;
 
     public OrderMenuViewModel(IHostScreen screen, string waiter, int table) {
@@ -38,7 +37,7 @@ public class OrderMenuViewModel : RoutablePage {
         GoBack = ReactiveCommand.Create(() => { HostScreen.GoBack(); });
 
         viewOrder = ReactiveCommand.Create(() => {
-            HostScreen.GoNext(new OrderMenuViewOrderViewModel(HostScreen, ListItems));
+            HostScreen.GoNext(new OrderMenuViewOrderViewModel(HostScreen));
         });
 
         getLunch = ReactiveCommand.Create(() => {
@@ -149,6 +148,7 @@ public class MenuItem {
             screen.GoNext(new OrderItemInfoViewModel(screen, menuType, AddToOrder, AddNote));
         });
         HostScreen = screen;
+        Price = menuType.Price;
     }
 
     void AddToOrder(int amount) {
@@ -163,7 +163,8 @@ public class MenuItem {
     }
 
     public string Name { get; }
-    public string Note { get; set; }
+    public string Note { get; set; } = "";
+    public decimal Price { get; set; }
     IHostScreen HostScreen;
 
     public ReactiveCommand<Unit, Unit> Command { get; }
