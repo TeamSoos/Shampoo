@@ -9,7 +9,10 @@ public class MenuType : BaseType {
     public decimal Price;
     public string Type;
 
-    MenuType(int id) : base(id) {
+    public MenuType(int id, string name, string type, decimal price) : base(id) {
+        Name = name;
+        Price = price;
+        Type = type;
     }
 
 
