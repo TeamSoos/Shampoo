@@ -21,7 +21,7 @@ public class OrderItemInfoViewModel : RoutablePage {
     public OrderItemInfoViewModel(IHostScreen screen, MenuType item, Action<int> add, Action<string> addNote) {
         HostScreen = screen;
         Note = "";
-        Name = $"{item.Name} - €{item.Price:C}";
+        Name = $"{item.Name} - €{item.Price}";
 
         AddToOrder = ReactiveCommand.Create(() => { add(OrderAmount); });
         AddNote = ReactiveCommand.Create(() => {

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Reactive;
 using Avalonia.Notification;
+using GUI.Logic.Models.Menu;
 using ReactiveUI;
 using RoutedApp;
 

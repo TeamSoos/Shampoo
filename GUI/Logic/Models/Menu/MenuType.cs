@@ -13,6 +13,7 @@ public class MenuType : BaseType {
         Name = name;
         Price = price;
         Type = type;
+        ID = id;
     }
 
 

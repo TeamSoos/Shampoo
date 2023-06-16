@@ -61,7 +61,7 @@
                 Command="{Binding goBack}"
                 HorizontalAlignment="Stretch" />
         <Button Grid.Column="1" Grid.Row="1" Content="Place order" Margin="4,0,0,0"
-                Command="{Binding goBack}"
+                Command="{Binding PlaceOrder}"
                 HorizontalAlignment="Stretch" />
     </Grid>
 

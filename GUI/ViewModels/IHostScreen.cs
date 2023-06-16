@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Avalonia.Notification;
+using GUI.Logic.Models.Menu;
 using ReactiveUI;
 
 namespace GUI.ViewModels;

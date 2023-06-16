@@ -36,9 +36,7 @@ public class OrderMenuViewModel : RoutablePage {
 
         GoBack = ReactiveCommand.Create(() => { HostScreen.GoBack(); });
 
-        viewOrder = ReactiveCommand.Create(() => {
-            HostScreen.GoNext(new OrderMenuViewOrderViewModel(HostScreen));
-        });
+        viewOrder = ReactiveCommand.Create(() => { HostScreen.GoNext(new OrderMenuViewOrderViewModel(HostScreen)); });
 
         getLunch = ReactiveCommand.Create(() => {
             // default buttons
@@ -114,7 +112,8 @@ public class OrderMenuViewModel : RoutablePage {
             var TypedMenuItems = items
                     .GroupBy(item => item.Type)
                     .Select(group => {
-                        var MenuItems = group.Select(x => new MenuItem(x, HostScreen)).ToList();
+                        var MenuItems = group.Select(x => { return new MenuItem(x, HostScreen); }
+                        ).ToList();
                         var menu = new Menu(group.Key, MenuItems);
                         return menu;
                     })
@@ -138,34 +137,4 @@ public class Menu {
     public string Heading { get; }
 
     public List<MenuItem> MenuStuff { get; }
-}
-
-public class MenuItem {
-
-    public MenuItem(MenuType menuType, IHostScreen screen) {
-        Name = menuType.Name;
-        Command = ReactiveCommand.Create(() => {
-            screen.GoNext(new OrderItemInfoViewModel(screen, menuType, AddToOrder, AddNote));
-        });
-        HostScreen = screen;
-        Price = menuType.Price;
-    }
-
-    void AddToOrder(int amount) {
-        while (amount > 0) {
-            HostScreen.CurrentOrder.Add(this);
-            amount--;
-        }
-    }
-
-    void AddNote(string note) {
-        
-    }
-
-    public string Name { get; }
-    public string Note { get; set; } = "";
-    public decimal Price { get; set; }
-    IHostScreen HostScreen;
-
-    public ReactiveCommand<Unit, Unit> Command { get; }
 }

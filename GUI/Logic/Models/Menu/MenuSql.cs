@@ -21,9 +21,12 @@ public class MenuSql {
         var items = new List<MenuType>();
 
         cmd = type switch {
-            EMenuType.Lunch => new NpgsqlCommand("SELECT * FROM lunchmenu", db.Conn),
-            EMenuType.Dinner => new NpgsqlCommand("SELECT * FROM dinnermenu", db.Conn),
-            EMenuType.Drinks => new NpgsqlCommand("SELECT * FROM drinkmenu", db.Conn),
+            EMenuType.Lunch => new NpgsqlCommand("SELECT id, name, type, price FROM allmenu WHERE menu = 'lunch'",
+                db.Conn),
+            EMenuType.Dinner => new NpgsqlCommand("SELECT id, name, type, price FROM allmenu WHERE menu = 'dinner'",
+                db.Conn),
+            EMenuType.Drinks => new NpgsqlCommand("SELECT id, name, type, price FROM allmenu WHERE menu = 'drinks'",
+                db.Conn),
             _ => throw new Exception("Unreachable code reached. Good job.")
         };
 
