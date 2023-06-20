@@ -5,23 +5,24 @@ using ReactiveUI;
 namespace GUI.ViewModels;
 
 public class OrderMenuViewOrderViewModel : RoutablePage {
-	public override IHostScreen HostScreen { get; }
 
-	public ReactiveCommand<Unit, Unit> goBack { get; }
+    public OrderMenuViewOrderViewModel(IHostScreen screen) {
+        HostScreen = screen;
+        goBack = ReactiveCommand.Create(() => { HostScreen.GoBack(); });
+    }
 
-	public bool isSet { get; set; } = false;
+    public OrderMenuViewOrderViewModel(IHostScreen screen, List<Menu> items) {
+        HostScreen = screen;
+        this.items = items;
+        isSet = true;
+        goBack = ReactiveCommand.Create(() => { HostScreen.GoBack(); });
+    }
 
-	public List<Menu> items { get; set; } = new List<Menu>();
+    public override IHostScreen HostScreen { get; }
 
-	public OrderMenuViewOrderViewModel(IHostScreen screen) {
-		HostScreen = screen;
-		goBack = ReactiveCommand.Create(() => { HostScreen.GoBack(); });
-	}
+    public ReactiveCommand<Unit, Unit> goBack { get; }
 
-	public OrderMenuViewOrderViewModel(IHostScreen screen, List<Menu> items) {
-		HostScreen = screen;
-		this.items = items;
-		isSet = true;
-		goBack = ReactiveCommand.Create(() => { HostScreen.GoBack(); });
-	}
+    public bool isSet { get; set; }
+
+    public List<Menu> items { get; set; } = new List<Menu>();
 }

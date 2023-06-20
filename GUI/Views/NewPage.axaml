@@ -82,7 +82,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <TextBlock FontSize="16" Text="Inventory" FontWeight="Black" HorizontalAlignment="Left" />
+            <TextBlock  FontSize="16" Text="Inventory" FontWeight="Black" HorizontalAlignment="Left" />
             <Button Grid.Column="1" Command="{Binding Logout}" Content="Logout" FontWeight="Black" HorizontalAlignment="Right" />
         </Grid>
         
@@ -99,6 +99,7 @@
                     </Button>
                     
                     <Button
+                        Command="{Binding ViewInventory}"
                         Margin="0,0,0,10"
                         Padding="10"
                         HorizontalAlignment="Stretch"

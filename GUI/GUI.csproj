@@ -33,6 +33,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Content Include="Logic\Logic._csproj" />
+        <Content Include="Logic\Logic._csproj" />
     </ItemGroup>
 </Project>

@@ -5,7 +5,7 @@ using Avalonia.Notification;
 using ExCSS;
 using GUI.ViewModels;
 using ReactiveUI;
-using RoutedApp.ViewModels;
+using GUI.ViewModels;
 
 namespace GUI.Views;
 
@@ -15,13 +15,21 @@ public class NewPageViewModel: RoutablePage
 
     public ReactiveCommand<Unit, Unit> Logout { get; set; }
     public ReactiveCommand<Unit, Unit> AddItemButton { get; set; }
+    public ReactiveCommand<Unit, Unit> ViewInventory { get; set; }
 
     public NewPageViewModel(IHostScreen screen)
     {
         HostScreen = screen;
         Logout = ReactiveCommand.Create(logoutUser);
         
-        // this () => {}  is a closure
+            // this (int x) => { return x +1; }  is a lambda
+
+        ViewInventory = ReactiveCommand.Create(
+            () =>
+            {
+                HostScreen.GoNext(new InventoryItemsListViewModel(HostScreen));
+            }
+        );
 
         AddItemButton = ReactiveCommand.Create(() =>
         {

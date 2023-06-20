@@ -5,11 +5,11 @@
              x:Class="RoutedApp.App">
 
     <Application.DataTemplates>
-        <local:ViewLocator/>
+        <local:ViewLocator />
     </Application.DataTemplates>
 
     <Application.Styles>
-        <FluentTheme Mode="Dark"/>
+        <FluentTheme Mode="Dark" />
         <notification:NotificationStyle />
     </Application.Styles>
 </Application>

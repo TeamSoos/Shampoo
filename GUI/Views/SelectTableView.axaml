@@ -40,8 +40,8 @@
                 <StackPanel
                     x:Name="ColumnLeft"
                     Orientation="Vertical" HorizontalAlignment="Stretch">
-                    
-                    
+
+
                     <StackPanel
                         Orientation="Horizontal"
                         Margin="20, 20, 0, -10"
@@ -55,8 +55,7 @@
                             FontSize="20"
                             Margin="10, 0, 0, 0"
                             Foreground="#1E1E2E"
-                            Text="{Binding CurrentTable}"
-                        />
+                            Text="{Binding CurrentTable}" />
 
                     </StackPanel>
 
@@ -94,7 +93,7 @@
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        
+
                         <Button
                             Grid.Column="0"
                             HorizontalContentAlignment="Center"
@@ -113,6 +112,7 @@
                             VerticalContentAlignment="Center"
                             Height="50"
                             CornerRadius="10"
+                            IsVisible="{Binding IsOccupiable}"
                             Command="{Binding CreateOrder}"
                             HorizontalAlignment="Stretch">
                             Create Order
@@ -128,6 +128,29 @@
                         Command="{Binding GoToReserve}"
                         HorizontalAlignment="Stretch">
                         Reserve
+                    </Button>
+                    
+                    <Button
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        Height="50"
+                        Margin="20"
+                        CornerRadius="10"
+                        IsVisible="{Binding IsOccupiable}"
+                        Command="{Binding OccupyTable}"
+                        HorizontalAlignment="Stretch">
+                        Occupy
+                    </Button>
+                    <Button
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        IsVisible="{Binding IsFreeable}"
+                        Height="50"
+                        Margin="20"
+                        CornerRadius="10"
+                        Command="{Binding FreeTable}"
+                        HorizontalAlignment="Stretch">
+                        Free
                     </Button>
                 </StackPanel>
             </Border>

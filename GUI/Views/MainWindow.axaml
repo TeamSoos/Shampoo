@@ -2,13 +2,13 @@
         xmlns:rxui="clr-namespace:Avalonia.ReactiveUI;assembly=Avalonia.ReactiveUI"
         xmlns:app="clr-namespace:RoutedApp"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:vm="using:RoutedApp.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:controls="clr-namespace:Avalonia.Notification.Controls;assembly=Notification.Avalonia"
+        xmlns:viewModels="clr-namespace:GUI.ViewModels"
         mc:Ignorable="d" d:DesignWidth="360" d:DesignHeight="800"
         x:Class="GUI.Views.MainWindow"
-        x:DataType="vm:MainWindowViewModel"
+        x:DataType="viewModels:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
         Title="GUI">
 
@@ -23,20 +23,20 @@
             <Setter Property="Margin" Value="0 0 0 0" />
             <Setter Property="Padding" Value="10 0" />
         </Style>
-        
+
         <Style Selector="Button">
             <Setter Property="FontFamily" Value="Montserrat" />
             <Setter Property="Background" Value="#B4BEFE" />
             <Setter Property="Foreground" Value="#1E1E2E" />
             <Setter Property="FontWeight" Value="Bold" />
         </Style>
-        
+
         <Style Selector="Button:focus">
             <Setter Property="Background" Value="#B4BEFE" />
             <Setter Property="Foreground" Value="#1E1E2E" />
             <Setter Property="FontWeight" Value="Bold" />
         </Style>
-        
+
         <Style Selector="TextBox">
             <Setter Property="FontFamily" Value="Montserrat" />
             <Setter Property="Background" Value="#00000000" />
@@ -45,7 +45,7 @@
             <Setter Property="BorderThickness" Value="2" />
             <Setter Property="BorderBrush" Value="#CDD6F4" />
         </Style>
-        
+
         <Style Selector="TabItem:focus">
             <!-- <Setter Property="Foreground" Value="#2B579A"/> -->
             <Setter Property="Margin" Value="0 0 0 0" />
@@ -75,18 +75,18 @@
     </Window.Styles>
 
     <Design.DataContext>
-        <vm:MainWindowViewModel />
+        <viewModels:MainWindowViewModel />
     </Design.DataContext>
 
     <Grid VerticalAlignment="Stretch">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        
+
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        
+
         <Border ZIndex="1">
             <controls:NotificationMessageContainer Manager="{Binding Manager}" />
         </Border>

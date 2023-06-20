@@ -1,13 +1,11 @@
-using RoutedApp.ViewModels;
+namespace GUI.ViewModels;
 
-namespace GUI.ViewModels; 
+public class SecondPageViewModel : RoutablePage {
 
-public class SecondPageViewModel: RoutablePage {
+    public SecondPageViewModel(IHostScreen screen) {
+        HostScreen = screen;
 
-  public override IHostScreen HostScreen { get; }
+    }
 
-  public SecondPageViewModel(IHostScreen screen) {
-    HostScreen = screen;
-    
-  }
+    public override IHostScreen HostScreen { get; }
 }

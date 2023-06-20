@@ -1,16 +1,15 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using ExCSS;
 using Logic.Models.Base;
 
 namespace GUI.Logic.Models.Table;
 
 
 public enum Status {
-  empty,
-  occupied,
-  reserved
+    empty,
+    occupied,
+    reserved
 }
 
 public class TableType  {
@@ -50,5 +49,13 @@ public class TableType  {
      */
     return await TableSQL.get_all();
   }
+  
+  public static void occupy_single(int table_id) {
+    TableSQL.occupy_single(table_id);
+  }
+  public static void free_single(int table_id) {
+    TableSQL.free_single(table_id);
+  }
+  
 
 }

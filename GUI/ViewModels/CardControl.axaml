@@ -11,10 +11,10 @@
     <Design.DataContext>
         <vm:CardControl />
     </Design.DataContext>
-    
-    <Border BorderBrush="Black" 
-            BorderThickness="1" 
-            Margin="5" 
+
+    <Border BorderBrush="Black"
+            BorderThickness="1"
+            Margin="5"
             Padding="10">
         <StackPanel>
             <TextBlock Text="{Binding Title}" FontWeight="Bold" />
