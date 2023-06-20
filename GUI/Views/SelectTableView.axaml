@@ -112,6 +112,7 @@
                             VerticalContentAlignment="Center"
                             Height="50"
                             CornerRadius="10"
+                            IsVisible="{Binding IsOccupiable}"
                             Command="{Binding CreateOrder}"
                             HorizontalAlignment="Stretch">
                             Create Order
@@ -127,6 +128,29 @@
                         Command="{Binding GoToReserve}"
                         HorizontalAlignment="Stretch">
                         Reserve
+                    </Button>
+                    
+                    <Button
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        Height="50"
+                        Margin="20"
+                        CornerRadius="10"
+                        IsVisible="{Binding IsOccupiable}"
+                        Command="{Binding OccupyTable}"
+                        HorizontalAlignment="Stretch">
+                        Occupy
+                    </Button>
+                    <Button
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        IsVisible="{Binding IsFreeable}"
+                        Height="50"
+                        Margin="20"
+                        CornerRadius="10"
+                        Command="{Binding FreeTable}"
+                        HorizontalAlignment="Stretch">
+                        Free
                     </Button>
                 </StackPanel>
             </Border>
