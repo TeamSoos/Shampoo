@@ -56,6 +56,9 @@ public class TableType  {
   public static void free_single(int table_id) {
     TableSQL.free_single(table_id);
   }
-  
+
+  public static async Task<List<string>> getOrders(int table_id) {
+    return await TableSQL.get_orders_by_id(table_id);
+  }
 
 }

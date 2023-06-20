@@ -12,6 +12,8 @@ public interface IHostScreen : IScreen {
     
     // state
     string CurrentUser { get; set; }
+    
+    int CurrentUserID { get; set; }
     int CurrentTable { get; set; }
     int GuestCount { get; set; }
     List<MenuItem> CurrentOrder { get; set; }

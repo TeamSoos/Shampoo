@@ -18,7 +18,7 @@ public class MainWindowViewModel : ReactiveObject, IHostScreen {
 
         // Navigate to the first page
         Router.Navigate.Execute(new LoginPageViewModel(this));
-        GoNext(new OrderMenuViewModel(this, "test", 1));
+        GoNext(new LoginPageViewModel(this));
         GoBackPage = ReactiveCommand.CreateFromObservable(
             () => {
                 RoutablePage _ = stack.Pop();
@@ -54,6 +54,7 @@ public class MainWindowViewModel : ReactiveObject, IHostScreen {
     public INotificationMessageManager notificationManager => Manager;
 
     public string CurrentUser { get; set; }
+    public int CurrentUserID { get; set; }
     public int CurrentTable { get; set; }
     public int GuestCount { get; set; }
 }

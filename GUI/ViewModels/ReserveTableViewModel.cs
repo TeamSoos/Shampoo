@@ -3,6 +3,7 @@ using System.Reactive;
 using Avalonia.Notification;
 using GUI.Logic.Models.Reservation;
 using ReactiveUI;
+using RoutedApp.Logic.Models.Logging;
 
 namespace GUI.ViewModels;
 
@@ -33,8 +34,6 @@ public class ReserveTableViewModel : RoutablePage {
     public string Time { get; set; }
 
     void createReservation() {
-        // This shit goes to db
-        Console.WriteLine($"{Name} {Phone} {Time}");
         // This will call the db trigger to set the table to occupied
         Reservation.Create(Name, Phone, Time, HostScreen.GuestCount, CurrentTable);
         HostScreen.notificationManager.CreateMessage()
@@ -45,6 +44,10 @@ public class ReserveTableViewModel : RoutablePage {
                 $"Reservation for {Name} at {Time} was created!")
             .Dismiss().WithDelay(TimeSpan.FromSeconds(5))
             .Queue();
+        
+        
+        Logger.addRecord(HostScreen.CurrentUserID,$"Created reservation for {Name} at {Time}");
+
 
         HostScreen.GoNext(new TablesViewModel(HostScreen));
     }

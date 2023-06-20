@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Avalonia.Notification;
 using GUI.Logic.Models.Reservation;
 using ReactiveUI;
+using RoutedApp.Logic.Models.Logging;
 
 namespace GUI.ViewModels;
 
@@ -37,6 +38,7 @@ public class ReservationsViewModel : RoutablePage {
                 if (reservation.Selected == "True") {
                     Console.WriteLine($"TO DELETE {reservation.Selected} - {reservation.Title}");
                     Reservation.Delete(reservation.Table);
+                    Logger.addRecord(screen.CurrentUserID,$"Deleted reservation for {reservation.Title}. {reservation.Description}");
                     count++;
                 }
             }
@@ -70,16 +72,21 @@ public class ReservationsViewModel : RoutablePage {
     void loadReservations() {
         ReservationsList.Items = new ObservableCollection<ReservationCardItem>();
         // load here
-        Task.Run(async () => {
-            foreach (Reservation reservation in await Reservation.getAll()) {
-                Console.WriteLine($"{reservation.name}");
-                ReservationsList.Items.Add(
-                    new ReservationCardItem {
-                        Title = reservation.name, Description = $"Reservation at {reservation.time:HH:mm}",
-                        Selected = "False", Table = reservation.table
-                    }
-                );
-            }
+        List<Reservation> reservations = new List<Reservation>();
+
+        Task.Run(async () =>
+        {
+            reservations = await Reservation.getAll();
         }).Wait();
+        
+        foreach (Reservation reservation in reservations) {
+            Console.WriteLine($"{reservation.name}");
+            ReservationsList.Items.Add(
+                    new ReservationCardItem {
+                            Title = reservation.name, Description = $"Reservation at {reservation.time:HH:mm}",
+                            Selected = "False", Table = reservation.table
+                    }
+            );
+        }
     }
 }

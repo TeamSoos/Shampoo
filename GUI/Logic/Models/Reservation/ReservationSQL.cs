@@ -46,6 +46,8 @@ public class ReservationSQL {
             );
         }
 
+        db.Finalize();
+
         return reservations;
     }
 

@@ -34,5 +34,6 @@ public class OrderSql {
             var r = await db.Query(insrt_cmd);
             r.Close();
         }
+        db.Finalize();
     }
 }

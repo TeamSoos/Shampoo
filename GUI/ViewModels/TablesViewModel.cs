@@ -67,13 +67,13 @@ public class TablesViewModel : RoutablePage {
   public override IHostScreen HostScreen { get; }
 
   void loadTables() {
+      Console.WriteLine("Starting to set tables");
     List<TableType> tables = new List<TableType>();
     Task.Run(async () =>
     {
       // Populate table state
       tables = await TableType.getAll();
 
-      Console.WriteLine("Done setting states");
     }).Wait();
     Tables = tables;
 
@@ -82,8 +82,6 @@ public class TablesViewModel : RoutablePage {
     string reserved = "#B4BEFE";
 
     foreach (TableType table in tables) {
-      // stdout writes take a while-
-      Console.WriteLine($"Processing table {table.number} {table.status}");
       string propertyName = $"Colour{table.number}";
       string colourValue = table.status switch {
           Status.reserved => reserved,
@@ -95,11 +93,39 @@ public class TablesViewModel : RoutablePage {
       // Set the property dynamically using reflection
       PropertyInfo property = GetType().GetProperty(propertyName)!;
       property.SetValue(this, colourValue);
+      
+      
+      // Do the same for order status
+      List<string> orders = new List<string>();
+      Task.Run(async () =>
+      {
+        orders = await TableType.getOrders(table.number);
+      }).Wait();
+      propertyName = $"Table{table.number}Status";
+      PropertyInfo statusProperty = GetType().GetProperty(propertyName)!;
+
+      string status;
+      
+      if (orders.Contains("done")) {
+        status = "done";
+      } else if (orders.Contains("preparing")) {
+        status = "preparing";
+      } else if (orders.Contains("placed")) {
+        status = "placed";
+      }
+      else {
+        status = "";
+      }
+
+      statusProperty.SetValue(this, status);
     }
+    
+    Console.WriteLine("Done setting states");
   }
 
   void showUserTables() {
     foreach (TableType table in Tables) {
+      
       // Kunal is on this
       // Check issue at https://github.com/TeamSoos/Shampoo/issues/16
     }
@@ -160,6 +186,16 @@ public class TablesViewModel : RoutablePage {
         .Dismiss().WithDelay(TimeSpan.FromSeconds(5))
         .Queue();
     HostScreen.GoNext(new LoginPageViewModel(HostScreen));
+  }
+
+  public override void OnUnload() {
+    dispatcher.Stop();
+    Console.WriteLine("Dispatcher halted");
+  }
+  
+  public override void OnLoad() {
+    dispatcher.Start();
+    Console.WriteLine("Dispatcher resumed");
   }
 
   // (𓁹󠁘◡𓁹) good luck~ 
@@ -235,5 +271,72 @@ public class TablesViewModel : RoutablePage {
   public string Colour10 {
     get => colour10;
     set => this.RaiseAndSetIfChanged(ref colour10, value);
+  }
+  private string table1Status;
+  public string Table1Status {
+    get => table1Status;
+    set => this.RaiseAndSetIfChanged(ref table1Status, value);
+  }
+  private string table2Status;
+  public string Table2Status
+  {
+    get => table2Status;
+    set => this.RaiseAndSetIfChanged(ref table2Status, value);
+  }
+
+  private string table3Status;
+  public string Table3Status
+  {
+    get => table3Status;
+    set => this.RaiseAndSetIfChanged(ref table3Status, value);
+  }
+  
+  private string table4Status;
+  public string Table4Status
+  {
+    get => table4Status;
+    set => this.RaiseAndSetIfChanged(ref table4Status, value);
+  }
+
+  private string table5Status;
+  public string Table5Status
+  {
+    get => table5Status;
+    set => this.RaiseAndSetIfChanged(ref table5Status, value);
+  }
+
+  private string table6Status;
+  public string Table6Status
+  {
+    get => table6Status;
+    set => this.RaiseAndSetIfChanged(ref table6Status, value);
+  }
+
+  private string table7Status;
+  public string Table7Status
+  {
+    get => table7Status;
+    set => this.RaiseAndSetIfChanged(ref table7Status, value);
+  }
+
+  private string table8Status;
+  public string Table8Status
+  {
+    get => table8Status;
+    set => this.RaiseAndSetIfChanged(ref table8Status, value);
+  }
+
+  private string table9Status;
+  public string Table9Status
+  {
+    get => table9Status;
+    set => this.RaiseAndSetIfChanged(ref table9Status, value);
+  }
+
+  private string table10Status;
+  public string Table10Status
+  {
+    get => table10Status;
+    set => this.RaiseAndSetIfChanged(ref table10Status, value);
   }
 }

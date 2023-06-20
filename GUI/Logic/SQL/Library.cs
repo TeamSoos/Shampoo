@@ -7,22 +7,25 @@ using Npgsql;
 namespace Logic.SQL;
 
 public class Library {
-    public class Database {
-
-        public readonly NpgsqlConnection Conn;
-
         /// <summary>
         ///     Database class. Facilitates the connection to Postgres.
         ///     Provides both execution of queries and notification listeners
         /// </summary>
+    public class Database {
+
+        public static NpgsqlConnection conn;
+        public static NpgsqlConnection lockedconn;
+        public NpgsqlConnection Conn;
+
         readonly string _ConnectionString;
 
-        public Database() {
+        public Database(bool holdlock = false) {
             Env.Load();
             Env.TraversePath().Load();
 
             string connstr = Env.GetString("SQL_CONN_STR");
             _ConnectionString = connstr;
+            
             Conn = new NpgsqlConnection(connstr);
             Conn.Open();
         }
@@ -52,8 +55,13 @@ public class Library {
             return reader;
         }
 
+        public void Finalize() {
+            Conn.Close();
+        }
+
         public async void Store(NpgsqlCommand cmd) {
             await cmd.ExecuteNonQueryAsync();
+            Finalize();
         }
 
         public void ListenToNotif(string connstr) {

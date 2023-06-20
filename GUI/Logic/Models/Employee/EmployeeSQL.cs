@@ -20,6 +20,9 @@ public class EmployeeSQL {
             EmployeeType employee = new EmployeeType((int)reader["id"]);
             employees.Add(employee);
         }
+        
+        
+        db.Finalize();
 
         return employees;
     }
@@ -40,6 +43,8 @@ public class EmployeeSQL {
             EmployeeType employee = new EmployeeType((int)reader["id"]);
             employees.Add(employee);
         }
+        
+        db.Finalize();
 
         return employees;
     }
@@ -64,6 +69,9 @@ public class EmployeeSQL {
             { "job", reader["job"] }
         };
         await reader.CloseAsync();
+        
+        
+        db.Finalize();
 
         return employee_data;
     }
