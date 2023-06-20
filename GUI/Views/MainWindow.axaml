@@ -91,7 +91,7 @@
             <controls:NotificationMessageContainer Manager="{Binding Manager}" />
         </Border>
         <!-- <Button Content="Back" Command="{Binding GoBackPage}" /> -->
-        <rxui:RoutedViewHost Router="{Binding Router}" VerticalAlignment="Stretch">
+        <rxui:RoutedViewHost Router="{Binding Router}" VerticalAlignment="Stretch" PageTransition="{x:Null}">
             <rxui:RoutedViewHost.DefaultContent>
                 <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center" />
             </rxui:RoutedViewHost.DefaultContent>

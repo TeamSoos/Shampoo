@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reactive;
+using GUI.Logic.Models.Menu;
 using ReactiveUI;
 
 namespace GUI.ViewModels;
@@ -17,7 +19,6 @@ public class OrderMenuViewModel : RoutablePage {
 
     readonly string defaultbtnc = "#B4BEFE";
     int Table;
-
     string Waiter;
 
     public OrderMenuViewModel(IHostScreen screen, string waiter, int table) {
@@ -25,15 +26,7 @@ public class OrderMenuViewModel : RoutablePage {
         Table = table;
 
         // List items for the menu
-        _listItems =
-            new List<Menu> {
-                new Menu("ANTHREEE",
-                    new List<MenuItem> {
-                        new MenuItem("balz"),
-                        new MenuItem("ssssssss")
-                    }
-                )
-            };
+        _listItems = new List<Menu>();
 
 
         HostScreen = screen;
@@ -43,9 +36,7 @@ public class OrderMenuViewModel : RoutablePage {
 
         GoBack = ReactiveCommand.Create(() => { HostScreen.GoBack(); });
 
-        viewOrder = ReactiveCommand.Create(() => {
-            HostScreen.GoNext(new OrderMenuViewOrderViewModel(HostScreen, ListItems));
-        });
+        viewOrder = ReactiveCommand.Create(() => { HostScreen.GoNext(new OrderMenuViewOrderViewModel(HostScreen)); });
 
         getLunch = ReactiveCommand.Create(() => {
             // default buttons
@@ -53,6 +44,8 @@ public class OrderMenuViewModel : RoutablePage {
             Colour3 = defaultbtnc;
             // active button
             Colour1 = activebtnc;
+
+            SetCurrentMenu(EMenuType.Lunch);
 
         });
         getDinner = ReactiveCommand.Create(() => {
@@ -62,36 +55,17 @@ public class OrderMenuViewModel : RoutablePage {
             // active button
             Colour2 = activebtnc;
 
-            ListItems =
-                new List<Menu> {
-                    new Menu("SOUPPPPPPPP",
-                        new List<MenuItem> {
-                            new MenuItem("mineral soup from the nile river"),
-                            new MenuItem("blood")
-                        }
-                    ),
-                    new Menu("SOUP",
-                        new List<MenuItem> {
-                            new MenuItem("Tomato"),
-                            new MenuItem("Tomato")
-                        }
-                    )
-                };
-
+            SetCurrentMenu(EMenuType.Dinner);
         });
+
         getDrinks = ReactiveCommand.Create(() => {
             // default buttons
             Colour2 = defaultbtnc;
             Colour1 = defaultbtnc;
             // active button
             Colour3 = activebtnc;
-            //  HostScreen.notificationManager.CreateMessage()
-            //  .Animates(true)
-            //  .HasMessage("Failed to switch")
-            //  .Background("#B4BEFE")
-            //  .Foreground("#1E1E2E")
-            //  .Dismiss().WithDelay(TimeSpan.FromSeconds(5))
-            //  .Queue();
+
+            SetCurrentMenu(EMenuType.Drinks);
         });
 
         getLunch.Execute().Subscribe();
@@ -125,6 +99,31 @@ public class OrderMenuViewModel : RoutablePage {
         get => _listItems;
         set => this.RaiseAndSetIfChanged(ref _listItems, value);
     }
+
+    void SetCurrentMenu(EMenuType type) {
+        ListItems = new List<Menu> {
+            new Menu("loading...", new List<MenuItem>())
+        };
+
+        var a = MenuSql.get_all(type);
+        a.GetAwaiter().OnCompleted(() => {
+            var items = a.Result;
+
+            var TypedMenuItems = items
+                    .GroupBy(item => item.Type)
+                    .Select(group => {
+                        var MenuItems = group.Select(x => { return new MenuItem(x, HostScreen); }
+                        ).ToList();
+                        var menu = new Menu(group.Key, MenuItems);
+                        return menu;
+                    })
+                    .ToList()
+                ;
+
+            ListItems = TypedMenuItems;
+        });
+    }
+
 }
 
 public class Menu {
@@ -138,49 +137,4 @@ public class Menu {
     public string Heading { get; }
 
     public List<MenuItem> MenuStuff { get; }
-}
-
-public class MenuItem {
-
-    public MenuItem(string name) {
-        Name = name;
-        Command = ReactiveCommand.Create(() => { Console.WriteLine($"{Name}"); });
-    }
-
-    public string Name { get; }
-
-    public ReactiveCommand<Unit, Unit> Command { get; }
-}
-
-// DATABASE CODE
-// I have this code here as it makes it so much easier to iterate
-
-class MenuData {
-    int ID;
-    string Name;
-    decimal Price;
-    string Type;
-
-    MenuData(int id, string type, string name, decimal price) {
-        ID = id;
-        Type = type;
-        Name = name;
-        Price = price;
-    }
-
-    public static List<MenuData> GetMenu(string menu) {
-        switch (menu) {
-            case "lunch":
-                break;
-            case "dinner":
-                break;
-            case "drink":
-                break;
-            default:
-                throw new Exception("Unknown");
-        }
-
-        return new List<MenuData>();
-
-    }
 }

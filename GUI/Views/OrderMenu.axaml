@@ -32,39 +32,43 @@
                 Content="Drinks" Command="{Binding getDrinks}" Margin="6" />
 
         <!-- List -->
-        <ItemsControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Items="{Binding ListItems}" Padding="10,4">
-            <ItemsControl.Styles>
-                <Style Selector="ListBox">
-                    <Setter Property="Foreground" Value="#B4BEFE" />
-                    <Setter Property="Background" Value="#1E1E2E" />
-                </Style>
-                <Style Selector="ListBox">
-                    <Setter Property="IsHitTestVisible" Value="False" />
-                    <Setter Property="Focusable" Value="False" />
-                </Style>
-            </ItemsControl.Styles>
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <DockPanel>
-                        <TextBlock Foreground="#B4BEFE" FontSize="24" FontWeight="Bold" Text="{Binding Heading}"
-                                   DockPanel.Dock="Top"
-                                   Padding="0,0,0,10" />
-                        <ItemsControl Items="{Binding MenuStuff}">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid Margin="0,0,0,6">
-                                        <TextBlock Text="{Binding Name}" HorizontalAlignment="Left"
-                                                   VerticalAlignment="Center" />
-                                        <Button Command="{Binding Command}"
-                                                Content="Add to order" HorizontalAlignment="Right" />
-                                    </Grid>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                    </DockPanel>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+        <ScrollViewer Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">
+
+
+            <ItemsControl Items="{Binding ListItems}" Padding="10,4">
+                <ItemsControl.Styles>
+                    <Style Selector="ListBox">
+                        <Setter Property="Foreground" Value="#B4BEFE" />
+                        <Setter Property="Background" Value="#1E1E2E" />
+                    </Style>
+                    <Style Selector="ListBox">
+                        <Setter Property="IsHitTestVisible" Value="False" />
+                        <Setter Property="Focusable" Value="False" />
+                    </Style>
+                </ItemsControl.Styles>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <DockPanel>
+                            <TextBlock Foreground="#B4BEFE" FontSize="24" FontWeight="Bold" Text="{Binding Heading}"
+                                       DockPanel.Dock="Top"
+                                       Padding="0,0,0,10" />
+                            <ItemsControl Items="{Binding MenuStuff}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid Margin="0,0,0,6">
+                                            <TextBlock Text="{Binding Name}" HorizontalAlignment="Left"
+                                                       VerticalAlignment="Center" />
+                                            <Button Command="{Binding Command}"
+                                                    Content="Add to order" HorizontalAlignment="Right" />
+                                        </Grid>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </DockPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
 
         <!-- Bottom Button -->
         <Button Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Content="View Order"

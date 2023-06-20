@@ -9,7 +9,7 @@ using SecondPage = GUI.Views.SecondPage;
 namespace RoutedApp;
 
 public class AppViewLocator : IViewLocator {
-    public IViewFor ResolveView<T>(T viewModel, string contract = null) {
+    public IViewFor ResolveView<T>(T viewModel, string? contract = null) {
         return viewModel switch {
             LoginPageViewModel context => new LoginPageView { DataContext = context },
             KitchenViewModel context => new OrderingView { DataContext = context },
@@ -21,7 +21,9 @@ public class AppViewLocator : IViewLocator {
             OrderMenuViewOrderViewModel context => new OrderMenuViewOrder { DataContext = context },
             ReserveTableViewModel context => new ReserveTable { DataContext = context },
             ReservationsViewModel context => new ReservationsView { DataContext = context },
-            InventoryItemsListViewModel context => new InventoryItemsList {DataContext = context},
+            InventoryItemsListViewModel context => new InventoryItemsList { DataContext = context },
+            InventoryAddItemViewModel context => new InventoryAddItem { DataContext = context },
+            OrderItemInfoViewModel context => new OrderItemInfo { DataContext = context },
             InventoryAddItemViewModel context => new InventoryAddItem {DataContext = context},
             PaymentsViewModel context => new Payments {DataContext = context},
             _ => throw new ArgumentOutOfRangeException($"you forgot to add {nameof(viewModel)} to AppViewLocator")

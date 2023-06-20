@@ -1,5 +1,7 @@
-﻿using System.Reactive;
+﻿using System.Collections.Generic;
+using System.Reactive;
 using Avalonia.Notification;
+using GUI.Logic.Models.Menu;
 using ReactiveUI;
 using RoutedApp;
 
@@ -12,10 +14,11 @@ public class MainWindowViewModel : ReactiveObject, IHostScreen {
     public MainWindowViewModel() {
         stack = new NavigationStack(new LoginPageViewModel(this));
 
+        CurrentOrder = new List<MenuItem>();
 
         // Navigate to the first page
         Router.Navigate.Execute(new LoginPageViewModel(this));
-        // Router.Navigate.Execute(new OrderMenuViewModel(this));
+        GoNext(new OrderMenuViewModel(this, "test", 1));
         GoBackPage = ReactiveCommand.CreateFromObservable(
             () => {
                 RoutablePage _ = stack.Pop();
@@ -32,6 +35,8 @@ public class MainWindowViewModel : ReactiveObject, IHostScreen {
     public ReactiveCommand<Unit, IRoutableViewModel> GoBackPage { get; }
 
     public RoutingState Router { get; } = new RoutingState();
+
+    public List<MenuItem> CurrentOrder { get; set; }
 
     public void GoNext(RoutablePage page) {
         stack.GoTo(page);
