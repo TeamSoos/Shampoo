@@ -112,7 +112,6 @@
                             VerticalContentAlignment="Center"
                             Height="50"
                             CornerRadius="10"
-                            IsVisible="{Binding IsOccupiable}"
                             Command="{Binding CreateOrder}"
                             HorizontalAlignment="Stretch">
                             Create Order

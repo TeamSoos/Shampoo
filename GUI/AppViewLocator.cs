@@ -24,7 +24,6 @@ public class AppViewLocator : IViewLocator {
             InventoryItemsListViewModel context => new InventoryItemsList { DataContext = context },
             InventoryAddItemViewModel context => new InventoryAddItem { DataContext = context },
             OrderItemInfoViewModel context => new OrderItemInfo { DataContext = context },
-            InventoryAddItemViewModel context => new InventoryAddItem {DataContext = context},
             PaymentsViewModel context => new Payments {DataContext = context},
             _ => throw new ArgumentOutOfRangeException($"you forgot to add {nameof(viewModel)} to AppViewLocator")
         };

@@ -9,6 +9,7 @@ using Avalonia.Notification;
 using GUI.Logic.Models.Employee;
 using GUI.Logic.Models.Table;
 using ReactiveUI;
+using RoutedApp.Logic.Models.Logging;
 
 namespace GUI.ViewModels;
 
@@ -73,6 +74,8 @@ public class SelectTableViewModel : RoutablePage {
                         $"Table {CurrentTable} has been freed")
                 .Dismiss().WithDelay(TimeSpan.FromSeconds(2))
                 .Queue();
+        
+        Logger.addRecord(HostScreen.CurrentUserID,$"Freed table {CurrentTable}");
         HostScreen.GoNext(new TablesViewModel(HostScreen));
     }
     private void occupyTable() {
@@ -85,6 +88,9 @@ public class SelectTableViewModel : RoutablePage {
                         $"Table {CurrentTable} has been occupied")
                 .Dismiss().WithDelay(TimeSpan.FromSeconds(2))
                 .Queue();
+        
+        Logger.addRecord(HostScreen.CurrentUserID,$"Occupied table {CurrentTable}");
+
         HostScreen.GoNext(new TablesViewModel(HostScreen));
     }
     public TableType Table { get; set; }

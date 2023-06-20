@@ -11,6 +11,7 @@ public class TableSQL {
   public async static Task<List<TableType>> get_all() {
     Library.Database db = new Library.Database();
 
+    
     var cmd = new NpgsqlCommand("SELECT * FROM restaurant_table", db.Conn);
 
 
@@ -22,6 +23,8 @@ public class TableSQL {
       TableType table = TableType.raw((int)reader["number"], (string)reader["status"]);
       tables.Add(table);
     }
+
+    db.Finalize();
 
     return tables;
   }
@@ -39,6 +42,7 @@ public class TableSQL {
     await reader.ReadAsync();
     DateTime table_data = reader.GetDateTime(0);
     await reader.CloseAsync();
+    db.Finalize();
 
     return table_data;
   }
@@ -61,6 +65,7 @@ public class TableSQL {
         { "status", reader["status"] }
     };
     await reader.CloseAsync();
+    db.Finalize();
 
     return table_data;
   }
@@ -92,5 +97,32 @@ public class TableSQL {
         };
 
     db.Store(cmd);
+  }
+  public static async Task<List<string>> get_orders_by_id(int id) {
+      Library.Database db = new Library.Database();
+
+      var cmd = new NpgsqlCommand("SELECT status, paid FROM orders WHERE table_id=($1)", db.Conn) {
+              Parameters = {
+                      new() { Value = id }
+              }
+      };
+
+      List<string> orders = new List<string>();
+
+      var reader = await db.Query(cmd);
+      await reader.ReadAsync();
+
+      while (await reader.ReadAsync()) {
+          if ((bool)reader["paid"]) 
+              continue;
+          
+          orders.Add(reader["status"].ToString()!);
+      }
+      
+      await reader.CloseAsync();
+      
+      db.Finalize();
+
+      return orders;
   }
 }
