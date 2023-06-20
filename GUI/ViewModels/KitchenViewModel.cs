@@ -6,13 +6,13 @@ using ReactiveUI;
 
 namespace GUI.ViewModels;
 
-public class OrderingViewModel : RoutablePage {
+public class KitchenViewModel : RoutablePage {
     ItemListViewModel _currentOrderItemsList;
 
     CardListViewModel _nextOrdersCardList;
     // END STYLING
 
-    public OrderingViewModel(IHostScreen screen) {
+    public KitchenViewModel(IHostScreen screen) {
         LogoutUser = ReactiveCommand.Create(logoutUserAction);
         HostScreen = screen;
         CurrentOrderItemsList = new ItemListViewModel(

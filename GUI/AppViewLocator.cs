@@ -12,7 +12,7 @@ public class AppViewLocator : IViewLocator {
     public IViewFor ResolveView<T>(T viewModel, string contract = null) {
         return viewModel switch {
             LoginPageViewModel context => new LoginPageView { DataContext = context },
-            OrderingViewModel context => new OrderingView { DataContext = context },
+            KitchenViewModel context => new OrderingView { DataContext = context },
             TablesViewModel context => new TablesView { DataContext = context },
             SelectTableViewModel context => new SelectTableView { DataContext = context },
             SecondPageViewModel context => new SecondPage { DataContext = context },

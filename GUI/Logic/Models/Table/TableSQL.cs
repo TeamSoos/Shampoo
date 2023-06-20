@@ -63,4 +63,33 @@ public class TableSQL {
 
     return table_data;
   }
+  public static void occupy_single(int tableId) {
+    Library.Database db = new Library.Database();
+
+    NpgsqlCommand cmd =
+        new NpgsqlCommand(
+            "UPDATE restaurant_table SET status = 'occupied' WHERE id = ($1);",
+            db.Conn) {
+            Parameters = {
+                new NpgsqlParameter { Value = tableId },
+            }
+        };
+
+    db.Store(cmd);
+  }
+  
+  public static void free_single(int tableId) {
+    Library.Database db = new Library.Database();
+
+    NpgsqlCommand cmd =
+        new NpgsqlCommand(
+            "UPDATE restaurant_table SET status = 'empty' WHERE id = ($1);",
+            db.Conn) {
+            Parameters = {
+                new NpgsqlParameter { Value = tableId },
+            }
+        };
+
+    db.Store(cmd);
+  }
 }

@@ -14,6 +14,7 @@ public class ItemSQL {
 
         var cmd = new NpgsqlCommand("SELECT id, name, count FROM items ORDER BY id ASC", db.Conn);
 
+        
 
         var reader = await db.Query(cmd);
         List<ItemType> items = new List<ItemType>();
@@ -47,6 +48,7 @@ public class ItemSQL {
         await reader.CloseAsync();
 
         return table_data;
+        
     }
     
     public static async void add_by_id(int id, int count)

@@ -49,5 +49,13 @@ public class TableType  {
      */
     return await TableSQL.get_all();
   }
+  
+  public static void occupy_single(int table_id) {
+    TableSQL.occupy_single(table_id);
+  }
+  public static void free_single(int table_id) {
+    TableSQL.free_single(table_id);
+  }
+  
 
 }
