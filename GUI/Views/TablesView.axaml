@@ -116,10 +116,10 @@
                     HorizontalContentAlignment="Center"
                     VerticalContentAlignment="Center"
                     Height="50"
-                    Command="{Binding Refresh}"
+                    Command="{Binding MyTables}"
                     CornerRadius="10"
                     HorizontalAlignment="Stretch">
-                    Refresh
+                    My Tables
                 </Button>
             </Border>
             <Border

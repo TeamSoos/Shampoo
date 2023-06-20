@@ -5,7 +5,7 @@ using ReactiveUI;
 
 namespace GUI.Views;
 
-public partial class OrderingView : ReactiveUserControl<OrderingViewModel> {
+public partial class OrderingView : ReactiveUserControl<KitchenViewModel> {
     // END STYLING
     public OrderingView() {
         InitializeComponent();

@@ -80,7 +80,7 @@ public class LoginPageViewModel : RoutablePage {
 
                     switch (reader["job"].ToString()!) {
                         case "chef":
-                            HostScreen.GoNext(new OrderingViewModel(HostScreen));
+                            HostScreen.GoNext(new KitchenViewModel(HostScreen));
                             return;
                         case "waiter":
                             Console.WriteLine("Waiter");

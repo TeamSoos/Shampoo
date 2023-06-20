@@ -5,7 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="using:GUI.ViewModels"
              x:CompileBindings="True"
-             x:DataType="vm:OrderingViewModel"
+             x:DataType="vm:KitchenViewModel"
              mc:Ignorable="d">
 
     <UserControl.Background>

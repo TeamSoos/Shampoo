@@ -5,7 +5,9 @@ using System.Linq;
 using System.Reactive;
 using System.Threading.Tasks;
 using Avalonia.Controls;
+using Avalonia.Notification;
 using GUI.Logic.Models.Employee;
+using GUI.Logic.Models.Table;
 using ReactiveUI;
 
 namespace GUI.ViewModels;
@@ -33,14 +35,60 @@ public class SelectTableViewModel : RoutablePage {
         });
 
         CreateOrder = ReactiveCommand.Create(createOrder);
+        OccupyTable = ReactiveCommand.Create(occupyTable);
+        FreeTable = ReactiveCommand.Create(freeTable);
 
         GoBack = ReactiveCommand.Create(() => { HostScreen.GoBack(); });
+        
+        // Load statuses for buttons
+        this.Table = new TableType(CurrentTable);
+        
+        switch(Table.status) {
+            case Status.empty:
+                IsFreeable = false;
+                IsOccupiable = true;
+                break;
+            case Status.occupied:
+                IsFreeable = true;
+                IsOccupiable = false;
+                break;
+            case Status.reserved:
+                IsFreeable = false;
+                IsOccupiable = true;
+                break;
+        }
 
 
         // Initialize the ComboBoxItems collection
         ComboBoxItems = new ObservableCollection<ComboBoxItem>();
         loadWaiters();
     }
+    private void freeTable() {
+        TableType.free_single(CurrentTable);
+        HostScreen.notificationManager.CreateMessage()
+                .Animates(true)
+                .Background("#B4BEFE")
+                .Foreground("#1E1E2E")
+                .HasMessage(
+                        $"Table {CurrentTable} has been freed")
+                .Dismiss().WithDelay(TimeSpan.FromSeconds(2))
+                .Queue();
+        HostScreen.GoNext(new TablesViewModel(HostScreen));
+    }
+    private void occupyTable() {
+        TableType.occupy_single(CurrentTable);
+        HostScreen.notificationManager.CreateMessage()
+                .Animates(true)
+                .Background("#B4BEFE")
+                .Foreground("#1E1E2E")
+                .HasMessage(
+                        $"Table {CurrentTable} has been occupied")
+                .Dismiss().WithDelay(TimeSpan.FromSeconds(2))
+                .Queue();
+        HostScreen.GoNext(new TablesViewModel(HostScreen));
+    }
+    public TableType Table { get; set; }
+    
 
     public override IHostScreen HostScreen { get; }
 
@@ -69,6 +117,10 @@ public class SelectTableViewModel : RoutablePage {
     public ReactiveCommand<Unit, Unit> GoBack { get; }
 
     public ReactiveCommand<Unit, Unit> GoToReserve { get; }
+    public ReactiveCommand<Unit, Unit> OccupyTable { get; }
+    public ReactiveCommand<Unit, Unit> FreeTable { get; }
+    public bool IsFreeable { get; set; }
+    public bool IsOccupiable { get; set; }
 
     void createOrder() {
         string Employee = (string)ComboBoxItems[SelectedIndex].Content;

@@ -2,6 +2,9 @@ using System;
 using GUI.ViewModels;
 using GUI.Views;
 using ReactiveUI;
+using GUI.ViewModels;
+using GUI.Views;
+using SecondPage = GUI.Views.SecondPage;
 
 namespace RoutedApp;
 
@@ -9,7 +12,7 @@ public class AppViewLocator : IViewLocator {
     public IViewFor ResolveView<T>(T viewModel, string? contract = null) {
         return viewModel switch {
             LoginPageViewModel context => new LoginPageView { DataContext = context },
-            OrderingViewModel context => new OrderingView { DataContext = context },
+            KitchenViewModel context => new OrderingView { DataContext = context },
             TablesViewModel context => new TablesView { DataContext = context },
             SelectTableViewModel context => new SelectTableView { DataContext = context },
             SecondPageViewModel context => new SecondPage { DataContext = context },
@@ -21,7 +24,8 @@ public class AppViewLocator : IViewLocator {
             InventoryItemsListViewModel context => new InventoryItemsList { DataContext = context },
             InventoryAddItemViewModel context => new InventoryAddItem { DataContext = context },
             OrderItemInfoViewModel context => new OrderItemInfo { DataContext = context },
-
+            InventoryAddItemViewModel context => new InventoryAddItem {DataContext = context},
+            PaymentsViewModel context => new Payments {DataContext = context},
             _ => throw new ArgumentOutOfRangeException($"you forgot to add {nameof(viewModel)} to AppViewLocator")
         };
     }
