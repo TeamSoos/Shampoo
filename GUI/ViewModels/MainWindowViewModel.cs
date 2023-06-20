@@ -39,12 +39,14 @@ public class MainWindowViewModel : ReactiveObject, IHostScreen {
     public List<MenuItem> CurrentOrder { get; set; }
 
     public void GoNext(RoutablePage page) {
+        stack.GetTopPage().OnUnload();
         stack.GoTo(page);
         Router.Navigate.Execute(page);
     }
 
     public void GoBack() {
         GoBackPage.Execute();
+        stack.GetTopPage().OnLoad();
     }
 
     public bool mobileUI { get; set; }
