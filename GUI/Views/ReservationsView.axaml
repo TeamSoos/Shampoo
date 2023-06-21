@@ -1,0 +1,115 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:GUI.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="800"
+             x:DataType="viewModels:ReservationsViewModel"
+             x:Class="GUI.Views.ReservationsView">
+    <UserControl.Background>
+        <LinearGradientBrush StartPoint="0%,0%" EndPoint="0%,100%">
+            <GradientStop Offset="0" Color="#1E1E2E" />
+            <GradientStop Offset="1" Color="#1E1E2E" />
+        </LinearGradientBrush>
+    </UserControl.Background>
+
+
+    <UserControl.Styles>
+        <Style Selector="Button">
+            <Setter Property="Background" Value="#1E1E2E" />
+            <Setter Property="Foreground" Value="#B4BEFE" />
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+
+        <Style Selector="Button:focus">
+            <Setter Property="Background" Value="#1E1E2E" />
+            <Setter Property="Foreground" Value="#B4BEFE" />
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+
+    </UserControl.Styles>
+
+
+    <DockPanel VerticalAlignment="Stretch" LastChildFill="True">
+        <StackPanel DockPanel.Dock="Top" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Grid Margin="10" HorizontalAlignment="Center" VerticalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <ItemsControl Items="{Binding ReservationsList.Items}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border
+                                BorderBrush="Black"
+                                Background="#B4BEFE"
+                                BorderThickness="1"
+                                CornerRadius="18"
+                                Margin="5"
+                                Padding="10">
+                                <CheckBox IsChecked="{Binding Selected }">
+                                    <StackPanel>
+                                        <TextBlock Foreground="#1E1E2E" Text="{Binding Title}" FontWeight="Bold" />
+                                        <TextBlock Foreground="#1E1E2E" Text="{Binding Description}" />
+                                    </StackPanel>
+                                </CheckBox>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Grid>
+
+        </StackPanel>
+        <StackPanel
+            DockPanel.Dock="Bottom"
+            Background="#B4BEFE"
+            VerticalAlignment="Bottom"
+            HorizontalAlignment="Stretch">
+            <Border
+                HorizontalAlignment="Stretch"
+                Padding="2"
+                CornerRadius="40">
+                <Button
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    Height="50"
+                    CornerRadius="10"
+                    Command="{Binding DeleteSelected}"
+                    HorizontalAlignment="Stretch">
+                    Delete Selected
+                </Button>
+            </Border>
+            <Border
+                HorizontalAlignment="Stretch"
+                Padding="2"
+                CornerRadius="40">
+                <Button
+                    Name="reservation"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    Height="50"
+                    CornerRadius="10"
+                    HorizontalAlignment="Stretch">
+                    Refresh
+                </Button>
+            </Border>
+            <Border
+                HorizontalAlignment="Stretch"
+                Padding="2"
+                CornerRadius="40">
+                <Button
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    Height="50"
+                    CornerRadius="10"
+                    Command="{Binding GoBack}"
+                    HorizontalAlignment="Stretch">
+                    Back
+                </Button>
+            </Border>
+        </StackPanel>
+    </DockPanel>
+
+</UserControl>

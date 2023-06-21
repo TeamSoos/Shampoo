@@ -1,0 +1,207 @@
+<UserControl x:Class="GUI.Views.TablesView"
+             xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:views="clr-namespace:GUI.ViewModels"
+             x:CompileBindings="True"
+             d:DesignWidth="360" d:DesignHeight="800"
+             x:DataType="views:TablesViewModel"
+             mc:Ignorable="d">
+
+    <UserControl.Background>
+        <LinearGradientBrush StartPoint="0%,0%" EndPoint="0%,100%">
+            <GradientStop Offset="0" Color="#1E1E2E" />
+            <GradientStop Offset="1" Color="#1E1E2E" />
+        </LinearGradientBrush>
+    </UserControl.Background>
+
+
+    <UserControl.Styles>
+        <Style Selector="Button">
+            <Setter Property="Background" Value="#1E1E2E" />
+            <Setter Property="Foreground" Value="#B4BEFE" />
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+
+        <Style Selector="Button:focus">
+            <Setter Property="Background" Value="#1E1E2E" />
+            <Setter Property="Foreground" Value="#B4BEFE" />
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+
+        <Style Selector="views|PopUpReservation">
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <Border BorderThickness="0.75"
+                            BorderBrush="Black"
+                            Padding="6,3"
+                            Background="White">
+                        <TextBlock Text="Hello World" />
+                    </Border>
+                </ControlTemplate>
+            </Setter>
+        </Style>
+    </UserControl.Styles>
+
+
+    <DockPanel VerticalAlignment="Stretch" LastChildFill="True">
+        <StackPanel DockPanel.Dock="Top" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Grid Margin="10" HorizontalAlignment="Center" VerticalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <!-- Fuckery ahead, be warned -->
+                <!-- Probably should move styling out of the element ey? -->
+
+                <StackPanel
+                    x:Name="ColumnLeft"
+                    Orientation="Vertical" HorizontalAlignment="Stretch">
+                    <Button Command="{Binding TableSel}" CommandParameter="1"
+                            HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="5"
+                            Width="100" Height="100" Background="{Binding Colour1}" Foreground="#1E1E2E">
+                        <StackPanel>
+                            <TextBlock HorizontalAlignment="Center">1</TextBlock>
+                            <TextBlock Text="{Binding Table1Status}" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Command="{Binding TableSel}" CommandParameter="3"
+                            HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="5"
+                            Width="100" Height="100" Background="{Binding Colour3}" Foreground="#1E1E2E">
+                        <StackPanel>
+                            <TextBlock HorizontalAlignment="Center">3</TextBlock>
+                            <TextBlock Text="{Binding Table3Status}" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Command="{Binding TableSel}" CommandParameter="5"
+                            HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="5"
+                            Width="100" Height="100" Background="{Binding Colour5}" Foreground="#1E1E2E">
+                        <StackPanel>
+                            <TextBlock HorizontalAlignment="Center">5</TextBlock>
+                            <TextBlock Text="{Binding Table5Status}" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Command="{Binding TableSel}" CommandParameter="7"
+                            HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="5"
+                            Width="100" Height="100" Background="{Binding Colour7}" Foreground="#1E1E2E">
+                        <StackPanel>
+                            <TextBlock HorizontalAlignment="Center">7</TextBlock>
+                            <TextBlock Text="{Binding Table7Status}" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Command="{Binding TableSel}" CommandParameter="9"
+                            HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="5"
+                            Width="100" Height="100" Background="{Binding Colour9}" Foreground="#1E1E2E">
+                        <StackPanel>
+                            <TextBlock HorizontalAlignment="Center">9</TextBlock>
+                            <TextBlock Text="{Binding Table9Status}" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+                
+                <StackPanel 
+                    x:Name="ColumnRight"
+                    Grid.Row="0" Grid.Column="2" Orientation="Vertical" HorizontalAlignment="Stretch">
+                    <Button Command="{Binding TableSel}" CommandParameter="2"
+                            HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="5"
+                            Width="100" Height="100" Background="{Binding Colour2}" Foreground="#1E1E2E">
+                        <StackPanel>
+                            <TextBlock HorizontalAlignment="Center">2</TextBlock>
+                            <TextBlock Text="{Binding Table2Status}" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Command="{Binding TableSel}" CommandParameter="4"
+                            HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="5"
+                            Width="100" Height="100" Background="{Binding Colour4}" Foreground="#1E1E2E">
+                        <StackPanel>
+                            <TextBlock HorizontalAlignment="Center">4</TextBlock>
+                            <TextBlock Text="{Binding Table4Status}" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Command="{Binding TableSel}" CommandParameter="6"
+                            HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="5"
+                            Width="100" Height="100" Background="{Binding Colour6}" Foreground="#1E1E2E">
+                        <StackPanel>
+                            <TextBlock HorizontalAlignment="Center">6</TextBlock>
+                            <TextBlock Text="{Binding Table6Status}" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Command="{Binding TableSel}" CommandParameter="8"
+                            HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="5"
+                            Width="100" Height="100" Background="{Binding Colour8}" Foreground="#1E1E2E">
+                        <StackPanel>
+                            <TextBlock HorizontalAlignment="Center">8</TextBlock>
+                            <TextBlock Text="{Binding Table8Status}" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Command="{Binding TableSel}" CommandParameter="10"
+                            HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="5"
+                            Width="100" Height="100" Background="{Binding Colour10}" Foreground="#1E1E2E">
+                        <StackPanel>
+                            <TextBlock HorizontalAlignment="Center">10</TextBlock>
+                            <TextBlock Text="{Binding Table10Status}" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </Grid>
+
+        </StackPanel>
+        <StackPanel
+            DockPanel.Dock="Bottom"
+            Background="#B4BEFE"
+            VerticalAlignment="Bottom"
+            HorizontalAlignment="Stretch">
+            <Border
+                HorizontalAlignment="Stretch"
+                Padding="2"
+                CornerRadius="40">
+                <Button
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    Height="50"
+                    Command="{Binding MyTables}"
+                    CornerRadius="10"
+                    HorizontalAlignment="Stretch">
+                    My Tables
+                </Button>
+            </Border>
+            <Border
+                HorizontalAlignment="Stretch"
+                Padding="2"
+                CornerRadius="40">
+                <Button
+                    Name="reservation"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    Height="50"
+                    CornerRadius="10"
+                    Command="{Binding Reservations}"
+                    HorizontalAlignment="Stretch">
+                    Reservations
+                </Button>
+            </Border>
+            <Border
+                HorizontalAlignment="Stretch"
+                Padding="2"
+                CornerRadius="40">
+                <Button
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    Height="50"
+                    CornerRadius="10"
+                    Command="{Binding LogoutUser}"
+                    HorizontalAlignment="Stretch">
+                    Logout
+                </Button>
+            </Border>
+        </StackPanel>
+    </DockPanel>
+
+</UserControl>

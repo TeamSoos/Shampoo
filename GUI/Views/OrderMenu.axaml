@@ -1,0 +1,79 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:GUI.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="360" d:DesignHeight="800"
+             x:CompileBindings="True"
+             x:DataType="viewModels:OrderMenuViewModel"
+             x:Class="GUI.Views.OrderMenu">
+    <UserControl.Background>
+        <LinearGradientBrush StartPoint="0%,0%" EndPoint="0%,100%">
+            <GradientStop Offset="0" Color="#1E1E2E" />
+            <GradientStop Offset="1" Color="#1E1E2E" />
+        </LinearGradientBrush>
+    </UserControl.Background>
+
+    <UserControl.Styles>
+        <Style Selector="Button">
+            <Setter Property="Background" Value="#B4BEFE" />
+            <Setter Property="Foreground" Value="#1E1E2E" />
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+    </UserControl.Styles>
+
+    <Grid ColumnDefinitions="*,*,*" RowDefinitions="Auto,*,Auto">
+        <!-- Top buttons -->
+        <Button Background="{Binding Colour1}" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch"
+                Content="Lunch" Command="{Binding getLunch}" Margin="6,0,0,0" />
+        <Button Background="{Binding Colour2}" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch"
+                Content="Dinner" Command="{Binding getDinner}" Margin="6,0,0,0" />
+        <Button Background="{Binding Colour3}" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Stretch"
+                Content="Drinks" Command="{Binding getDrinks}" Margin="6" />
+
+        <!-- List -->
+        <ScrollViewer Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">
+
+
+            <ItemsControl Items="{Binding ListItems}" Padding="10,4">
+                <ItemsControl.Styles>
+                    <Style Selector="ListBox">
+                        <Setter Property="Foreground" Value="#B4BEFE" />
+                        <Setter Property="Background" Value="#1E1E2E" />
+                    </Style>
+                    <Style Selector="ListBox">
+                        <Setter Property="IsHitTestVisible" Value="False" />
+                        <Setter Property="Focusable" Value="False" />
+                    </Style>
+                </ItemsControl.Styles>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <DockPanel>
+                            <TextBlock Foreground="#B4BEFE" FontSize="24" FontWeight="Bold" Text="{Binding Heading}"
+                                       DockPanel.Dock="Top"
+                                       Padding="0,0,0,10" />
+                            <ItemsControl Items="{Binding MenuStuff}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid Margin="0,0,0,6">
+                                            <TextBlock Text="{Binding Name}" HorizontalAlignment="Left"
+                                                       VerticalAlignment="Center" />
+                                            <Button Command="{Binding Command}"
+                                                    Content="Add to order" HorizontalAlignment="Right" />
+                                        </Grid>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </DockPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+
+        <!-- Bottom Button -->
+        <Button Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Content="View Order"
+                Margin="6" Command="{Binding viewOrder}" />
+        <Button Grid.Row="2" Grid.Column="0" HorizontalAlignment="Stretch" Content="Back"
+                Margin="6" Command="{Binding GoBack}" />
+    </Grid>
+</UserControl>
