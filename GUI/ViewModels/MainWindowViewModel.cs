@@ -4,6 +4,7 @@ using Avalonia.Notification;
 using GUI.Logic.Models.Menu;
 using ReactiveUI;
 using RoutedApp;
+using RoutedApp.Logic;
 
 namespace GUI.ViewModels;
 
@@ -19,6 +20,9 @@ public class MainWindowViewModel : ReactiveObject, IHostScreen {
         // Navigate to the first page
         Router.Navigate.Execute(new LoginPageViewModel(this));
         GoNext(new LoginPageViewModel(this));
+        UIController ncontroller = UIController.GetInstance(null);
+        ncontroller.ResizeWindow(400, 800);
+        GoNext(new OrderMenuViewModel(this, "Martha", 1));
         GoBackPage = ReactiveCommand.CreateFromObservable(
             () => {
                 RoutablePage _ = stack.Pop();
