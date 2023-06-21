@@ -52,7 +52,8 @@ public class OrderMenuViewOrderViewModel : RoutablePage {
                     item = group.First().MenuItemFull,
                     Name = group.Key,
                     Quantity = group.Count(),
-                    Price = group.First().Price
+                    Price = group.First().Price,
+                    Note = group.First().Note
                 })
                 .ToList();
         }
@@ -65,4 +66,6 @@ public class MenuItemGrouped {
     public string Name { get; set; } = "";
     public int Quantity { get; set; }
     public decimal Price { get; set; }
+    
+    public string Note { get; set; } = "";
 }

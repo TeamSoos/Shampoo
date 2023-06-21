@@ -44,7 +44,8 @@
                                 </TextBlock.Text>
 
                             </TextBlock>
-                            <TextBlock Grid.Column="2" FontSize="18" Foreground="#B4BEFE" HorizontalAlignment="Right">
+                            <TextBlock Grid.Column="2" FontSize="18" Foreground="#B4BEFE"
+                                       HorizontalAlignment="Right">
                                 <TextBlock.Text>
                                     <MultiBinding StringFormat="€{0}">
                                         <Binding Path="Price" />

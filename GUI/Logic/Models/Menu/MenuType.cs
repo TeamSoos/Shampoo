@@ -8,12 +8,14 @@ public class MenuType : BaseType {
     public string Name;
     public decimal Price;
     public string Type;
+    public int Count;
 
-    public MenuType(int id, string name, string type, decimal price) : base(id) {
+    public MenuType(int id, string name, string type, decimal price, int count) : base(id) {
         Name = name;
         Price = price;
         Type = type;
         ID = id;
+        Count = count;
     }
 
 

@@ -9,25 +9,30 @@ public class OrderItemInfoViewModel : RoutablePage {
 
     public override IHostScreen HostScreen { get; }
     public string Name { get; set; }
-    public string Note { get; set; }
+    public string Note { get; set; } = "";
 
     public int OrderAmount { get; set; } = 1;
+    public int MaxOrderAmount { get; set; }
 
     ReactiveCommand<Unit, Unit> AddToOrder { get; set; }
+    ReactiveCommand<Unit, Unit> RemoveAll { get; set; }
     ReactiveCommand<Unit, Unit> AddNote { get; set; }
     ReactiveCommand<Unit, Unit> GoBack { get; set; }
 
 
-    public OrderItemInfoViewModel(IHostScreen screen, MenuType item, Action<int> add, Action<string> addNote) {
+    public OrderItemInfoViewModel(IHostScreen screen, MenuType item, Action<int> modifyQuantity, Action<string> addNote,
+        Action removeAll, int currOrderAmount) {
+        
+        OrderAmount = currOrderAmount;
+        
         HostScreen = screen;
-        Note = "";
         Name = $"{item.Name} - €{item.Price}";
+        MaxOrderAmount = item.Count;
 
-        AddToOrder = ReactiveCommand.Create(() => { add(OrderAmount); });
+        AddToOrder = ReactiveCommand.Create(() => { modifyQuantity(OrderAmount); });
+        RemoveAll = ReactiveCommand.Create(removeAll);
         AddNote = ReactiveCommand.Create(() => {
-            if (Note != "") {
-                addNote(Note);
-            }
+            addNote(Note);
         });
         GoBack = ReactiveCommand.Create(() => { HostScreen.GoBack(); });
     }

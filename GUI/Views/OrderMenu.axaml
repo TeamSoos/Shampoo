@@ -59,7 +59,8 @@
                                             <TextBlock Text="{Binding Name}" HorizontalAlignment="Left"
                                                        VerticalAlignment="Center" />
                                             <Button Command="{Binding Command}"
-                                                    Content="Add to order" HorizontalAlignment="Right" />
+                                                    Content="{Binding AddToOrderLabel}" HorizontalAlignment="Right"
+                                                    IsEnabled="{Binding HasStock}" />
                                         </Grid>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
