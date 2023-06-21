@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using GUI.Logic.Models.Order;
 using Logic.SQL;
 using Npgsql;
 
@@ -110,13 +111,39 @@ public class TableSQL {
       List<string> orders = new List<string>();
 
       var reader = await db.Query(cmd);
-      await reader.ReadAsync();
-
+      
       while (await reader.ReadAsync()) {
           if ((bool)reader["paid"]) 
               continue;
           
           orders.Add(reader["status"].ToString()!);
+          Console.WriteLine($"{id} -> {reader["status"].ToString()!}");
+      }
+      
+      await reader.CloseAsync();
+      
+      db.Finalize();
+
+      return orders;
+  }
+  public static async Task<List<OrderType>> get_ordertypes_by_id(int tableId) {
+      Library.Database db = new Library.Database();
+
+      var cmd = new NpgsqlCommand("SELECT id, status, paid FROM orders WHERE table_id=($1)", db.Conn) {
+              Parameters = {
+                      new() { Value = tableId }
+              }
+      };
+
+      List<OrderType> orders = new List<OrderType>();
+
+      var reader = await db.Query(cmd);
+      
+      while (await reader.ReadAsync()) {
+          if ((bool)reader["paid"]) 
+              continue;
+
+          orders.Add(new OrderType((int)reader["id"], (bool)reader["paid"], reader["status"].ToString() == "none"));
       }
       
       await reader.CloseAsync();

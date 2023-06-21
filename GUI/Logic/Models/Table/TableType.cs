@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using GUI.Logic.Models.Order;
 using Logic.Models.Base;
 
 namespace GUI.Logic.Models.Table;
@@ -12,19 +13,19 @@ public enum Status {
     reserved
 }
 
-public class TableType  {
-  
+public class TableType {
+
   public int number;
   public Status status;
-  private TableType(int number, string status){
-    
+  private TableType(int number, string status) {
+
     this.number = number;
     // error handling goes to shit but oh well
     this.status = Enum.Parse<Status>(status, ignoreCase: true);
   }
 
 
-  public TableType(int id)  {
+  public TableType(int id) {
     Task.Run(async () =>
     {
       Dictionary<string, dynamic> table_data = await TableSQL.get_by_id(id);
@@ -49,7 +50,7 @@ public class TableType  {
      */
     return await TableSQL.get_all();
   }
-  
+
   public static void occupy_single(int table_id) {
     TableSQL.occupy_single(table_id);
   }
@@ -57,8 +58,13 @@ public class TableType  {
     TableSQL.free_single(table_id);
   }
 
+  // C# Doesnt support my beloved Union Types :(
+
   public static async Task<List<string>> getOrders(int table_id) {
     return await TableSQL.get_orders_by_id(table_id);
   }
 
+  public static async Task<List<OrderType>> getOrdersTyped(int table_id) {
+    return await TableSQL.get_ordertypes_by_id(table_id);
+  }
 }

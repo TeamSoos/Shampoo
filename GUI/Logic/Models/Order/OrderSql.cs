@@ -45,4 +45,18 @@ public class OrderSql {
 
         db.Finalize();
     }
+    public static void deliver_by_id(int id) {
+        Library.Database db = new Library.Database();
+
+        NpgsqlCommand cmd =
+                new NpgsqlCommand(
+                        "UPDATE orders SET status = 'none' WHERE id = ($1);",
+                        db.Conn) {
+                        Parameters = {
+                                new NpgsqlParameter { Value = id },
+                        }
+                };
+
+        db.Store(cmd);
+    }
 }

@@ -86,6 +86,23 @@
                         <NumericUpDown Value="{Binding GuestCount}" Minimum="0" Maximum="100" Margin="10, -5, 0, 0" />
 
                     </StackPanel>
+                    
+                    <StackPanel
+                        Orientation="Horizontal"
+                        Margin="20, 20, 0, -10"
+                        HorizontalAlignment="Stretch">
+                        <TextBlock
+                            FontSize="20"
+                            Foreground="#1E1E2E">
+                            Unpaid Orders:
+                        </TextBlock>
+                        <TextBlock
+                            FontSize="20"
+                            Margin="10, 0, 0, 0"
+                            Foreground="#1E1E2E"
+                            Text="{Binding UnpaidOrders}" />
+
+                    </StackPanel>
 
                     <Grid Margin="10, 100,10,10" HorizontalAlignment="Stretch">
                         <Grid.ColumnDefinitions>
@@ -150,6 +167,17 @@
                         Command="{Binding FreeTable}"
                         HorizontalAlignment="Stretch">
                         Free
+                    </Button>
+                    <Button
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        IsVisible="{Binding IsFreeable}"
+                        Height="50"
+                        Margin="20"
+                        CornerRadius="10"
+                        Command="{Binding DeliverOrder}"
+                        HorizontalAlignment="Stretch">
+                        Deliver Order
                     </Button>
                 </StackPanel>
             </Border>
