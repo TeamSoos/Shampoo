@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Avalonia.Notification;
+using GUI.Logic.Models.Employee;
 using GUI.Views;
-using Logic.SQL;
-using Npgsql;
 using ReactiveUI;
 using RoutedApp.Logic;
-using static BCrypt.Net.BCrypt;
 
 namespace GUI.ViewModels;
 
@@ -18,8 +16,10 @@ public class LoginPageViewModel : RoutablePage {
 
     readonly List<string> staff = new List<string> { "admin", "chef", "barman", "waiter" };
 
+#pragma warning disable CS8618
     public LoginPageViewModel(IHostScreen screen) {
-        MobileUIRequested = false;
+#pragma warning restore CS8618
+      MobileUIRequested = false;
         HostScreen = screen;
         LoginStaff = ReactiveCommand.Create(loginStaffTask);
     }
@@ -53,39 +53,31 @@ public class LoginPageViewModel : RoutablePage {
                     .Background("#B4BEFE")
                     .Foreground("#1E1E2E")
                     .HasMessage(
-                            "Error: Invalid ID")
+                            "Sorry! Invalid ID")
                     .Dismiss().WithDelay(TimeSpan.FromSeconds(5))
                     .Queue();
+            return;
         }
-        
-        Library.Database db = new Library.Database();
-
-        
-        var cmd = new NpgsqlCommand("SELECT job, name, login FROM employees WHERE id=($1)", db.Conn) {
-                Parameters = {
-                        new NpgsqlParameter { Value = id }
-                }
-        };
-
-
-        var reader = await db.Query(cmd);
-        string pass ="";
-        string job ="";
-        string name ="";
-        
-
-        while (await reader.ReadAsync()) {
-          pass = reader["login"].ToString()!;
-          job = reader["job"].ToString()!;
-          name = reader["name"].ToString()!;
+        if (Text == "") {
+          HostScreen.notificationManager.CreateMessage()
+              .Animates(true)
+              .Background("#B4BEFE")
+              .Foreground("#1E1E2E")
+              .HasMessage(
+                  "Sorry! Please fill in the login code")
+              .Dismiss().WithDelay(TimeSpan.FromSeconds(5))
+              .Queue();
+          return;
         }
+
+        EmployeeType user = await EmployeeType.Authenticate(Text, id);
+
+        
 
         // verify password hash
         //  "wait" == "$2a$11$q2wbzzvC52SpWo5h5Zs54ejhNoIz6nQ0Z7EIrI12x5h9a2fbmYGgu"
         //  Assert.True(BCrypt.HashPassword("wait") == $2a$11$q2wbzzvC52SpWo5h5Zs54ejhNoIz6nQ0Z7EIrI12x5h9a2fbmYGgu)
-        bool passwordValid = BCrypt.Net.BCrypt.Verify(Text, pass);
-        
-        Console.WriteLine($"Password valid: {passwordValid}");
+        bool passwordValid = BCrypt.Net.BCrypt.Verify(Text, user.login);
 
         if (!passwordValid) {
             HostScreen.notificationManager.CreateMessage()
@@ -93,41 +85,38 @@ public class LoginPageViewModel : RoutablePage {
                     .Background("#B4BEFE")
                     .Foreground("#1E1E2E")
                     .HasMessage(
-                            "Error: Invalid credentials")
+                            "Invalid credentials for this user")
                     .Dismiss().WithDelay(TimeSpan.FromSeconds(5))
                     .Queue();
             return;
         }
-        
-        
-        Console.WriteLine($"Job: {job}");
 
         // We have an ID, let's check if it's one of the staff
-        if (staff.Contains(job)) {
-            Console.WriteLine($"Staff access! {MobileUIRequested} {job} {name}");
+        if (staff.Contains(user.job)) {
+            Console.WriteLine($"Staff access! {MobileUIRequested} {user.job} {user.name}");
 
             if (MobileUIRequested) {
                 Console.WriteLine("User requested mobile interface");
-                // end me...
+                // :)
                 UIController ncontroller = UIController.GetInstance(null);
                 ncontroller.ResizeWindow(400, 800);
             }
 
+            // Set info for other views to use
             HostScreen.mobileUI = MobileUIRequested;
-
-            HostScreen.CurrentUser = name;
-            HostScreen.CurrentUserID = id;
+            HostScreen.CurrentUser = user.name;
+            HostScreen.CurrentUserID = user.id;
 
             HostScreen.notificationManager.CreateMessage()
                     .Animates(true)
                     .Background("#B4BEFE")
                     .Foreground("#1E1E2E")
                     .HasMessage(
-                            $"Welcome back {name}")
+                            $"Welcome back {user.name}")
                     .Dismiss().WithDelay(TimeSpan.FromSeconds(5))
                     .Queue();
 
-            switch (job) {
+            switch (user.job) {
                 case "chef":
                     HostScreen.GoNext(new KitchenViewModel(HostScreen));
                     return;
@@ -139,6 +128,16 @@ public class LoginPageViewModel : RoutablePage {
                     Console.WriteLine("Admin");
                     HostScreen.GoNext(new NewPageViewModel(HostScreen));
                     return;
+                default:
+                    HostScreen.notificationManager.CreateMessage()
+                            .Animates(true)
+                            .Background("#B4BEFE")
+                            .Foreground("#1E1E2E")
+                            .HasMessage(
+                                    "Error: Job not implemented")
+                            .Dismiss().WithDelay(TimeSpan.FromSeconds(5))
+                            .Queue();
+                    break;
             }
 
         } else {

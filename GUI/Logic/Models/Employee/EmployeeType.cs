@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Logic.Models.Base;
+using Logic.SQL;
+using Npgsql;
 using RoutedApp.Logic.Models.Employee;
 
 namespace GUI.Logic.Models.Employee;
@@ -28,6 +30,19 @@ public class EmployeeType {
             job = Enum.Parse<Jobs>(table_data["job"], ignoreCase: true).ToString();
         }).Wait();
     }
+    private EmployeeType() {
+    }
+
+
+    private static EmployeeType raw(int id, string job, string name, string login) {
+        return new EmployeeType {
+                id = id,
+                job = job,
+                name = name,
+                login = login
+        };
+    }
+    public string login { get; set; }
 
     public static async Task<List<EmployeeType>> getAll() {
         return await EmployeeSQL.get_all();
@@ -50,5 +65,30 @@ public class EmployeeType {
                 BCrypt.Net.BCrypt.HashPassword(Login!),
                 no_login: Login == "[hashed]"
         );
+    }
+    public async static Task<EmployeeType> Authenticate(string login, int id) {
+        Library.Database db = new Library.Database();
+
+        
+        var cmd = new NpgsqlCommand("SELECT job, name, login FROM employees WHERE id=($1)", db.Conn) {
+                Parameters = {
+                        new NpgsqlParameter { Value = id }
+                }
+        };
+
+        // This is redundant but kept for clarity sake
+        var reader = await db.Query(cmd);
+        string hash ="";
+        string job ="";
+        string name ="";
+        
+
+        while (await reader.ReadAsync()) {
+            hash = reader["login"].ToString()!;
+            job = reader["job"].ToString()!;
+            name = reader["name"].ToString()!;
+        }
+
+        return EmployeeType.raw(id, job, name, hash);
     }
 }

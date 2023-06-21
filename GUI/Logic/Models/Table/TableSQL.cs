@@ -117,7 +117,6 @@ public class TableSQL {
               continue;
           
           orders.Add(reader["status"].ToString()!);
-          Console.WriteLine($"{id} -> {reader["status"].ToString()!}");
       }
       
       await reader.CloseAsync();
