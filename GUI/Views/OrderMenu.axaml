@@ -55,10 +55,12 @@
                             <ItemsControl Items="{Binding MenuStuff}">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <Grid Margin="0,0,0,6">
-                                            <TextBlock Text="{Binding Name}" HorizontalAlignment="Left"
-                                                       VerticalAlignment="Center" />
-                                            <Button Command="{Binding Command}"
+                                        <Grid ColumnDefinitions="*, Auto" Margin="0,0,0,6">
+                                            <Label>
+                                                <TextBlock Text="{Binding Name}" HorizontalAlignment="Left"
+                                                           VerticalAlignment="Center" TextWrapping="Wrap" />
+                                            </Label>
+                                            <Button Grid.Column="1" Command="{Binding Command}"
                                                     Content="{Binding AddToOrderLabel}" HorizontalAlignment="Right"
                                                     IsEnabled="{Binding HasStock}" />
                                         </Grid>
