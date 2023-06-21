@@ -43,6 +43,8 @@ public class Library {
             Console.WriteLine(reader["price"]);
             Console.WriteLine(reader["description"]);
             await reader.CloseAsync();
+
+            await BuildConnection();
         }
 
         async Task<NpgsqlDataSource> BuildConnection() {

@@ -9,50 +9,46 @@ namespace GUI.Logic.Models.Employee;
 public enum Jobs {
     admin,
     waiter,
-    chef
+    chef,
+    bartender
 }
 
-public class EmployeeType : BaseType {
+public class EmployeeType {
     public int id;
 
-    public Jobs job;
+    public string job;
     public string name;
 
-    public EmployeeType(int id) : base(id) {
+    public EmployeeType(int ID) {
         Task.Run(async () => {
-            Dictionary<string, dynamic> table_data = await EmployeeSQL.get_by_id(id);
+            Dictionary<string, dynamic> table_data = await EmployeeSQL.get_by_id(ID);
             name = table_data["name"];
-            id = table_data["id"];
+            id = ID;
             // error handling goes to shit but oh well
-            job = Enum.Parse<Jobs>(table_data["job"], ignoreCase: true);
+            job = Enum.Parse<Jobs>(table_data["job"], ignoreCase: true).ToString();
         }).Wait();
     }
 
     public static async Task<List<EmployeeType>> getAll() {
-        /*
-         * This is poo poo
-         * It handles multiple async calls in two calls
-         * One to get all of the tables
-         * Second to create an instance of the TableType.
-         *
-         * This can be optimized, but I'm lazy and short on time
-         */
         return await EmployeeSQL.get_all();
     }
 
     public static async Task<List<EmployeeType>> getAll(string job) {
-        /*
-         * This is poo poo
-         * It handles multiple async calls in two calls
-         * One to get all of the tables
-         * Second to create an instance of the TableType.
-         *
-         * This can be optimized, but I'm lazy and short on time
-         */
         return await EmployeeSQL.get_all_by_job(job);
     }
-
-    public override T getByID<T>(int id) {
-        throw new NotImplementedException();
+    public static void Delete(int userId) {
+        EmployeeSQL.delete_by_id(userId);
+    }
+    public static void Create(string name, string job, string login) {
+        EmployeeSQL.add_new(name, job, BCrypt.Net.BCrypt.HashPassword(login));
+    }
+    public void Update(string Login, string? Name = null, string? Job = null) {
+        EmployeeSQL.update_by_id(
+                this.id,
+                Name ?? this.name,
+                Job ?? this.job,
+                BCrypt.Net.BCrypt.HashPassword(Login!),
+                no_login: Login == "[hashed]"
+        );
     }
 }

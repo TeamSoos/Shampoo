@@ -81,6 +81,8 @@ public class LoginPageViewModel : RoutablePage {
         }
 
         // verify password hash
+        //  "wait" == "$2a$11$q2wbzzvC52SpWo5h5Zs54ejhNoIz6nQ0Z7EIrI12x5h9a2fbmYGgu"
+        //  Assert.True(BCrypt.HashPassword("wait") == $2a$11$q2wbzzvC52SpWo5h5Zs54ejhNoIz6nQ0Z7EIrI12x5h9a2fbmYGgu)
         bool passwordValid = BCrypt.Net.BCrypt.Verify(Text, pass);
         
         Console.WriteLine($"Password valid: {passwordValid}");

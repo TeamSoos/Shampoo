@@ -137,7 +137,6 @@
                 <Button Grid.Column="1"  
                         Command="{Binding AddItem}"
                         HorizontalAlignment="Stretch">Add Item</Button>
-
             </Grid>
             
         </Grid>
