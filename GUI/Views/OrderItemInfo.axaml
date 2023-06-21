@@ -23,7 +23,7 @@
     </UserControl.Styles>
 
     <Border CornerRadius="22" Margin="24" Background="#B4BEFE">
-        <Grid Margin="14" ColumnDefinitions="*,*" RowDefinitions="Auto,*,Auto,Auto,*,Auto">
+        <Grid Margin="14" ColumnDefinitions="*,*" RowDefinitions="Auto,*,Auto,Auto,Auto,*,Auto">
             <Grid.Styles>
                 <Style Selector="Grid">
                     <Setter Property="Background" Value="#B4BEFE" />
@@ -48,14 +48,19 @@
 
             <Button Grid.Row="2" Grid.Column="0" HorizontalAlignment="Stretch" Margin="0,0,4,0" Content="Add note"
                     Command="{Binding AddNote}" />
-            <NumericUpDown Grid.Row="2" Grid.Column="1" Minimum="1" Maximum="32" Value="{Binding OrderAmount}" />
+            <NumericUpDown Grid.Row="2" Grid.Column="1" Minimum="1" Maximum="{Binding MaxOrderAmount}"
+                           Value="{Binding OrderAmount}" />
 
 
             <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Margin="0,8,0,0"
                     Content="Add to order"
                     Command="{Binding AddToOrder}" />
 
-            <Button Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Margin="0,8,0,0"
+            <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Margin="0,8,0,0"
+                    Content="Remove all from the order"
+                    Command="{Binding RemoveAll}" />
+
+            <Button Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Margin="0,8,0,0"
                     Content="Back"
                     Command="{Binding GoBack}" />
 

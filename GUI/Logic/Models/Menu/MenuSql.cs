@@ -13,6 +13,16 @@ public enum EMenuType {
 }
 
 public class MenuSql {
+    public static void decrement_count(int id, int count) {
+        Library.Database db = new Library.Database();
+        
+        NpgsqlCommand cmd = new NpgsqlCommand("UPDATE allmenu SET count = count - @a WHERE id = @b", db.Conn);
+        cmd.Parameters.AddWithValue("a", count);
+        cmd.Parameters.AddWithValue("b", id);
+        
+        db.Store(cmd);
+    }
+    
     public static async Task<List<MenuType>> get_all(EMenuType type) {
         Library.Database db = new Library.Database();
         NpgsqlCommand cmd;
@@ -21,11 +31,14 @@ public class MenuSql {
         var items = new List<MenuType>();
 
         cmd = type switch {
-            EMenuType.Lunch => new NpgsqlCommand("SELECT id, name, type, price FROM allmenu WHERE menu = 'lunch'",
+            EMenuType.Lunch => new NpgsqlCommand(
+                "SELECT id, name, type, price, count FROM allmenu WHERE menu = 'lunch'",
                 db.Conn),
-            EMenuType.Dinner => new NpgsqlCommand("SELECT id, name, type, price FROM allmenu WHERE menu = 'dinner'",
+            EMenuType.Dinner => new NpgsqlCommand(
+                "SELECT id, name, type, price, count FROM allmenu WHERE menu = 'dinner'",
                 db.Conn),
-            EMenuType.Drinks => new NpgsqlCommand("SELECT id, name, type, price FROM allmenu WHERE menu = 'drinks'",
+            EMenuType.Drinks => new NpgsqlCommand(
+                "SELECT id, name, type, price, count FROM allmenu WHERE menu = 'drinks'",
                 db.Conn),
             _ => throw new Exception("Unreachable code reached. Good job.")
         };
@@ -34,9 +47,10 @@ public class MenuSql {
 
         while (reader.Read()) {
             MenuType item = new MenuType((int)reader["id"], (string)reader["name"], (string)reader["type"],
-                (decimal)reader["price"]);
+                (decimal)reader["price"], (int)reader["count"]);
             items.Add(item);
         }
+        
 
         return items;
     }

@@ -105,15 +105,14 @@ public class OrderMenuViewModel : RoutablePage {
             new Menu("loading...", new List<MenuItem>())
         };
 
-        var a = MenuSql.get_all(type);
-        a.GetAwaiter().OnCompleted(() => {
-            var items = a.Result;
+        var getAllTask = MenuSql.get_all(type);
+        getAllTask.GetAwaiter().OnCompleted(() => {
+            var items = getAllTask.Result;
 
             var TypedMenuItems = items
                     .GroupBy(item => item.Type)
                     .Select(group => {
-                        var MenuItems = group.Select(x => { return new MenuItem(x, HostScreen); }
-                        ).ToList();
+                        var MenuItems = group.Select(x => new MenuItem(x, HostScreen)).ToList();
                         var menu = new Menu(group.Key, MenuItems);
                         return menu;
                     })
