@@ -1,0 +1,160 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:GUI.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="viewModels:UserManagementModel"
+             x:Class="GUI.Views.UserManagement">
+    
+    <UserControl.Background>
+        <LinearGradientBrush StartPoint="0%,0%" EndPoint="0%,100%"> 
+            <GradientStop Offset="0" Color="#1E1E2E" />
+            <GradientStop Offset="1" Color="#1E1E2E" />
+        </LinearGradientBrush>
+    </UserControl.Background>
+    
+    <UserControl.Styles>
+         
+        <Style Selector="TabItem">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Height" Value="34"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <!-- <Setter Property="Background" Value="#2B579A"/> -->
+            <Setter Property="Foreground" Value="#A6ADC8"/>
+            <Setter Property="Margin" Value="0 0 0 0"/>
+            <Setter Property="Padding" Value="10 0"/>
+        </Style>
+        
+        <Style Selector="Button">
+            <Setter Property="Background" Value="#B4BEFE"/>
+            <Setter Property="Foreground" Value="#1E1E2E"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        
+        <Style Selector="Button:focus">
+            <Setter Property="Background" Value="#B4BEFE"/>
+            <Setter Property="Foreground" Value="#1E1E2E"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        
+        <Style Selector="TextBox">
+            <Setter Property="Background" Value="#00000000"/>
+            <Setter Property="Foreground" Value="#CDD6F4"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="BorderBrush" Value="#CDD6F4"/>
+        </Style>
+        
+        <Style Selector="TabItem:focus">
+            <!-- <Setter Property="Foreground" Value="#2B579A"/> -->
+            <Setter Property="Margin" Value="0 0 0 0"/>
+            <Setter Property="Padding" Value="10 0"/>
+        </Style>
+        <Style Selector="TabItem:focus /template/ ContentPresenter#PART_ContentPresenter">
+            <!-- <Setter Property="Background" Value="#f0f0f0"/> -->
+        </Style>
+
+        <Style Selector="TabItem:selected">
+            <Setter Property="Foreground" Value="#CDD6F4"/>
+            <Setter Property="Margin" Value="0 0 0 0"/>
+            <Setter Property="Padding" Value="10 0"/>
+        </Style>
+        <Style Selector="TabItem:selected /template/ ContentPresenter#PART_ContentPresenter">
+            <!-- <Setter Property="Background" Value="#f0f0f0"/> -->
+        </Style>
+    </UserControl.Styles>
+    
+    <Grid Margin="10">
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock  FontSize="16" Text="User Management" FontWeight="Black" HorizontalAlignment="Left" />
+        </Grid>
+        
+        <StackPanel DockPanel.Dock="Top" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Grid Margin="10" HorizontalAlignment="Center" VerticalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <ItemsControl Items="{Binding ManagedUserList.Items}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border
+                                BorderBrush="Black"
+                                Background="#B4BEFE"
+                                BorderThickness="1"
+                                CornerRadius="18"
+                                Margin="5"
+                                Padding="10">
+                                <CheckBox IsChecked="{Binding Selected }">
+                                    <StackPanel>
+                                        <TextBlock Foreground="#1E1E2E" Text="{Binding Title}" FontWeight="Bold" />
+                                        <TextBlock Foreground="#1E1E2E" Text="{Binding Description}" />
+                                    </StackPanel>
+                                </CheckBox>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Grid>
+
+        </StackPanel>
+        
+        <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal"  >
+            <Button
+                Margin="5"
+                Command="{Binding BackButton}"
+                HorizontalAlignment="Stretch">Back</Button>
+            <Button
+                Margin="5"
+                    Command="{Binding DeleteSelected}"
+                    HorizontalAlignment="Stretch">Delete User(s)</Button>
+            <Button
+                Margin="5"
+                Command="{Binding ModifySelected}"
+                HorizontalAlignment="Stretch">Modify User</Button>
+        </StackPanel>
+        
+        <GridSplitter Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" Width="1" Background="DarkGray"
+                      HorizontalAlignment="Center" VerticalAlignment="Stretch"
+                      ShowsPreview="False" />
+        
+        <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Vertical" Margin="20" VerticalAlignment="Stretch">
+            <TextBox IsReadOnly="True" Watermark="ID" Text="{Binding IDField}"></TextBox>
+            <TextBox Margin="0,10,0,0"  Watermark="Name" Text="{Binding NameField}"></TextBox>
+            <ComboBox SelectedIndex="{Binding JobIndex}" SelectedItem="{Binding JobField}" PlaceholderText="Job" Margin="0,10,0,0">
+                <ComboBoxItem>Chef</ComboBoxItem>
+                <ComboBoxItem>Bartender</ComboBoxItem>
+                <ComboBoxItem>Waiter</ComboBoxItem>
+                <ComboBoxItem>Admin</ComboBoxItem>
+            </ComboBox>
+            <TextBox Text="{Binding LoginField}" Margin="0,10,0,0" Watermark="Login"></TextBox>
+            <Button
+                Margin="0,10,0,0"
+                Command="{Binding AddUser}"
+                HorizontalAlignment="Stretch">Add User</Button>
+            <Button
+                Margin="0,10,0,0"
+                Command="{Binding UpdateUser}"
+                HorizontalAlignment="Stretch">Update User</Button>
+        </StackPanel>
+    </Grid>
+</UserControl>
