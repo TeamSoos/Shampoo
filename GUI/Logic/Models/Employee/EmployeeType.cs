@@ -30,8 +30,9 @@ public class EmployeeType {
             job = Enum.Parse<Jobs>(table_data["job"], ignoreCase: true).ToString();
         }).Wait();
     }
-    private EmployeeType() {
-    }
+    
+    // Empty constructor for raw consruction via factory
+    private EmployeeType() {}
 
 
     private static EmployeeType raw(int id, string job, string name, string login) {
@@ -77,6 +78,7 @@ public class EmployeeType {
         };
 
         // This is redundant but kept for clarity sake
+        // and so that c# doesnt complain about scopes
         var reader = await db.Query(cmd);
         string hash ="";
         string job ="";
