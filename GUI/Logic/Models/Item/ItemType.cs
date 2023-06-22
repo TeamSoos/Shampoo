@@ -35,7 +35,7 @@ public class ItemType
     return new ItemType(id, name, count);
   }
 
-  public async Task<List<ItemType>>  GetAll()
+  public static async Task<List<ItemType>>  GetAll()
   {
     return await ItemSQL.GetAll();
   }

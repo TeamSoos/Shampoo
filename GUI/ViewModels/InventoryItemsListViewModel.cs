@@ -48,7 +48,7 @@ public class InventoryItemsListViewModel: RoutablePage
 
         List<ItemType> items = new List<ItemType>();
         
-        Task.Run(async () => { items =  await ItemSQL.GetAll(); }).Wait();
+        Task.Run(async () => { items =  await ItemType.GetAll(); }).Wait();
 
         foreach (ItemType item in items)
         {
