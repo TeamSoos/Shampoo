@@ -28,7 +28,7 @@ public class InventoryAddItemViewModel : RoutablePage {
         {
             int.TryParse(ItemID, out int id);
             int.TryParse(ItemQuantity, out int quantity);
-            ItemSQL.add_by_id(id, quantity);
+            ItemType.Add(id, quantity);
             HostScreen.GoBack();
             
             HostScreen.notificationManager.CreateMessage()

@@ -40,4 +40,8 @@ public class ItemType
     return await ItemSQL.GetAll();
   }
 
+  public static void Add(int id, int quantity)
+  {
+    ItemSQL.add_by_id(id, quantity);
+  }
 }
