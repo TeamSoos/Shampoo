@@ -59,4 +59,20 @@ public class OrderSql {
 
         db.Store(cmd);
     }
+
+    public static async void transact(int id)
+    {
+        Library.Database db = new Library.Database();
+
+        NpgsqlCommand cmd =
+            new NpgsqlCommand(
+                "UPDATE orders SET paid = true WHERE id = ($1);",
+                db.Conn) {
+                Parameters = {
+                    new NpgsqlParameter { Value = id },
+                }
+            };
+
+        db.Store(cmd);
+    }
 }
