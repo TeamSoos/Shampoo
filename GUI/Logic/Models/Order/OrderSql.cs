@@ -66,7 +66,7 @@ public class OrderSql {
 
         NpgsqlCommand cmd =
             new NpgsqlCommand(
-                "UPDATE orders SET paid = true WHERE id = ($1);",
+                "UPDATE orders SET paid = true WHERE table_id = ($1);",
                 db.Conn) {
                 Parameters = {
                     new NpgsqlParameter { Value = id },

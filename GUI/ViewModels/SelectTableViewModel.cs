@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Avalonia.Controls;
 using Avalonia.Notification;
 using GUI.Logic.Models.Employee;
+using GUI.Logic.Models.Order;
 using GUI.Logic.Models.Table;
 using ReactiveUI;
 using RoutedApp.Logic.Models.Logging;
@@ -50,7 +51,9 @@ public class SelectTableViewModel : RoutablePage {
     // Load statuses for buttons
     this.Table = new TableType(CurrentTable);
 
+    // State machine
     switch (Table.status) {
+      case Status.reserved:
       case Status.empty:
         IsFreeable = false;
         IsOccupiable = true;
@@ -58,10 +61,6 @@ public class SelectTableViewModel : RoutablePage {
       case Status.occupied:
         IsFreeable = true;
         IsOccupiable = false;
-        break;
-      case Status.reserved:
-        IsFreeable = false;
-        IsOccupiable = true;
         break;
     }
 
@@ -87,6 +86,9 @@ public class SelectTableViewModel : RoutablePage {
           .Dismiss().WithDelay(TimeSpan.FromSeconds(2))
           .Queue();
       // Go to payment
+      // Unfortunatly need to do this here since the payment part fails to free table
+      TableType.free_single(CurrentTable);
+      Logger.addRecord(HostScreen.CurrentUserID, $"Freed table {CurrentTable}");
       HostScreen.GoNext(new PaymentsViewModel(HostScreen));
     }
     else {
