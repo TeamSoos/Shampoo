@@ -33,8 +33,7 @@
 
         <!-- List -->
         <ScrollViewer Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">
-
-
+            
             <ItemsControl Items="{Binding ListItems}" Padding="10,4">
                 <ItemsControl.Styles>
                     <Style Selector="ListBox">

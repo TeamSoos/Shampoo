@@ -6,18 +6,28 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:DataType="viewModels:PaymentsViewModel"
              x:Class="GUI.Views.Payments">
-    
+
+    <UserControl.Background>
+        <LinearGradientBrush StartPoint="0%,0%" EndPoint="0%,100%">
+            <GradientStop Offset="0" Color="#1E1E2E" />
+            <GradientStop Offset="1" Color="#1E1E2E" />
+        </LinearGradientBrush>
+    </UserControl.Background>
+
     <Grid ColumnDefinitions="*,*" RowDefinitions="*,Auto,Auto,Auto">
-        <StackPanel>
-            <TextBlock Text="{Binding Waiter}"></TextBlock>
-            <TextBlock Text="{Binding }"></TextBlock>
-            <TextBlock Text="{Binding Waiter}"></TextBlock>
+        <StackPanel Orientation="Vertical">
+            <TextBlock Text="{Binding  TableNr}" />
+            <TextBlock Text="{Binding Waiter}" />
+            <TextBlock Text="{Binding Total}" />
         </StackPanel>
-        
-        <Button Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="1" Content="Split Bill" HorizontalAlignment="Stretch" Margin="8" Padding="2,8"/>
-        <Button Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="1" Content="Pay" HorizontalAlignment="Stretch" Margin="8" Padding="2,8"/>
-        <Button Grid.Row="2" Grid.ColumnSpan="2" Content="Preview Order" HorizontalAlignment="Stretch" Margin="8" Padding="2,8"/>
-        <Button Grid.Row="3" Grid.ColumnSpan="2" Content="Back" HorizontalAlignment="Stretch" Margin="8" Padding="2,8"/>
+
+        <Button Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="1" Content="Split Bill" HorizontalAlignment="Stretch"
+                Margin="8" Padding="2,8" />
+        <Button Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="1" Content="Pay" HorizontalAlignment="Stretch" Margin="8"
+                Padding="2,8" Command="{ Binding PayScreen}" />
+        <Button Grid.Row="2" Grid.ColumnSpan="2" Content="Preview Order" HorizontalAlignment="Stretch" Margin="8"
+                Padding="2,8" />
+        <Button Grid.Row="3" Grid.ColumnSpan="2" Content="Back" HorizontalAlignment="Stretch" Margin="8" Padding="2,8" 
+                Command="{Binding GoBack}" />
     </Grid>
 </UserControl>
-
