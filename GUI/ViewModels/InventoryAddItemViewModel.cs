@@ -17,25 +17,6 @@ public class InventoryAddItemViewModel : RoutablePage {
     public string ItemID { get; set; }
     public string ItemQuantity { get; set; }
 
-    public InventoryAddItemViewModel(IHostScreen screen, string ID) {
-        HostScreen = screen;
-        ItemID = ID;
-        BackButton = ReactiveCommand.Create(() => { HostScreen.GoBack(); });
-
-        AddButton = ReactiveCommand.Create(() => {
-            HostScreen.GoNext(new NewPageViewModel(screen));
-
-            HostScreen.notificationManager.CreateMessage()
-                    .Animates(true)
-                    .Background("#B4BEFE")
-                    .Foreground("#1E1E2E")
-                    .HasMessage(
-                            "Item added!")
-                    .Dismiss().WithDelay(TimeSpan.FromSeconds(5))
-                    .Queue();
-        });
-    }
-
     public InventoryAddItemViewModel(IHostScreen screen) {
         HostScreen = screen;
         BackButton = ReactiveCommand.Create(() =>
@@ -48,7 +29,7 @@ public class InventoryAddItemViewModel : RoutablePage {
             int.TryParse(ItemID, out int id);
             int.TryParse(ItemQuantity, out int quantity);
             ItemSQL.add_by_id(id, quantity);
-            HostScreen.GoNext(new NewPageViewModel(HostScreen));
+            HostScreen.GoBack();
             
             HostScreen.notificationManager.CreateMessage()
                 .Animates(true)

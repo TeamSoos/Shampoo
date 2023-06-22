@@ -138,7 +138,7 @@
                       ShowsPreview="False" />
         
         <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Vertical" Margin="20" VerticalAlignment="Stretch">
-            <TextBox IsReadOnly="True" Watermark="ID" Text="{Binding IDField}"></TextBox>
+            <TextBox IsEnabled="False" IsReadOnly="True" Watermark="ID" Text="{Binding IDField}"></TextBox>
             <TextBox Margin="0,10,0,0"  Watermark="Name" Text="{Binding NameField}"></TextBox>
             <ComboBox SelectedIndex="{Binding JobIndex}" SelectedItem="{Binding JobField}" PlaceholderText="Job" Margin="0,10,0,0">
                 <ComboBoxItem>Chef</ComboBoxItem>

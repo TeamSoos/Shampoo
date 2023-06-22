@@ -42,10 +42,15 @@ public class InventoryItemsListViewModel: RoutablePage
         reloadItems();
     }
 
-    private async void reloadItems()
+    private void reloadItems()
     {
         AllItems.Items.Clear();
-        foreach (ItemType item in await ItemSQL.GetAll())
+
+        List<ItemType> items = new List<ItemType>();
+        
+        Task.Run(async () => { items =  await ItemSQL.GetAll(); }).Wait();
+
+        foreach (ItemType item in items)
         {
             AllItems.Items.Add(
                 new ListItem()
@@ -56,5 +61,10 @@ public class InventoryItemsListViewModel: RoutablePage
                 }
             );
         }
+    }
+
+    public override void OnLoad() 
+    {
+        reloadItems();
     }
 }

@@ -12,7 +12,7 @@ public class ItemSQL {
     {
         Library.Database db = new Library.Database();
 
-        var cmd = new NpgsqlCommand("SELECT id, name, count FROM items ORDER BY id ASC", db.Conn);
+        var cmd = new NpgsqlCommand("SELECT id, name, count FROM allmenu ORDER BY id ASC", db.Conn);
 
         
 
@@ -31,7 +31,7 @@ public class ItemSQL {
     public static async Task<Dictionary<string, dynamic>> get_by_id(int id)
     {Library.Database db = new Library.Database();
 
-        var cmd = new NpgsqlCommand("SELECT * FROM items WHERE id=($1)", db.Conn) {
+        var cmd = new NpgsqlCommand("SELECT * FROM allmenu WHERE id=($1)", db.Conn) {
             Parameters = {
                 new() { Value = id }
             }
@@ -54,7 +54,7 @@ public class ItemSQL {
     public static async void add_by_id(int id, int count)
     {Library.Database db = new Library.Database();
 
-        var cmd = new NpgsqlCommand("SELECT id FROM items", db.Conn);
+        var cmd = new NpgsqlCommand("SELECT id FROM allmenu", db.Conn);
 
         List<int> exists = new List<int>();
 
@@ -67,7 +67,7 @@ public class ItemSQL {
         
         if (exists.Contains(id))
         {
-            cmd = new NpgsqlCommand("UPDATE items SET count = ($1) WHERE id = ($2) ", db.Conn)
+            cmd = new NpgsqlCommand("UPDATE allmenu SET count = count + ($1) WHERE id = ($2) ", db.Conn)
             {
                 Parameters =
                 {

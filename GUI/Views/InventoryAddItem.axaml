@@ -93,10 +93,6 @@
 
             <TextBox Grid.Row="0" Watermark="Item ID" Text="{Binding ItemID }" Margin="0,0,0,10" />
 
-            <!--
-            Names are not unique, hence we cannot select by name
-            <TextBox Watermark="Item name" Text="{Binding }" Margin="0,0,0,10" />
-            -->
             <TextBox Grid.Row="1" Watermark="Quantity" Text="{Binding ItemQuantity }" />
 
             <Grid Grid.Row="3" ColumnDefinitions="Auto, *" Margin="0,50,0,0" VerticalAlignment="Stretch">
