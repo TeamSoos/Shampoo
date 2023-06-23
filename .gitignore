@@ -4,4 +4,5 @@ obj/
 riderModule.iml
 /_ReSharper.Caches/
 .env
-workspace.xml
+.idea/.idea.Shampoo/.idea/.name
+.idea/.idea.Shampoo/.idea/workspace.xml
