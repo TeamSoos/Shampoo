@@ -2,11 +2,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:views="clr-namespace:GUI.Views"
+             xmlns:viewModels="clr-namespace:GUI.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="GUI.Views.NewPage"
-             x:DataType="views:NewPageViewModel">
-
+             x:DataType="viewModels:RevenueReportViewModel"
+             x:Class="GUI.Views.RevenueReportView">
+   
     <UserControl.Background>
         <LinearGradientBrush StartPoint="0%,0%" EndPoint="0%,100%">
             <GradientStop Offset="0" Color="#1E1E2E" />
@@ -82,45 +82,57 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <TextBlock FontSize="16" Text="Management" FontWeight="Black" HorizontalAlignment="Left" />
-            <Button Grid.Column="1" Command="{Binding Logout}" Content="Logout" FontWeight="Black"
-                    HorizontalAlignment="Right" />
+            <TextBlock FontSize="16" Text="Inventory" FontWeight="Black" HorizontalAlignment="Left" />
+            <Button Grid.Column="1" Content="Logout" FontWeight="Black" HorizontalAlignment="Right" />
         </Grid>
 
-        <StackPanel
+        <Grid
+            RowDefinitions="Auto, Auto, *, Auto"
             Grid.Row="1"
             Grid.Column="0">
 
-            <Button
-                Command="{Binding ViewInventory}"
-                Margin="0,0,0,10"
-                Padding="10"
-                HorizontalAlignment="Stretch"
-                HorizontalContentAlignment="Center">
-                Manage Inventory
-            </Button>
-            <Button
-                Command="{Binding ViewUsers}"
-                Margin="0,0,0,10"
-                Padding="10"
-                HorizontalAlignment="Stretch"
-                HorizontalContentAlignment="Center">
-                Manage Users
-            </Button>
-            <Button
-                Command="{Binding ViewRevenueReport}"
-                Margin="0,0,0,10"
-                Padding="10"
-                HorizontalAlignment="Stretch"
-                HorizontalContentAlignment="Center">
-                Revenue Report
-            </Button>
-        </StackPanel>
+            
+            <TextBlock Grid.Row="0" Foreground="#B4BEFE" Text="{Binding MonthlyTotal}"/>
 
+            <ScrollViewer
+                Grid.Row="1"
+                Height="500"
+                VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Auto">
+                <StackPanel>
+                    <ItemsControl Items="{Binding Transactions.Items}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
 
-        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Vertical" Margin="20" VerticalAlignment="Stretch">
-            <TextBlock Margin="10" FontSize="15" Text="Low stock" FontWeight="SemiBold" HorizontalAlignment="Center" />
-            <Button>Margherita</Button>
-        </StackPanel>
+                                <Border
+                                    HorizontalAlignment="Stretch"
+                                    BorderThickness="0,0,0,2" BorderBrush="#A6ADC8"
+                                    Margin="5"
+                                    Padding="10">
+
+                                    <Grid Margin="2" HorizontalAlignment="Stretch" ColumnDefinitions="Auto,Auto,Auto,Auto,Auto,*,Auto,Auto,Auto">
+                                        <TextBlock Grid.Column="0" Foreground="#B4BEFE" Text="{Binding table_id}" />
+                                        <TextBlock Grid.Column="1" Foreground="#B4BEFE" Text=" " />
+                                        <TextBlock Grid.Column="2" Foreground="#B4BEFE" Text="{Binding employee_id}" />
+                                        <TextBlock Grid.Column="3" Foreground="#B4BEFE" Text=" " />
+                                        <TextBlock Grid.Column="4" Foreground="#B4BEFE" Text="{Binding payment_type}"
+                                                   FontWeight="Bold" />
+                                        <TextBlock Grid.Column="6" Foreground="#B4BEFE" Text="{Binding total}"/>
+                                        <TextBlock Grid.Column="7" Foreground="#B4BEFE" Text=" "/>
+                                        <TextBlock Grid.Column="8" Foreground="#B4BEFE" Text="{Binding time}"/>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </ScrollViewer>
+
+            <Grid Grid.Row="3" ColumnDefinitions="Auto, *" Margin="0,50,0,0" VerticalAlignment="Stretch">
+                <Button Grid.Column="0" Margin="0,0,5,0" HorizontalAlignment="Stretch" Command="{Binding BackButton}">Back</Button>
+                <Button Grid.Column="1" HorizontalAlignment="Stretch">Generate Revenue Report (PDF)</Button>
+
+            </Grid>
+
+        </Grid>
     </Grid>
 </UserControl>
