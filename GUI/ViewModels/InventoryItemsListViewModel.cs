@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Reactive;
+using System.Threading.Tasks;
 using Logic.Models.Item;
 using ReactiveUI;
 using GUI.ViewModels;
