@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reactive;
 using GUI.Logic.Models.Menu;
+using ModelLayer.OrderMenu;
 using ReactiveUI;
+using ServiceLayer.OrderMenu;
 
 namespace GUI.ViewModels;
 
 public class OrderMenuViewModel : RoutablePage {
-
-
-    public List<Menu> _listItems;
+    public Dictionary<string, List<OrderMenuItem>> _listItems;
     readonly string activebtnc = "#B5ECA1";
 
     string colour1;
@@ -26,7 +26,7 @@ public class OrderMenuViewModel : RoutablePage {
         Table = table;
 
         // List items for the menu
-        _listItems = new List<Menu>();
+        _listItems = new();
 
 
         HostScreen = screen;
@@ -45,7 +45,7 @@ public class OrderMenuViewModel : RoutablePage {
             // active button
             Colour1 = activebtnc;
 
-            SetCurrentMenu(EMenuType.Lunch);
+            SetCurrentMenu(OrderMenuItem.EMenuType.Lunch);
 
         });
         getDinner = ReactiveCommand.Create(() => {
@@ -55,7 +55,7 @@ public class OrderMenuViewModel : RoutablePage {
             // active button
             Colour2 = activebtnc;
 
-            SetCurrentMenu(EMenuType.Dinner);
+            SetCurrentMenu(OrderMenuItem.EMenuType.Dinner);
         });
 
         getDrinks = ReactiveCommand.Create(() => {
@@ -65,7 +65,7 @@ public class OrderMenuViewModel : RoutablePage {
             // active button
             Colour3 = activebtnc;
 
-            SetCurrentMenu(EMenuType.Drinks);
+            SetCurrentMenu(OrderMenuItem.EMenuType.Drinks);
         });
 
         getLunch.Execute().Subscribe();
@@ -95,45 +95,12 @@ public class OrderMenuViewModel : RoutablePage {
     public ReactiveCommand<Unit, Unit> viewOrder { get; }
     public ReactiveCommand<Unit, Unit> GoBack { get; }
 
-    public List<Menu> ListItems {
+    public Dictionary<string, List<OrderMenuItem>> ListItems {
         get => _listItems;
         set => this.RaiseAndSetIfChanged(ref _listItems, value);
     }
 
-    void SetCurrentMenu(EMenuType type) {
-        ListItems = new List<Menu> {
-            new Menu("loading...", new List<MenuItem>())
-        };
+    void SetCurrentMenu(OrderMenuItem.EMenuType type) {
 
-        var getAllTask = MenuSql.get_all(type);
-        getAllTask.GetAwaiter().OnCompleted(() => {
-            var items = getAllTask.Result;
-
-            var TypedMenuItems = items
-                    .GroupBy(item => item.Type)
-                    .Select(group => {
-                        var MenuItems = group.Select(x => new MenuItem(x, HostScreen)).ToList();
-                        var menu = new Menu(group.Key, MenuItems);
-                        return menu;
-                    })
-                    .ToList()
-                ;
-
-            ListItems = TypedMenuItems;
-        });
     }
-
-}
-
-public class Menu {
-
-    public Menu(string heading, List<MenuItem> items) {
-        Heading = heading;
-        MenuStuff = new List<MenuItem>(items);
-    }
-
-
-    public string Heading { get; }
-
-    public List<MenuItem> MenuStuff { get; }
 }
