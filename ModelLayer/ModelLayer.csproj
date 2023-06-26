@@ -7,6 +7,9 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <Reference Include="BCrypt.Net-Next">
+        <HintPath>..\..\..\.nuget\packages\bcrypt.net-next\4.0.3\lib\net6.0\BCrypt.Net-Next.dll</HintPath>
+      </Reference>
       <Reference Include="Npgsql">
         <HintPath>..\..\..\.nuget\packages\npgsql\8.0.0-preview.4\lib\net6.0\Npgsql.dll</HintPath>
       </Reference>
