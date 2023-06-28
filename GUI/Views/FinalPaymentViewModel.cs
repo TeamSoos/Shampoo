@@ -1,13 +1,15 @@
 using System.Reactive;
 using ExCSS;
-using GUI.Logic.Models.Order;
 using GUI.ViewModels;
+using ModelLayer.Tables;
 using ReactiveUI;
+using ServiceLayer.Tables;
 
 namespace GUI.Views;
 
 public class FinalPaymentViewModel : RoutablePage
 {
+    public TablesService service = new();
     public override IHostScreen HostScreen { get; }
 
     public ReactiveCommand<Unit, Unit> GoBack { get; set; }
@@ -28,7 +30,7 @@ public class FinalPaymentViewModel : RoutablePage
             screen.GoNext(new TransactionPaymentViewModel(screen));
             
             // FREE TABLE
-            OrderSql.transact(screen.CurrentTable);
+            service.Free(HostScreen.CurrentTable);
         });
     }
 }

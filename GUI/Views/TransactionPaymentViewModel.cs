@@ -13,7 +13,7 @@ public class TransactionPaymentViewModel : RoutablePage
     public TransactionPaymentViewModel(IHostScreen screen)
     {
         HostScreen = screen;
-        GoBack = ReactiveCommand.Create(() => // setting value
+        GoBack = ReactiveCommand.Create(() => 
         {
             screen.GoBack();
         });

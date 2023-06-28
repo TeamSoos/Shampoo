@@ -4,7 +4,7 @@ using System.Reactive;
 using ReactiveUI;
 using GUI.ViewModels;
 using GUI.Views;
-using RoutedApp.Logic.Models.Payment;
+using ServiceLayer.Payment;
 
 namespace GUI.ViewModels;
 
@@ -14,6 +14,7 @@ public class PaymentsViewModel : RoutablePage {
     private string _waiter;
     private string _total;
     private string _tableNr;
+    private PaymentService service = new ();
 
     public ReactiveCommand<Unit, Unit> PayScreen { get; set; }
     
@@ -26,7 +27,7 @@ public class PaymentsViewModel : RoutablePage {
         get { return $"Waiter: {_waiter}";}
         set
         {
-            this.RaiseAndSetIfChanged(ref _waiter, value); // notifies the whole app that this value is changes
+            this.RaiseAndSetIfChanged(ref _waiter, value); 
         }
     }
 
@@ -48,7 +49,7 @@ public class PaymentsViewModel : RoutablePage {
         }
     }
 
-    public PaymentsViewModel(IHostScreen screen)
+    public PaymentsViewModel(IHostScreen screen) 
     {
         HostScreen = screen;
 
@@ -63,12 +64,11 @@ public class PaymentsViewModel : RoutablePage {
         }));
         int table = screen.CurrentTable;
         Waiter = screen.CurrentUser.Name;
-        
-        var res = PaymentSQL.get_total(table);
+
+        var res = service.GetTotalPrice(table);
         TableNr = table.ToString();
-        res.GetAwaiter().OnCompleted(() => 
-        {
-            Total = res.Result.ToString("00.00"); 
-        });
+        
+        Total = res.TotalAmount.ToString("00.00"); 
+        
     }
 }
