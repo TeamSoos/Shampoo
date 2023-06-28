@@ -86,7 +86,7 @@
         </Grid>
 
         <Grid
-            RowDefinitions="Auto, Auto, *, Auto"
+            RowDefinitions="Auto, Auto, Auto, Auto, Auto, *, Auto"
             Grid.Row="1"
             Grid.Column="0">
 
@@ -94,12 +94,17 @@
 
             <TextBox Grid.Row="1" Watermark="Category" Text="{Binding ItemCat }" />
             
-            <ComboBox Grid.Row="2" SelectedIndex="{Binding MenuTypeIndex}" SelectedItem="{Binding MenuTypeString}" PlaceholderText="Job" Margin="0,10,0,0">
+            <ComboBox Grid.Row="2" SelectedIndex="{Binding MenuTypeIndex}" SelectedItem="{Binding MenuTypeString}" PlaceholderText="Menu" Margin="0,10,0,0">
                 <ComboBoxItem>Lunch</ComboBoxItem>
                 <ComboBoxItem>Dinner</ComboBoxItem>
                 <ComboBoxItem>Drinks</ComboBoxItem>
             </ComboBox>
-            <Grid Grid.Row="3" ColumnDefinitions="Auto, *" Margin="0,50,0,0" VerticalAlignment="Stretch">
+            <StackPanel Grid.Row="3" Orientation="Horizontal">
+                <CheckBox  IsChecked="{Binding IsAlcoholic }" />
+                <TextBlock>Alcoholic</TextBlock>
+            </StackPanel>
+            <TextBox Grid.Row="4" Watermark="Price" Text="{Binding ItemPrice }" />
+            <Grid Grid.Row="6" ColumnDefinitions="Auto, *" Margin="0,50,0,0" VerticalAlignment="Stretch">
                 <Button Grid.Column="0" Margin="0,0,5,0" HorizontalAlignment="Stretch" Command="{Binding GoBack}">Back</Button>
                 <Button Grid.Column="1" HorizontalAlignment="Stretch" Command="{Binding AddItem}">Add</Button>
 

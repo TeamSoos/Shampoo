@@ -7,11 +7,12 @@ public class OrderMenuItemModel {
     public string Type { get; set; } = "";
     public int Count { get; set; }
     public EMenuType Menu { get; set; }
+    public bool Alcoholic { get; set; }
 
     public enum EMenuType {
-        Drinks,
         Lunch,
         Dinner,
+        Drinks,
     }
 
     // STATIC CLASS FOR UTILITY

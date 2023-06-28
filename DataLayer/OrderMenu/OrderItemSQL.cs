@@ -15,6 +15,21 @@ public class OrderItemSQL : BaseSQL<OrderMenuItemModel> {
         return QueryMultiple(cmd);
     }
 
+    public async void add_to_menu(OrderMenuItemModel item)
+    {
+        var cmd = new NpgsqlCommand("INSERT INTO allmenu (type, name, price, menu, is_alcoholic, count) VALUES ($1, $2, $3, $4, $5, $6)"){
+            Parameters = {
+                new NpgsqlParameter { Value = item.Type },
+                new NpgsqlParameter { Value = item.Name },
+                new NpgsqlParameter { Value = item.Price },
+                new NpgsqlParameter { Value = item.Menu.ToString().ToLower() },
+                new NpgsqlParameter { Value = item.Alcoholic },
+                new NpgsqlParameter { Value = item.Count },
+            }
+        };
+        Store(cmd);
+    }
+
 
     protected override OrderMenuItemModel ReadTables(NpgsqlDataReader reader) {
 

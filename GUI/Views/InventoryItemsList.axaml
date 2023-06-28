@@ -139,6 +139,7 @@
                         HorizontalAlignment="Stretch">Add Stock</Button>
                 <Button Grid.Column="2"  
                         Command="{Binding AddItem}"
+                        Margin="5,0,0,0"
                         HorizontalAlignment="Stretch">Add Item</Button>
             </Grid>
             
