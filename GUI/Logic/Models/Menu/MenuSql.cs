@@ -2,17 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Logic.SQL;
+using ModelLayer.OrderMenu;
 using Npgsql;
 
 namespace GUI.Logic.Models.Menu;
 
-public enum EMenuType {
-    Lunch,
-    Dinner,
-    Drinks,
-}
-
-public class MenuSql {
+class MenuSql {
     public static void decrement_count(int id, int count) {
         Library.Database db = new Library.Database();
         
@@ -23,7 +18,7 @@ public class MenuSql {
         db.Store(cmd);
     }
     
-    public static async Task<List<MenuType>> get_all(EMenuType type) {
+    public static async Task<List<MenuType>> get_all(OrderMenuItemModel.EMenuType type) {
         Library.Database db = new Library.Database();
         NpgsqlCommand cmd;
         NpgsqlDataReader reader;
@@ -31,13 +26,13 @@ public class MenuSql {
         var items = new List<MenuType>();
 
         cmd = type switch {
-            EMenuType.Lunch => new NpgsqlCommand(
+            OrderMenuItemModel.EMenuType.Lunch => new NpgsqlCommand(
                 "SELECT id, name, type, price, count FROM allmenu WHERE menu = 'lunch'",
                 db.Conn),
-            EMenuType.Dinner => new NpgsqlCommand(
+            OrderMenuItemModel.EMenuType.Dinner => new NpgsqlCommand(
                 "SELECT id, name, type, price, count FROM allmenu WHERE menu = 'dinner'",
                 db.Conn),
-            EMenuType.Drinks => new NpgsqlCommand(
+            OrderMenuItemModel.EMenuType.Drinks => new NpgsqlCommand(
                 "SELECT id, name, type, price, count FROM allmenu WHERE menu = 'drinks'",
                 db.Conn),
             _ => throw new Exception("Unreachable code reached. Good job.")

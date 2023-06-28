@@ -33,7 +33,7 @@
 
         <!-- List -->
         <ScrollViewer Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">
-            
+
             <ItemsControl Items="{Binding ListItems}" Padding="10,4">
                 <ItemsControl.Styles>
                     <Style Selector="ListBox">
@@ -46,28 +46,28 @@
                     </Style>
                 </ItemsControl.Styles>
                 <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <DockPanel>
-                            <TextBlock Foreground="#B4BEFE" FontSize="24" FontWeight="Bold" Text="{Binding Heading}"
-                                       DockPanel.Dock="Top"
-                                       Padding="0,0,0,10" />
-                            <ItemsControl Items="{Binding MenuStuff}">
-                                <ItemsControl.ItemTemplate>
-                                    <DataTemplate>
-                                        <Grid ColumnDefinitions="*, Auto" Margin="0,0,0,6">
-                                            <Label>
-                                                <TextBlock Text="{Binding Name}" HorizontalAlignment="Left"
-                                                           VerticalAlignment="Center" TextWrapping="Wrap" />
-                                            </Label>
-                                            <Button Grid.Column="1" Command="{Binding Command}"
-                                                    Content="{Binding AddToOrderLabel}" HorizontalAlignment="Right"
-                                                    IsEnabled="{Binding HasStock}" />
-                                        </Grid>
-                                    </DataTemplate>
-                                </ItemsControl.ItemTemplate>
-                            </ItemsControl>
-                        </DockPanel>
-                    </DataTemplate>
+                    <!-- <DataTemplate> -->
+                    <!--     <DockPanel> -->
+                    <!--         <TextBlock Foreground="#B4BEFE" FontSize="24" FontWeight="Bold" Text="{Binding Key}" -->
+                    <!--                    DockPanel.Dock="Top" -->
+                    <!--                    Padding="0,0,0,10" /> -->
+                    <!--         <ItemsControl Items="{Binding Value}"> -->
+                    <!--             <ItemsControl.ItemTemplate> -->
+                    <!--                 <DataTemplate> -->
+                    <!--                     <Grid ColumnDefinitions="*, Auto" Margin="0,0,0,6"> -->
+                    <!--                         <Label> -->
+                    <!--                             <TextBlock Text="{Binding Name}" HorizontalAlignment="Left" -->
+                    <!--                                        VerticalAlignment="Center" TextWrapping="Wrap" /> -->
+                    <!--                         </Label> -->
+                    <!--                         ~1~ <Button Grid.Column="1" Command="{Binding Command}" @1@ -->
+                    <!--                         ~1~         Content="{Binding Count}" HorizontalAlignment="Right" @1@ -->
+                    <!--                         ~1~         IsEnabled="{Binding}" /> @1@ -->
+                    <!--                     </Grid> -->
+                    <!--                 </DataTemplate> -->
+                    <!--             </ItemsControl.ItemTemplate> -->
+                    <!--         </ItemsControl> -->
+                    <!--     </DockPanel> -->
+                    <!-- </DataTemplate> -->
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
         </ScrollViewer>

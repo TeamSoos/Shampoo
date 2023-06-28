@@ -11,7 +11,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Folder Include="Models\" />
         <AvaloniaResource Include="Assets\**" />
     </ItemGroup>
 
@@ -42,5 +41,29 @@
         <Content Include="obj\project.nuget.cache" />
         <Content Include="obj\project.packagespec.json" />
         <Content Include="obj\rider.project.restore.info" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <AvaloniaXaml Remove="obj\**" />
+      <AvaloniaXaml Remove="Models\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="obj\**" />
+      <Compile Remove="Models\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="obj\**" />
+      <EmbeddedResource Remove="Models\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="obj\**" />
+      <None Remove="Models\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\ServiceLayer\ServiceLayer.csproj" />
     </ItemGroup>
 </Project>

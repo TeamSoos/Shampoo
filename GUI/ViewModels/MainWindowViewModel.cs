@@ -20,6 +20,7 @@ public class MainWindowViewModel : ReactiveObject, IHostScreen {
         // Navigate to the first page
         Router.Navigate.Execute(new LoginPageViewModel(this));
         GoNext(new LoginPageViewModel(this));
+        GoNext(new OrderMenuViewModel(this, "", 1));
         UIController ncontroller = UIController.GetInstance(null);
         
         GoBackPage = ReactiveCommand.CreateFromObservable(
