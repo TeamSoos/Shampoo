@@ -1,8 +1,8 @@
 namespace ModelLayer.OrderMenu;
 
-public class OrderModel {
+public class OrderMenuModel {
     public int ID;
-    public bool Paid { get; } // gets directly from the database
+    public bool Paid { get; set; } // gets directly from the database
     public bool Delivered { get; set; } // gets directly from the database
     
 
@@ -10,30 +10,8 @@ public class OrderModel {
 
     public List<OrderMenuItemModel> OrderItems {
         get => _orderItems;
-        protected set { _orderItems = ManyToOne(value); }
+        protected set { _orderItems = value; }
     }
-
-    /// <summary>
-    /// Might be depracated...
-    /// If we have multiple entries of the same item, we would group them
-    /// This is in place as a small little failsafe
-    /// </summary>
-    /// <param name="order"></param>
-    /// <returns><see cref="List{T}"/></returns>
-    private List<OrderMenuItemModel> ManyToOne(List<OrderMenuItemModel> order) {
-        return order.GroupBy(item => item.ID)
-            .Select(group => {
-                int count = group.Sum(item => item.Count);
-
-                var item = group.First();
-                item.Count = count;
-
-                return item;
-            })
-            .ToList();
-
-    }
-
 
     // It would probably be fine if we move the UI layer
     // However it would be convinient to have this code here

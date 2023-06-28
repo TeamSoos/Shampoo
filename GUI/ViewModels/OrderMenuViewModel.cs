@@ -10,8 +10,10 @@ using ServiceLayer.OrderMenu;
 namespace GUI.ViewModels;
 
 public class OrderMenuViewModel : RoutablePage {
-    public Dictionary<string, List<OrderMenuItemModel>> _listItems;
+    public List<GroupedMenuModel> _listItems;
     readonly string activebtnc = "#B5ECA1";
+
+    MenuItemService service = new();
 
     string colour1;
     string colour2;
@@ -36,7 +38,10 @@ public class OrderMenuViewModel : RoutablePage {
 
         GoBack = ReactiveCommand.Create(() => { HostScreen.GoBack(); });
 
-        viewOrder = ReactiveCommand.Create(() => { HostScreen.GoNext(new OrderMenuViewOrderViewModel(HostScreen)); });
+        viewOrder = ReactiveCommand.Create(() => {
+            HostScreen.GoNext(
+                new OrderMenuViewOrderViewModel(HostScreen));
+        });
 
         getLunch = ReactiveCommand.Create(() => {
             // default buttons
@@ -45,7 +50,7 @@ public class OrderMenuViewModel : RoutablePage {
             // active button
             Colour1 = activebtnc;
 
-            SetCurrentMenu(OrderMenuItemModel.EMenuType.Lunch);
+            SetMenuOnDisplay(OrderMenuItemModel.EMenuType.Lunch);
 
         });
         getDinner = ReactiveCommand.Create(() => {
@@ -55,7 +60,7 @@ public class OrderMenuViewModel : RoutablePage {
             // active button
             Colour2 = activebtnc;
 
-            SetCurrentMenu(OrderMenuItemModel.EMenuType.Dinner);
+            SetMenuOnDisplay(OrderMenuItemModel.EMenuType.Dinner);
         });
 
         getDrinks = ReactiveCommand.Create(() => {
@@ -65,7 +70,7 @@ public class OrderMenuViewModel : RoutablePage {
             // active button
             Colour3 = activebtnc;
 
-            SetCurrentMenu(OrderMenuItemModel.EMenuType.Drinks);
+            SetMenuOnDisplay(OrderMenuItemModel.EMenuType.Drinks);
         });
 
         getLunch.Execute().Subscribe();
@@ -95,12 +100,13 @@ public class OrderMenuViewModel : RoutablePage {
     public ReactiveCommand<Unit, Unit> viewOrder { get; }
     public ReactiveCommand<Unit, Unit> GoBack { get; }
 
-    public Dictionary<string, List<OrderMenuItemModel>> ListItems {
-        get => _listItems;
+    public List<GroupedMenuModel> ListItems {
+        get { return _listItems; }
         set => this.RaiseAndSetIfChanged(ref _listItems, value);
     }
 
-    void SetCurrentMenu(OrderMenuItemModel.EMenuType type) {
-
+    void SetMenuOnDisplay(OrderMenuItemModel.EMenuType type) {
+        var list = service.GetItemsOfMenuSync(type);
+        ListItems = service.GetFromItemList(list);
     }
 }
