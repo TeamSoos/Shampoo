@@ -4,6 +4,7 @@ using System.Reactive;
 using ReactiveUI;
 using GUI.ViewModels;
 using GUI.Views;
+using ModelLayer.Tables;
 using ServiceLayer.Payment;
 
 namespace GUI.ViewModels;
@@ -65,7 +66,10 @@ public class PaymentsViewModel : RoutablePage {
         int table = screen.CurrentTable;
         Waiter = screen.CurrentUser.Name;
 
-        var res = service.GetTotalPrice(table);
+        var res = service.GetTotalPrice(new Table()
+        {
+            ID = table
+        });
         TableNr = table.ToString();
         
         Total = res.TotalAmount.ToString("00.00"); 
