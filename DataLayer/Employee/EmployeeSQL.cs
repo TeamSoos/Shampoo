@@ -47,7 +47,7 @@ public class EmployeeSQL : BaseSQL<ModelLayer.Employee> {
       // execute query manually
       bool valid = (bool)cmd.ExecuteScalar()!;
       db.Finalise();
-      
+
       return valid;
   }
   
