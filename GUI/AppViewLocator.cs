@@ -30,6 +30,7 @@ public class AppViewLocator : IViewLocator {
             FinalPaymentViewModel context => new FinalPaymentView {DataContext = context},
             TransactionPaymentViewModel context => new TransactionPayment {DataContext = context},
             RevenueReportViewModel context => new RevenueReportView {DataContext = context}, 
+            AddItemViewModel context => new AddItemView() {DataContext = context}, 
             _ => throw new ArgumentOutOfRangeException($"you forgot to add {nameof(viewModel)} to AppViewLocator")
         };
     }

@@ -4,10 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModels="clr-namespace:GUI.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:DataType="viewModels:RevenueReportViewModel"
-             x:Class="GUI.Views.RevenueReportView">
-   
-    <UserControl.Background>
+             x:Class="GUI.Views.AddItemView"
+             x:DataType="viewModels:AddItemViewModel">
+ <UserControl.Background>
         <LinearGradientBrush StartPoint="0%,0%" EndPoint="0%,100%">
             <GradientStop Offset="0" Color="#1E1E2E" />
             <GradientStop Offset="1" Color="#1E1E2E" />
@@ -91,46 +90,26 @@
             Grid.Row="1"
             Grid.Column="0">
 
+            <TextBox Grid.Row="0" Watermark="Name" Text="{Binding ItemName}" Margin="0,0,0,10" />
+
+            <TextBox Grid.Row="1" Watermark="Category" Text="{Binding ItemCat }" />
             
-            <TextBlock Grid.Row="0" Foreground="#B4BEFE" Text="{Binding MonthlyTotal}"/>
-
-            <ScrollViewer
-                Grid.Row="1"
-                Height="500"
-                VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Auto">
-                <StackPanel>
-                    <ItemsControl Items="{Binding Transactions.Items}">
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-
-                                <Border
-                                    HorizontalAlignment="Stretch"
-                                    BorderThickness="0,0,0,2" BorderBrush="#A6ADC8"
-                                    Margin="5"
-                                    Padding="10">
-
-                                    <Grid Margin="2" HorizontalAlignment="Stretch" ColumnDefinitions="Auto,Auto,Auto,Auto,Auto,*,Auto,Auto,Auto">
-                                        <TextBlock Grid.Column="0" Foreground="#B4BEFE" Text="{Binding table_id}" />
-                                        <TextBlock Grid.Column="1" Foreground="#B4BEFE" Text=" " />
-                                        <TextBlock Grid.Column="2" Foreground="#B4BEFE" Text="{Binding employee_id}" />
-                                        <TextBlock Grid.Column="3" Foreground="#B4BEFE" Text=" " />
-                                        <TextBlock Grid.Column="4" Foreground="#B4BEFE" Text="{Binding payment_type}"
-                                                   FontWeight="Bold" />
-                                        <TextBlock Grid.Column="6" Foreground="#B4BEFE" Text="{Binding total}"/>
-                                        <TextBlock Grid.Column="7" Foreground="#B4BEFE" Text=" "/>
-                                        <TextBlock Grid.Column="8" Foreground="#B4BEFE" Text="{Binding time}"/>
-                                    </Grid>
-                                </Border>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-                </StackPanel>
-            </ScrollViewer>
-
+            <ComboBox Grid.Row="2" SelectedIndex="{Binding MenuTypeIndex}" SelectedItem="{Binding MenuTypeString}" PlaceholderText="Job" Margin="0,10,0,0">
+                <ComboBoxItem>Lunch</ComboBoxItem>
+                <ComboBoxItem>Dinner</ComboBoxItem>
+                <ComboBoxItem>Drinks</ComboBoxItem>
+            </ComboBox>
             <Grid Grid.Row="3" ColumnDefinitions="Auto, *" Margin="0,50,0,0" VerticalAlignment="Stretch">
-                <Button Grid.Column="0" Margin="0,0,5,0" HorizontalAlignment="Stretch" Command="{Binding BackButton}">Back</Button>
+                <Button Grid.Column="0" Margin="0,0,5,0" HorizontalAlignment="Stretch" Command="{Binding GoBack}">Back</Button>
+                <Button Grid.Column="1" HorizontalAlignment="Stretch" Command="{Binding AddItem}">Add</Button>
+
             </Grid>
 
         </Grid>
-    </Grid>
-</UserControl>
+
+
+        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Vertical" Margin="20" VerticalAlignment="Stretch">
+            <TextBlock Margin="10" FontSize="15" Text="Low stock" FontWeight="SemiBold" HorizontalAlignment="Center" />
+            <Button>Margherita</Button>
+        </StackPanel>
+    </Grid></UserControl>

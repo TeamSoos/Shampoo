@@ -5,6 +5,7 @@
       <map>
         <entry key="GUI/App.axaml" value="GUI/GUI.csproj" />
         <entry key="GUI/ViewModels/PopUpReservation.axaml" value="GUI/GUI.csproj" />
+        <entry key="GUI/Views/AddItemView.axaml" value="GUI/GUI.csproj" />
         <entry key="GUI/Views/BasicAppView.axaml" value="GUI/GUI.csproj" />
         <entry key="GUI/Views/FirstPage.axaml" value="GUI/GUI.csproj" />
         <entry key="GUI/Views/InventoryAddItem.axaml" value="GUI/GUI.csproj" />
@@ -17,13 +18,15 @@
         <entry key="GUI/Views/OrderMenu.axaml" value="GUI/GUI.csproj" />
         <entry key="GUI/Views/OrderMenuViewOrder.axaml" value="GUI/GUI.csproj" />
         <entry key="GUI/Views/OrderingView.axaml" value="GUI/GUI.csproj" />
+        <entry key="GUI/Views/Payments.axaml" value="GUI/GUI.csproj" />
         <entry key="GUI/Views/ReservationsView.axaml" value="GUI/GUI.csproj" />
         <entry key="GUI/Views/ReserveTable.axaml" value="GUI/GUI.csproj" />
-        <entry key="GUI/Views/Payments.axaml" value="GUI/GUI.csproj" />
         <entry key="GUI/Views/ReserveTableView.axaml" value="GUI/GUI.csproj" />
+        <entry key="GUI/Views/RevenueReportView.axaml" value="GUI/GUI.csproj" />
         <entry key="GUI/Views/SecondPage.axaml" value="GUI/GUI.csproj" />
         <entry key="GUI/Views/SelectTableView.axaml" value="GUI/GUI.csproj" />
         <entry key="GUI/Views/TablesView.axaml" value="GUI/GUI.csproj" />
+        <entry key="GUI/Views/UserManagement.axaml" value="GUI/GUI.csproj" />
         <entry key="RoutedApp/App.axaml" value="RoutedApp/RoutedApp.csproj" />
         <entry key="RoutedApp/Views/FirstPage.axaml" value="RoutedApp/RoutedApp.csproj" />
         <entry key="RoutedApp/Views/MainWindow.axaml" value="RoutedApp/RoutedApp.csproj" />

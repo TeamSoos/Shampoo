@@ -13,6 +13,7 @@ public class InventoryItemsListViewModel: RoutablePage
     public override IHostScreen HostScreen { get; }
     
     public ReactiveCommand<Unit, Unit> LogoutUser { get; set; }
+    public ReactiveCommand<Unit, Unit> AddStock { get; set; }
     public ReactiveCommand<Unit, Unit> AddItem { get; set; }
     public ReactiveCommand<Unit, Unit> GoBack { get; }
     private ItemListViewModel _allItem;
@@ -31,10 +32,16 @@ public class InventoryItemsListViewModel: RoutablePage
                 screen.GoNext(new LoginPageViewModel(screen));
             }
             );
-        AddItem =ReactiveCommand.Create(
+        AddStock =ReactiveCommand.Create(
             () =>
             {
                 screen.GoNext(new InventoryAddItemViewModel(screen));
+            }
+        );
+        AddItem =ReactiveCommand.Create(
+            () =>
+            {
+                screen.GoNext(new AddItemViewModel(screen));
             }
         );
         AllItems = new ItemListViewModel(
