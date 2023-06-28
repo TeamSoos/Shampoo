@@ -30,7 +30,10 @@ public class FinalPaymentViewModel : RoutablePage
             screen.GoNext(new TransactionPaymentViewModel(screen));
             
             // FREE TABLE
-            service.Free(HostScreen.CurrentTable);
+            service.Free(new Table()
+            {
+                ID = HostScreen.CurrentTable
+            });
         });
     }
 }
