@@ -5,8 +5,10 @@ using System.Windows.Input;
 using Avalonia.Notification;
 using GUI.Logic.Models.Employee;
 using GUI.Views;
+using ModelLayer;
 using ReactiveUI;
 using RoutedApp.Logic;
+using ServiceLayer.Employee;
 
 namespace GUI.ViewModels;
 
@@ -14,141 +16,69 @@ public class LoginPageViewModel : RoutablePage {
 
     bool _mobileui;
 
-    readonly List<string> staff = new List<string> { "admin", "chef", "barman", "waiter" };
-
-#pragma warning disable CS8618
-    public LoginPageViewModel(IHostScreen screen) {
-#pragma warning restore CS8618
-      MobileUIRequested = false;
-        HostScreen = screen;
-        LoginStaff = ReactiveCommand.Create(loginStaffTask);
-    }
-
-    public string Text { get; set; }
+    public string LoginInput { get; set; }
     public string IDInput { get; set; }
 
     public ICommand LoginStaff { get; }
-
+    
     public bool MobileUIRequested {
-        get => _mobileui;
-        set => this.RaiseAndSetIfChanged(ref _mobileui, value);
+      get => _mobileui;
+      set => this.RaiseAndSetIfChanged(ref _mobileui, value);
     }
-
-    // Styling
-    // This is hardcoded for whatever reason, Ask Kunal
-    public int FormContentWidth => 350;
-    public int FormContentSpacing => 10;
-
+    
     public override IHostScreen HostScreen { get; }
 
-    async Task loginStaffTask() {
-        Console.WriteLine($"Login key: {Text}");
+    public LoginPageViewModel(IHostScreen screen) {
+      MobileUIRequested = false; 
+      HostScreen = screen;
+      LoginStaff = ReactiveCommand.Create(loginStaffTask);
+    }
 
-        int.TryParse(IDInput, out int id);
-        Console.WriteLine($"id: {id}");
 
-        if (id == 0) {
-            HostScreen.notificationManager.CreateMessage()
-                    .Animates(true)
-                    .Background("#B4BEFE")
-                    .Foreground("#1E1E2E")
-                    .HasMessage(
-                            "Sorry! Invalid ID")
-                    .Dismiss().WithDelay(TimeSpan.FromSeconds(5))
-                    .Queue();
+    public void loginStaffTask() {
+        EmployeeService employeeService = new EmployeeService();
+
+        int.TryParse(IDInput, out int id_input);
+
+        if (id_input == 0 || LoginInput == "") {
+            HostScreen.Notify("Please fill in all fields!", 5);
             return;
         }
-        if (Text == "") {
-          HostScreen.notificationManager.CreateMessage()
-              .Animates(true)
-              .Background("#B4BEFE")
-              .Foreground("#1E1E2E")
-              .HasMessage(
-                  "Sorry! Please fill in the login code")
-              .Dismiss().WithDelay(TimeSpan.FromSeconds(5))
-              .Queue();
-          return;
-        }
 
-        EmployeeType user = await EmployeeType.Authenticate(Text, id);
-
+        Employee employee = employeeService.GetOne(id_input);
         
-
-        // verify password hash
-        //  "wait" == "$2a$11$q2wbzzvC52SpWo5h5Zs54ejhNoIz6nQ0Z7EIrI12x5h9a2fbmYGgu"
-        //  Assert.True(BCrypt.HashPassword("wait") == $2a$11$q2wbzzvC52SpWo5h5Zs54ejhNoIz6nQ0Z7EIrI12x5h9a2fbmYGgu)
-        bool passwordValid = BCrypt.Net.BCrypt.Verify(Text, user.login);
-
-        if (!passwordValid) {
-            HostScreen.notificationManager.CreateMessage()
-                    .Animates(true)
-                    .Background("#B4BEFE")
-                    .Foreground("#1E1E2E")
-                    .HasMessage(
-                            "Invalid credentials for this user")
-                    .Dismiss().WithDelay(TimeSpan.FromSeconds(5))
-                    .Queue();
+        
+        // Job can be null when an empty object is returned
+        // This is to handle employees that do not exist
+        if (employee.Login == null || !employeeService.Authenticate(employee, LoginInput)) {
+            HostScreen.Notify("Sorry! Invalid credentials", 5);
             return;
         }
 
-        // We have an ID, let's check if it's one of the staff
-        if (staff.Contains(user.job)) {
-            Console.WriteLine($"Staff access! {MobileUIRequested} {user.job} {user.name}");
+        if (MobileUIRequested) {
+            UIController ncontroller = UIController.GetInstance(null);
+            ncontroller.ResizeWindow(400, 800);
+        }
+        
+        // Set info for other views to use
+        HostScreen.mobileUI = MobileUIRequested;
+        HostScreen.CurrentUser = employee;
+        
+        HostScreen.Notify($"Welcome back {employee.Name}", 3);
 
-            if (MobileUIRequested) {
-                Console.WriteLine("User requested mobile interface");
-                // :)
-                UIController ncontroller = UIController.GetInstance(null);
-                ncontroller.ResizeWindow(400, 800);
-            }
-
-            // Set info for other views to use
-            HostScreen.mobileUI = MobileUIRequested;
-            HostScreen.CurrentUser = user.name;
-            HostScreen.CurrentUserID = user.id;
-
-            HostScreen.notificationManager.CreateMessage()
-                    .Animates(true)
-                    .Background("#B4BEFE")
-                    .Foreground("#1E1E2E")
-                    .HasMessage(
-                            $"Welcome back {user.name}")
-                    .Dismiss().WithDelay(TimeSpan.FromSeconds(5))
-                    .Queue();
-
-            switch (user.job) {
-                case "chef":
-                    HostScreen.GoNext(new KitchenViewModel(HostScreen));
-                    return;
-                case "waiter":
-                    Console.WriteLine("Waiter");
-                    HostScreen.GoNext(new TablesViewModel(HostScreen));
-                    return;
-                case "admin":
-                    Console.WriteLine("Admin");
-                    HostScreen.GoNext(new NewPageViewModel(HostScreen));
-                    return;
-                default:
-                    HostScreen.notificationManager.CreateMessage()
-                            .Animates(true)
-                            .Background("#B4BEFE")
-                            .Foreground("#1E1E2E")
-                            .HasMessage(
-                                    "Error: Job not implemented")
-                            .Dismiss().WithDelay(TimeSpan.FromSeconds(5))
-                            .Queue();
-                    break;
-            }
-
-        } else {
-            HostScreen.notificationManager.CreateMessage()
-                    .Animates(true)
-                    .Background("#B4BEFE")
-                    .Foreground("#1E1E2E")
-                    .HasMessage(
-                            "Error: Invalid access role")
-                    .Dismiss().WithDelay(TimeSpan.FromSeconds(5))
-                    .Queue();
+        switch (employee.Job) {
+            case EmployeeJob.admin:
+                HostScreen.GoNext(new NewPageViewModel(HostScreen));
+                break;
+            case EmployeeJob.bartender:
+                HostScreen.GoNext(new KitchenViewModel(HostScreen));
+                break;
+            case EmployeeJob.chef:
+                HostScreen.GoNext(new KitchenViewModel(HostScreen));
+                break;
+            case EmployeeJob.waiter:
+                HostScreen.GoNext(new TablesViewModel(HostScreen));
+                break;
         }
     }
 }

@@ -34,7 +34,7 @@ public class Library {
                     new NpgsqlParameter { Value = 1 }
                 }
             };
-            NpgsqlDataReader reader = await Query(cmd);
+            NpgsqlDataReader reader = await QueryAsync(cmd);
             await reader.ReadAsync();
             Console.WriteLine(reader["id"]);
             Console.WriteLine(reader["name"]);
@@ -50,11 +50,16 @@ public class Library {
             return dataSource;
         }
 
-        public async Task<NpgsqlDataReader> Query(NpgsqlCommand cmd) {
+        public async Task<NpgsqlDataReader> QueryAsync(NpgsqlCommand cmd) {
             NpgsqlDataReader reader = await cmd.ExecuteReaderAsync();
             return reader;
         }
 
+        public NpgsqlDataReader Query(NpgsqlCommand cmd) {
+            NpgsqlDataReader reader = cmd.ExecuteReader();
+            return reader;
+        }
+        
         public void Finalise() {
             Conn.Close();
         }

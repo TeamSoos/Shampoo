@@ -16,9 +16,13 @@ public class TablesSQL : BaseSQL<Table> {
     return await QueryOne(cmd);
   }
   
-  public async Task<List<Table>> get_all() {
+  public List<Table> get_all() {
     var cmd = new NpgsqlCommand("SELECT * FROM restaurant_table");
-    return await QueryMultiple(cmd);
+    return QueryMultiple(cmd);
+  }
+  public async Task<List<Table>> get_all_async() {
+    var cmd = new NpgsqlCommand("SELECT * FROM restaurant_table");
+    return await QueryMultipleAsync(cmd);
   }
   
   public void Reserve(Table table) {
@@ -50,13 +54,14 @@ public class TablesSQL : BaseSQL<Table> {
   }
   
   protected override Table ReadTables(NpgsqlDataReader reader) {
+    EmployeeSQL employeeDB = new EmployeeSQL();
     
     return new Table {
       ID = (int)reader["id"],
       Number = (int)reader["number"],
       Status = Enum.Parse<TableStatus>(
           (string)reader["status"], ignoreCase: true),
-      Employee = (int)reader["employee"]
+      Employee = employeeDB.get_one((int)reader["waiter"])
     };
   }
 }

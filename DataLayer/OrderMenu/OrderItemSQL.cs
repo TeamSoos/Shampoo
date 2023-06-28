@@ -6,13 +6,13 @@ namespace DataLayer.OrderMenu;
 public class OrderItemSQL : BaseSQL<OrderMenuItem> {
     public async Task<List<OrderMenuItem>> get_all() {
         var cmd = new NpgsqlCommand("SELECT * FROM allmenu");
-        return await QueryMultiple(cmd);
+        return await QueryMultipleAsync(cmd);
     }
 
     public async Task<List<OrderMenuItem>> get_of_menu(OrderMenuItem.EMenuType menu) {
         var cmd = new NpgsqlCommand("SELECT * FROM allmenu WHERE menu = @menu");
         cmd.Parameters.AddWithValue("menu", OrderMenuItem.StringFromMenu(menu));
-        return await QueryMultiple(cmd);
+        return await QueryMultipleAsync(cmd);
     }
 
 
