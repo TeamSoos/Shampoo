@@ -18,7 +18,7 @@ class MenuSql {
         db.Store(cmd);
     }
     
-    public static async Task<List<MenuType>> get_all(OrderMenuItem.EMenuType type) {
+    public static async Task<List<MenuType>> get_all(OrderMenuItemModel.EMenuType type) {
         Library.Database db = new Library.Database();
         NpgsqlCommand cmd;
         NpgsqlDataReader reader;
@@ -26,13 +26,13 @@ class MenuSql {
         var items = new List<MenuType>();
 
         cmd = type switch {
-            OrderMenuItem.EMenuType.Lunch => new NpgsqlCommand(
+            OrderMenuItemModel.EMenuType.Lunch => new NpgsqlCommand(
                 "SELECT id, name, type, price, count FROM allmenu WHERE menu = 'lunch'",
                 db.Conn),
-            OrderMenuItem.EMenuType.Dinner => new NpgsqlCommand(
+            OrderMenuItemModel.EMenuType.Dinner => new NpgsqlCommand(
                 "SELECT id, name, type, price, count FROM allmenu WHERE menu = 'dinner'",
                 db.Conn),
-            OrderMenuItem.EMenuType.Drinks => new NpgsqlCommand(
+            OrderMenuItemModel.EMenuType.Drinks => new NpgsqlCommand(
                 "SELECT id, name, type, price, count FROM allmenu WHERE menu = 'drinks'",
                 db.Conn),
             _ => throw new Exception("Unreachable code reached. Good job.")

@@ -1,6 +1,6 @@
 namespace ModelLayer.OrderMenu;
 
-public class OrderMenuItem {
+public class OrderMenuItemModel {
     public int ID { get; set; }
     public string Name { get; set; } = "";
     public decimal Price { get; set; }
@@ -15,7 +15,7 @@ public class OrderMenuItem {
     }
 
     // STATIC CLASS FOR UTILITY
-    public static Dictionary<string, List<OrderMenuItem>> ItemsListGrouped(IEnumerable<OrderMenuItem> Items) {
+    public static Dictionary<string, List<OrderMenuItemModel>> ItemsListGrouped(IEnumerable<OrderMenuItemModel> Items) {
         return Items
             .GroupBy(x => x.Type)
             .ToDictionary(

@@ -10,7 +10,7 @@ using ServiceLayer.OrderMenu;
 namespace GUI.ViewModels;
 
 public class OrderMenuViewModel : RoutablePage {
-    public Dictionary<string, List<OrderMenuItem>> _listItems;
+    public Dictionary<string, List<OrderMenuItemModel>> _listItems;
     readonly string activebtnc = "#B5ECA1";
 
     string colour1;
@@ -45,7 +45,7 @@ public class OrderMenuViewModel : RoutablePage {
             // active button
             Colour1 = activebtnc;
 
-            SetCurrentMenu(OrderMenuItem.EMenuType.Lunch);
+            SetCurrentMenu(OrderMenuItemModel.EMenuType.Lunch);
 
         });
         getDinner = ReactiveCommand.Create(() => {
@@ -55,7 +55,7 @@ public class OrderMenuViewModel : RoutablePage {
             // active button
             Colour2 = activebtnc;
 
-            SetCurrentMenu(OrderMenuItem.EMenuType.Dinner);
+            SetCurrentMenu(OrderMenuItemModel.EMenuType.Dinner);
         });
 
         getDrinks = ReactiveCommand.Create(() => {
@@ -65,7 +65,7 @@ public class OrderMenuViewModel : RoutablePage {
             // active button
             Colour3 = activebtnc;
 
-            SetCurrentMenu(OrderMenuItem.EMenuType.Drinks);
+            SetCurrentMenu(OrderMenuItemModel.EMenuType.Drinks);
         });
 
         getLunch.Execute().Subscribe();
@@ -95,12 +95,12 @@ public class OrderMenuViewModel : RoutablePage {
     public ReactiveCommand<Unit, Unit> viewOrder { get; }
     public ReactiveCommand<Unit, Unit> GoBack { get; }
 
-    public Dictionary<string, List<OrderMenuItem>> ListItems {
+    public Dictionary<string, List<OrderMenuItemModel>> ListItems {
         get => _listItems;
         set => this.RaiseAndSetIfChanged(ref _listItems, value);
     }
 
-    void SetCurrentMenu(OrderMenuItem.EMenuType type) {
+    void SetCurrentMenu(OrderMenuItemModel.EMenuType type) {
 
     }
 }
