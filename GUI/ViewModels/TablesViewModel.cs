@@ -40,6 +40,10 @@ public class TablesViewModel : RoutablePage {
     Reservations = ReactiveCommand.Create(() => { HostScreen.GoNext(new ReservationsViewModel(HostScreen)); });
 
     _service = new TablesService();
+
+    Tables = new TablesModel(
+        convertToContainers(_service.GetAll())
+    );
     
     loadTables();
 
@@ -66,12 +70,12 @@ public class TablesViewModel : RoutablePage {
     List<Table> tables = _service.GetAll();
     
     // Set tables so that the page knows their states
-    Tables.Items = new ObservableCollection<TableContainer>(
-      convertToContainers(tables)    
-    );
+    // Tables.Items.Clear();
     
-    setTablesColours();
-    setTablesStatuses();
+    Console.WriteLine($"{Tables.Items.Count}");
+    
+    // setTablesColours();
+    // setTablesStatuses();
   }
 
   List<TableContainer> convertToContainers(List<Table> tables) {
@@ -196,5 +200,10 @@ public class TablesModel : ViewModelBase
     Items = new ObservableCollection<TableContainer>(items);
   }
 
-  public ObservableCollection<TableContainer> Items { get; set; }
+  private ObservableCollection<TableContainer> _listItems;
+
+  public ObservableCollection<TableContainer> Items {
+    get => _listItems;
+    set => this.RaiseAndSetIfChanged(ref _listItems, value);
+  }
 }
