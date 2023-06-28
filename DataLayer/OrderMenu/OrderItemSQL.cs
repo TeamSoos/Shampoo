@@ -26,7 +26,7 @@ public class OrderItemSQL : BaseSQL<OrderMenuItemModel> {
             Price = (decimal)reader["price"],
             Name = (string)reader["name"],
             Type = (string)reader["type"],
-            Menu = OrderMenuItemModel.MenuFromString((string)reader["menu"]),
+            Menu = OrderMenuItem.MenuFromString((string)reader["menu"]),
         };
     }
 }

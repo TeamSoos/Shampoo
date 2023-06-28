@@ -164,7 +164,7 @@ public class SelectTableViewModel : RoutablePage {
     // You can get the table id like this
     int table_id = HostScreen.CurrentTable;
     // Logged in employee is always contained like this
-    string current_employee = HostScreen.CurrentUser;
+    string current_employee = HostScreen.CurrentUser.Name;
 
     // Move to your page here
     Console.WriteLine($"{Employee} for {table_id} by {current_employee}");

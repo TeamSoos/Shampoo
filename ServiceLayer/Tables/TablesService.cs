@@ -14,10 +14,14 @@ public class TablesService {
     return await _sql.get_one(tableID);
   }
 
-  public async Task<List<Table>> GetAll() {
-    return await _sql.get_all();
+  public async Task<List<Table>> GetAllAsync() {
+    return await _sql.get_all_async();
   }
 
+  public List<Table> GetAll() {
+    return _sql.get_all();
+  }
+  
   public void Reserve(Table table) {
     _sql.Reserve(table);
   }
