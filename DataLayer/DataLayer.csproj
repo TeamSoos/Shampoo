@@ -6,4 +6,17 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Reference Include="DotNetEnv">
+        <HintPath>..\..\..\.nuget\packages\dotnetenv\2.5.0\lib\netstandard1.3\DotNetEnv.dll</HintPath>
+      </Reference>
+      <Reference Include="Npgsql">
+        <HintPath>..\..\..\.nuget\packages\npgsql\8.0.0-preview.4\lib\net6.0\Npgsql.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\ModelLayer\ModelLayer.csproj" />
+    </ItemGroup>
+
 </Project>

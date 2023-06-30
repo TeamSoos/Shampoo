@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Avalonia.Notification;
 using GUI.Logic.Models.Menu;
+using ModelLayer;
 using ReactiveUI;
 
 namespace GUI.ViewModels;
@@ -11,13 +12,14 @@ public interface IHostScreen : IScreen {
     public INotificationMessageManager notificationManager { get; }
     
     // state
-    string CurrentUser { get; set; }
+    Employee CurrentUser { get; set; }
     
     int CurrentUserID { get; set; }
     int CurrentTable { get; set; }
     int GuestCount { get; set; }
     List<MenuItem> CurrentOrder { get; set; }
-
+    public void LogoutUserAction();
     public void GoNext(RoutablePage page);
     public void GoBack();
+    void Notify(string msg, int timeout);
 }

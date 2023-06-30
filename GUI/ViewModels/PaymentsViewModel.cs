@@ -62,7 +62,7 @@ public class PaymentsViewModel : RoutablePage {
             screen.GoNext(new FinalPaymentViewModel(screen));
         }));
         int table = screen.CurrentTable;
-        Waiter = screen.CurrentUser;
+        Waiter = screen.CurrentUser.Name;
         
         var res = PaymentSQL.get_total(table);
         TableNr = table.ToString();
