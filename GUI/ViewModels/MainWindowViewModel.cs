@@ -21,7 +21,7 @@ public class MainWindowViewModel : ReactiveObject, IHostScreen {
         // Navigate to the first page
         Router.Navigate.Execute(new LoginPageViewModel(this));
         GoNext(new LoginPageViewModel(this));
-        GoNext(new OrderMenuViewModel(this, "", 1));
+        // GoNext(new TablesViewModel(this));
         UIController ncontroller = UIController.GetInstance(null);
         
         GoBackPage = ReactiveCommand.CreateFromObservable(
@@ -62,6 +62,18 @@ public class MainWindowViewModel : ReactiveObject, IHostScreen {
                 .HasMessage(msg)
                 .Dismiss().WithDelay(TimeSpan.FromSeconds(timeout))
                 .Queue();
+    }
+    
+    public void LogoutUserAction() {
+        this.notificationManager.CreateMessage()
+                .Animates(true)
+                .Background("#B4BEFE")
+                .Foreground("#1E1E2E")
+                .HasMessage(
+                        $"Logging out. Good bye {this.CurrentUser.Name}!")
+                .Dismiss().WithDelay(TimeSpan.FromSeconds(5))
+                .Queue();
+        this.GoNext(new LoginPageViewModel(this));
     }
 
     public bool mobileUI { get; set; }

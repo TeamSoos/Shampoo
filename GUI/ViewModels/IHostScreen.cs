@@ -18,7 +18,7 @@ public interface IHostScreen : IScreen {
     int CurrentTable { get; set; }
     int GuestCount { get; set; }
     List<MenuItem> CurrentOrder { get; set; }
-
+    public void LogoutUserAction();
     public void GoNext(RoutablePage page);
     public void GoBack();
     void Notify(string msg, int timeout);
