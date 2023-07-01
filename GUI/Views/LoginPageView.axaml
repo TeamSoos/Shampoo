@@ -19,11 +19,11 @@
     <DockPanel LastChildFill="True">
         <StackPanel>
             <Image Height="50" Width="50" Source="{SvgImage /Assets/logo.svg}"></Image>
-            <StackPanel Margin="0,40,0,0" Spacing="{Binding FormContentSpacing}" HorizontalAlignment="Center"
+            <StackPanel Margin="0,40,0,0" Spacing="10" HorizontalAlignment="Center"
                         VerticalAlignment="Center">
-                <TextBox Width="{Binding FormContentWidth}" Watermark="Login ID" Text="{Binding IDInput}"/>
-                <TextBox Width="{Binding FormContentWidth}" Watermark="Login Key" PasswordChar="*" Text="{Binding Text}"/>
-                <Button Width="{Binding FormContentWidth}" 
+                <TextBox Width="200" Watermark="Login ID" Text="{Binding IDInput}"/>
+                <TextBox Width="200" Watermark="Login Key" PasswordChar="*" Text="{Binding LoginInput}"/>
+                <Button Width="200" 
                         Command="{Binding LoginStaff}"
                         IsDefault="True"
                         Content="Log in" />

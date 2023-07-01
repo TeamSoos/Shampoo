@@ -1,3 +1,4 @@
+using DataLayer.OrderMenu;
 using DataLayer.Tables;
 using ModelLayer.Tables;
 
@@ -9,13 +10,22 @@ public class TablesService {
   public TablesService() {
     _sql = new TablesSQL();
   }
-  
-  public async Task<Table> GetOne(int tableID) {
-    return await _sql.get_one(tableID);
+  public Table GetOne(int tableID) {
+    if (!_sql.exists(tableID))
+      return new Table();
+    
+    return _sql.get_one(tableID);
+  }
+  public async Task<Table> GetOneAsync(int tableID) {
+    return await _sql.get_one_async(tableID);
   }
 
-  public async Task<List<Table>> GetAll() {
-    return await _sql.get_all();
+  public async Task<List<Table>> GetAllAsync() {
+    return await _sql.get_all_async();
+  }
+
+  public List<Table> GetAll() {
+    return _sql.get_all();
   }
 
   public void Reserve(Table table) {

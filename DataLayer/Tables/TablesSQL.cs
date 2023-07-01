@@ -6,7 +6,16 @@ using Npgsql;
 namespace DataLayer.Tables;
 
 public class TablesSQL : BaseSQL<Table> {
-  public async Task<Table> get_one(int tableId) {
+  public Table get_one(int tableId) {
+    var cmd = new NpgsqlCommand(
+        "SELECT * FROM restaurant_table WHERE id = ($1);") {
+        Parameters = { 
+            new NpgsqlParameter { Value = tableId },
+        }
+    };
+    return QueryOneSync(cmd);
+  }
+  public async Task<Table> get_one_async(int tableId) {
     var cmd = new NpgsqlCommand(
         "SELECT * FROM restaurant_table WHERE id = ($1);") {
         Parameters = { 
@@ -16,9 +25,13 @@ public class TablesSQL : BaseSQL<Table> {
     return await QueryOne(cmd);
   }
   
-  public async Task<List<Table>> get_all() {
-    var cmd = new NpgsqlCommand("SELECT * FROM restaurant_table");
-    return await QueryMultiple(cmd);
+  public List<Table> get_all() {
+    var cmd = new NpgsqlCommand("SELECT * FROM restaurant_table ORDER BY id ASC");
+    return QueryMultiple(cmd);
+  }
+  public async Task<List<Table>> get_all_async() {
+    var cmd = new NpgsqlCommand("SELECT * FROM restaurant_table ORDER BY id ASC");
+    return await QueryMultipleAsync(cmd);
   }
   
   public void Reserve(Table table) {
@@ -49,14 +62,36 @@ public class TablesSQL : BaseSQL<Table> {
     };
   }
   
+  public bool exists(int id) {
+    var db = new Library.Database();
+      
+    // Query to check if the employee id exists in table
+    // returns 1 if it does, 0 if not
+    var cmd = new NpgsqlCommand("SELECT EXISTS(SELECT 1 FROM restaurant_table WHERE id = ($1));"){
+        Parameters = {
+            new NpgsqlParameter { Value = id }
+        }
+    };
+      
+    // Set connection object for command
+    cmd.Connection = db.Conn;
+      
+    // execute query manually
+    bool valid = (bool)cmd.ExecuteScalar()!;
+    db.Finalise();
+
+    return valid;
+  }
+  
   protected override Table ReadTables(NpgsqlDataReader reader) {
+    EmployeeSQL employeeDB = new EmployeeSQL();
     
     return new Table {
       ID = (int)reader["id"],
       Number = (int)reader["number"],
       Status = Enum.Parse<TableStatus>(
           (string)reader["status"], ignoreCase: true),
-      Employee = (int)reader["employee"]
+      Employee = employeeDB.get_one((int)reader["waiter"])
     };
   }
 }
