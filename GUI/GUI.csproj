@@ -12,6 +12,7 @@
 
     <ItemGroup>
         <AvaloniaResource Include="Assets\**" />
+        <AvaloniaResource Remove="obj\**" />
     </ItemGroup>
 
     <ItemGroup>
@@ -65,5 +66,9 @@
 
     <ItemGroup>
       <ProjectReference Include="..\ServiceLayer\ServiceLayer.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <AdditionalFiles Remove="obj\**" />
     </ItemGroup>
 </Project>

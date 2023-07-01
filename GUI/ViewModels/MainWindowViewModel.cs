@@ -22,6 +22,7 @@ public class MainWindowViewModel : ReactiveObject, IHostScreen {
         GoNext(new LoginPageViewModel(this));
         GoNext(new OrderMenuViewModel(this, "", 1));
         UIController ncontroller = UIController.GetInstance(null);
+        ncontroller.ResizeWindow(400, 800);
         
         GoBackPage = ReactiveCommand.CreateFromObservable(
             () => {
