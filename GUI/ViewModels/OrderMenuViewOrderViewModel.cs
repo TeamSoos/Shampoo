@@ -25,11 +25,10 @@ public class OrderMenuViewOrderViewModel : RoutablePage {
 
         PlaceOrder = ReactiveCommand.Create(() => {
             //OrderSql.place_order(ItemsGrouped, table);
-            service.CreateNewOrder(new() {
-                ID = HostScreen.CurrentTable
-            }, Items);
-
-            // reset the order
+            service.CreateNewOrder(HostScreen.CurrentTable, Items);
+            
+            // reset the items
+            HostScreen.CurrentOrder.OrderItems.Clear();
 
             HostScreen.notificationManager.CreateMessage()
                 .Animates(true)
