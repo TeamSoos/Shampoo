@@ -146,7 +146,7 @@ public class SelectTableViewModel : RoutablePage {
 
     // Move to your page here
     Console.WriteLine($"{Employee} for {table_id} by {current_employee}");
-    HostScreen.GoNext(new OrderMenuViewModel(HostScreen, current_employee, table_id));
+    HostScreen.GoNext(new OrderMenuViewModel(HostScreen));
   }
 
   void loadWaiters() {

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Avalonia.Notification;
 using GUI.Logic.Models.Menu;
 using ModelLayer;
+using ModelLayer.OrderMenu;
 using ModelLayer.Tables;
 using ReactiveUI;
 
@@ -18,7 +19,7 @@ public interface IHostScreen : IScreen {
     int CurrentUserID { get; set; }
     Table CurrentTable { get; set; }
     int GuestCount { get; set; }
-    List<MenuItem> CurrentOrder { get; set; }
+    OrderMenuModel CurrentOrder { get; set; }
     public void LogoutUserAction();
     public void GoNext(RoutablePage page);
     public void GoBack();

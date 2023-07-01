@@ -10,23 +10,25 @@ using ServiceLayer.OrderMenu;
 namespace GUI.ViewModels;
 
 public class OrderMenuViewModel : RoutablePage {
-    public Dictionary<string, List<OrderMenuItem>> _listItems;
+    public List<GroupedMenuModel> _listItems;
     readonly string activebtnc = "#B5ECA1";
+
+    MenuItemService service = new();
 
     string colour1;
     string colour2;
     string colour3;
 
     readonly string defaultbtnc = "#B4BEFE";
-    int Table;
-    string Waiter;
 
-    public OrderMenuViewModel(IHostScreen screen, string waiter, int table) {
-        Waiter = waiter;
-        Table = table;
+    public void ViewItemInfo(OrderMenuItemModel item) {
+        HostScreen.GoNext(new OrderItemInfoViewModel(HostScreen, item));
+    }
 
+    public OrderMenuViewModel(IHostScreen screen) {
         // List items for the menu
         _listItems = new();
+        screen.CurrentOrder = new();
 
 
         HostScreen = screen;
@@ -36,7 +38,17 @@ public class OrderMenuViewModel : RoutablePage {
 
         GoBack = ReactiveCommand.Create(() => { HostScreen.GoBack(); });
 
-        viewOrder = ReactiveCommand.Create(() => { HostScreen.GoNext(new OrderMenuViewOrderViewModel(HostScreen)); });
+        ShowItemInfo = ReactiveCommand.Create<OrderMenuItemModel>(ViewItemInfo);
+
+        viewOrder = ReactiveCommand.Create(() => {
+            var filteredItems = service.FilterUnorderedItems(listItemsUngrouped!);
+            filteredItems.ForEach(item => {
+                HostScreen.CurrentOrder.OrderItems.Add(item);
+            });
+            listItemsUngrouped!.Clear();
+            HostScreen.GoNext(
+                new OrderMenuViewOrderViewModel(HostScreen));
+        });
 
         getLunch = ReactiveCommand.Create(() => {
             // default buttons
@@ -45,7 +57,7 @@ public class OrderMenuViewModel : RoutablePage {
             // active button
             Colour1 = activebtnc;
 
-            SetCurrentMenu(OrderMenuItem.EMenuType.Lunch);
+            SetMenuOnDisplay(OrderMenuItemModel.EMenuType.Lunch);
 
         });
         getDinner = ReactiveCommand.Create(() => {
@@ -55,7 +67,7 @@ public class OrderMenuViewModel : RoutablePage {
             // active button
             Colour2 = activebtnc;
 
-            SetCurrentMenu(OrderMenuItem.EMenuType.Dinner);
+            SetMenuOnDisplay(OrderMenuItemModel.EMenuType.Dinner);
         });
 
         getDrinks = ReactiveCommand.Create(() => {
@@ -65,7 +77,7 @@ public class OrderMenuViewModel : RoutablePage {
             // active button
             Colour3 = activebtnc;
 
-            SetCurrentMenu(OrderMenuItem.EMenuType.Drinks);
+            SetMenuOnDisplay(OrderMenuItemModel.EMenuType.Drinks);
         });
 
         getLunch.Execute().Subscribe();
@@ -93,14 +105,18 @@ public class OrderMenuViewModel : RoutablePage {
     public ReactiveCommand<Unit, Unit> getDinner { get; }
     public ReactiveCommand<Unit, Unit> getDrinks { get; }
     public ReactiveCommand<Unit, Unit> viewOrder { get; }
+    public ReactiveCommand<OrderMenuItemModel, Unit> ShowItemInfo { get; }
     public ReactiveCommand<Unit, Unit> GoBack { get; }
 
-    public Dictionary<string, List<OrderMenuItem>> ListItems {
-        get => _listItems;
+    public List<GroupedMenuModel> ListItems {
+        get { return _listItems; }
         set => this.RaiseAndSetIfChanged(ref _listItems, value);
     }
 
-    void SetCurrentMenu(OrderMenuItem.EMenuType type) {
+    List<OrderMenuItemModel> listItemsUngrouped;
 
+    void SetMenuOnDisplay(OrderMenuItemModel.EMenuType type) {
+        listItemsUngrouped = service.GetItemsOfMenuSync(type);
+        ListItems = service.GetFromItemList(listItemsUngrouped);
     }
 }
