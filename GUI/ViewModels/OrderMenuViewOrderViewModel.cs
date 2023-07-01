@@ -19,7 +19,7 @@ public class OrderMenuViewOrderViewModel : RoutablePage {
         goBack = ReactiveCommand.Create(() => { HostScreen.GoBack(); });
 
         PlaceOrder = ReactiveCommand.Create(() => {
-            OrderSql.place_order(ItemsGrouped, table);
+            OrderSql.place_order(ItemsGrouped, table.ID);
 
             // reset the order
             HostScreen.CurrentOrder = new List<MenuItem>();

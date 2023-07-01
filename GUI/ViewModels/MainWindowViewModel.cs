@@ -3,6 +3,7 @@ using System.Reactive;
 using Avalonia.Notification;
 using GUI.Logic.Models.Menu;
 using ModelLayer;
+using ModelLayer.Tables;
 using ReactiveUI;
 using RoutedApp;
 using RoutedApp.Logic;
@@ -85,6 +86,6 @@ public class MainWindowViewModel : ReactiveObject, IHostScreen {
         get => CurrentUser.ID;
         set {} 
     }
-    public int CurrentTable { get; set; }
+    public Table CurrentTable { get; set; }
     public int GuestCount { get; set; }
 }
