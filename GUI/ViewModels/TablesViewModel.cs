@@ -8,9 +8,12 @@ using System.Threading.Tasks;
 using Avalonia.Media;
 using Avalonia.Notification;
 using Avalonia.Threading;
+using DynamicData;
 using GUI.Logic.Models.Table;
+using ModelLayer;
 using ModelLayer.Tables;
 using ReactiveUI;
+using ServiceLayer.Order;
 using ServiceLayer.Tables;
 
 namespace GUI.ViewModels;
@@ -23,28 +26,29 @@ public class TablesViewModel : RoutablePage {
    * of the tables. This is for us to check
    * if the table that was clicked has been taken
    */
-  private TablesModel Tables {
-    get;
-    set;
+  private TablesModel _tables;
+  public TablesModel Tables  {
+    get => _tables;
+    set => this.RaiseAndSetIfChanged(ref _tables, value);
   }
 
   private DispatcherTimer dispatcher = new DispatcherTimer();
 
-  private TablesService _service;
+  private TablesService _tableService;
+  private OrderService _orderService;
 
   public TablesViewModel(IHostScreen screen) {
     HostScreen = screen;
-    LogoutUser = ReactiveCommand.Create(logoutUserAction);
-    // TableSel = ReactiveCommand.Create<string>(tableSelect);
+    LogoutUser = ReactiveCommand.Create(screen.LogoutUserAction);
     MyTables = ReactiveCommand.Create(showUserTables);
     Reservations = ReactiveCommand.Create(() => { HostScreen.GoNext(new ReservationsViewModel(HostScreen)); });
 
-    _service = new TablesService();
+    _tableService = new TablesService();
+    _orderService = new OrderService();
 
     Tables = new TablesModel(
-        convertToContainers(_service.GetAll())
+        convertToContainers(_tableService.GetAll())
     );
-    
     loadTables();
 
     // This allows us to update the table states every "n" seconds
@@ -61,21 +65,25 @@ public class TablesViewModel : RoutablePage {
   public ReactiveCommand<Unit, Unit> LogoutUser { get; set; }
   public ReactiveCommand<Unit, Unit> Reservations { get; set; }
   public ReactiveCommand<Unit, Unit> MyTables { get; set; }
-  public ReactiveCommand<string, Unit> TableSel { get; set; }
 
 
   public override IHostScreen HostScreen { get; }
 
   void loadTables() {
-    List<Table> tables = _service.GetAll();
+    List<Table> tables = _tableService.GetAll();
+    List<TableContainer> containers = convertToContainers(tables);
+
+    Console.WriteLine($"Tables: {Tables.Items.Count}");
     
     // Set tables so that the page knows their states
-    // Tables.Items.Clear();
+    Tables = new TablesModel(
+        containers
+    );
     
-    Console.WriteLine($"{Tables.Items.Count}");
-    
-    // setTablesColours();
-    // setTablesStatuses();
+    // We use a global value since the model is
+    // regarded as a reactive element
+    setTablesColours();
+    setTablesStatuses();
   }
 
   List<TableContainer> convertToContainers(List<Table> tables) {
@@ -83,8 +91,8 @@ public class TablesViewModel : RoutablePage {
     {
         Table = table,
         Colour = "#B5ECA1", 
-        OrderStatus = "none",
-        TableSelect = ReactiveCommand.Create(this.tableSelect)
+        OrderStatus = "orderStatus",
+        TableSelect = ReactiveCommand.Create<Int32, Unit>(this.tableSelect)
     }).ToList();
 
   }
@@ -96,42 +104,34 @@ public class TablesViewModel : RoutablePage {
     string reserved = "#B4BEFE";
     
     foreach (TableContainer table in Tables.Items) {
-      string propertyName = $"Colour{table.Table.Number}";
+      Console.WriteLine($"{table.Table.Number} {table.Table.Status}");
       string colourValue = table.Table.Status switch {
           TableStatus.reserved => reserved,
           TableStatus.empty => empty,
           TableStatus.occupied => taken,
       };
 
-      // Set the property dynamically using reflection
-      PropertyInfo property = GetType().GetProperty(propertyName)!;
-      property.SetValue(this, colourValue);
+      table.Colour = colourValue;
     }
   }
   
   void setTablesStatuses() {
     foreach (TableContainer table in Tables.Items) {
       string status = "";
-      string propertyName = $"Table{table.Table.Number}Status";
-      PropertyInfo statusProperty = GetType().GetProperty(propertyName)!;
+      List<Order> orders = _orderService.GetAllByTable(table.Table);
 
-      // Task.Run(async () =>
-      // {
-      //   List<string> orders = await TableType.getOrders(table.Number);
-      //   
-      //   if (orders.Contains("done")) {
-      //     status = "done";
-      //   }
-      //   else if (orders.Contains("preparing")) {
-      //     status = "preparing";
-      //   }
-      //   else if (orders.Contains("placed")) {
-      //     status = "placed";
-      //   }
-      //
-      // }).Wait();
+      foreach (var order in orders) {
+        if (order.Paid)
+          continue;
 
-      statusProperty.SetValue(this, status);
+        if (order.Status == "done") {
+          status = "done";
+        } else if (order.Status == "placed") {
+          status = "placed";
+        }
+      }
+      
+      table.OrderStatus = status;
     }
   }
 
@@ -143,23 +143,13 @@ public class TablesViewModel : RoutablePage {
     // }
   }
 
-  public void tableSelect() {
-    // Create tables dynamically
+  public Unit tableSelect(Int32 x) {
     Console.WriteLine("Button pressed");
-  }
-
-  // This should optimaly be handled by our IHostScreen provider
-  // Check issue at https://github.com/TeamSoos/Shampoo/issues/15
-  public void logoutUserAction() {
-    HostScreen.notificationManager.CreateMessage()
-        .Animates(true)
-        .Background("#B4BEFE")
-        .Foreground("#1E1E2E")
-        .HasMessage(
-            $"Logging out. Good bye {HostScreen.CurrentUser}!")
-        .Dismiss().WithDelay(TimeSpan.FromSeconds(5))
-        .Queue();
-    HostScreen.GoNext(new LoginPageViewModel(HostScreen));
+    // Load next
+    HostScreen.CurrentTable = x;
+    HostScreen.GoNext(new SelectTableViewModel(HostScreen));
+    // return val bypass
+    return new Unit();
   }
 
   public override void OnUnload() {
@@ -173,22 +163,21 @@ public class TablesViewModel : RoutablePage {
   }
 }
 
-
-public class TableContainer {
-  public ReactiveCommand<Unit, Unit> TableSelect { get; set; }
+public class TableContainer : ViewModelBase {
+  public ReactiveCommand<Int32, Unit> TableSelect { get; set; }
   public Table Table {
     get => table;
-    set => table = value;
+    set => this.RaiseAndSetIfChanged(ref table, value);
   }
   private Table table;
   public string Colour {
     get => colour;
-    set => colour = value;
+    set => this.RaiseAndSetIfChanged(ref colour, value);
   }
   private string colour;
   public string OrderStatus {
     get => orderStatus;
-    set => orderStatus = value;
+    set => this.RaiseAndSetIfChanged(ref orderStatus, value);
   }
   private string orderStatus;
 }

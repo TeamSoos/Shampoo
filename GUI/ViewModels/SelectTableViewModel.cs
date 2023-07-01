@@ -22,6 +22,44 @@ public class SelectTableViewModel : RoutablePage {
   public int guestCount;
 
   int selected_index;
+  
+
+  public TableType Table { get; set; }
+
+
+  public override IHostScreen HostScreen { get; }
+
+  public ObservableCollection<ComboBoxItem> ComboBoxItems {
+    get => comboBoxItems;
+    set => this.RaiseAndSetIfChanged(ref comboBoxItems, value);
+  }
+
+  public int SelectedIndex {
+    get => selected_index;
+    set => this.RaiseAndSetIfChanged(ref selected_index, value);
+  }
+
+  public int CurrentTable {
+    get => currentTable;
+    set => this.RaiseAndSetIfChanged(ref currentTable, value);
+  }
+
+  public int GuestCount {
+    get => guestCount;
+    set => this.RaiseAndSetIfChanged(ref guestCount, value);
+  }
+
+  public ReactiveCommand<Unit, Unit> CreateOrder { get; set; }
+
+  public ReactiveCommand<Unit, Unit> GoBack { get; }
+
+  public ReactiveCommand<Unit, Unit> GoToReserve { get; }
+  public ReactiveCommand<Unit, Unit> OccupyTable { get; }
+  public ReactiveCommand<Unit, Unit> FreeTable { get; }
+  public bool IsFreeable { get; set; }
+  public bool IsOccupiable { get; set; }
+  public ReactiveCommand<Unit, Unit>  DeliverOrder { get; set; }
+  public int UnpaidOrders { get; set; }
 
 #pragma warning disable CS8618
   public SelectTableViewModel(IHostScreen screen) {
@@ -36,11 +74,8 @@ public class SelectTableViewModel : RoutablePage {
       HostScreen.GuestCount = GuestCount;
       HostScreen.GoNext(new ReserveTableViewModel(HostScreen));
     });
-    
-    DeliverOrder = ReactiveCommand.Create(() =>
-    {
-      HostScreen.GoNext(new DeliverOrderViewModel(HostScreen));
-    });
+
+    DeliverOrder = ReactiveCommand.Create(() => { HostScreen.GoNext(new DeliverOrderViewModel(HostScreen)); });
 
     CreateOrder = ReactiveCommand.Create(createOrder);
     OccupyTable = ReactiveCommand.Create(occupyTable);
@@ -122,42 +157,6 @@ public class SelectTableViewModel : RoutablePage {
 
     HostScreen.GoNext(new TablesViewModel(HostScreen));
   }
-  public TableType Table { get; set; }
-
-
-  public override IHostScreen HostScreen { get; }
-
-  public ObservableCollection<ComboBoxItem> ComboBoxItems {
-    get => comboBoxItems;
-    set => this.RaiseAndSetIfChanged(ref comboBoxItems, value);
-  }
-
-  public int SelectedIndex {
-    get => selected_index;
-    set => this.RaiseAndSetIfChanged(ref selected_index, value);
-  }
-
-  public int CurrentTable {
-    get => currentTable;
-    set => this.RaiseAndSetIfChanged(ref currentTable, value);
-  }
-
-  public int GuestCount {
-    get => guestCount;
-    set => this.RaiseAndSetIfChanged(ref guestCount, value);
-  }
-
-  public ReactiveCommand<Unit, Unit> CreateOrder { get; set; }
-
-  public ReactiveCommand<Unit, Unit> GoBack { get; }
-
-  public ReactiveCommand<Unit, Unit> GoToReserve { get; }
-  public ReactiveCommand<Unit, Unit> OccupyTable { get; }
-  public ReactiveCommand<Unit, Unit> FreeTable { get; }
-  public bool IsFreeable { get; set; }
-  public bool IsOccupiable { get; set; }
-  public ReactiveCommand<Unit, Unit>  DeliverOrder { get; set; }
-  public int UnpaidOrders { get; set; }
 
   void createOrder() {
     string Employee = (string)ComboBoxItems[SelectedIndex].Content;
