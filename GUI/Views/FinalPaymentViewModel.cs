@@ -28,7 +28,7 @@ public class FinalPaymentViewModel : RoutablePage
             screen.GoNext(new TransactionPaymentViewModel(screen));
             
             // FREE TABLE
-            OrderSql.transact(screen.CurrentTable);
+            OrderSql.transact(screen.CurrentTable.ID);
         });
     }
 }

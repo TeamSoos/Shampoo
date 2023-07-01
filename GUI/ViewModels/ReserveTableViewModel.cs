@@ -2,18 +2,23 @@ using System;
 using System.Reactive;
 using Avalonia.Notification;
 using GUI.Logic.Models.Reservation;
+using ModelLayer.Tables;
 using ReactiveUI;
 using RoutedApp.Logic.Models.Logging;
+using ServiceLayer.Reservation;
 
 namespace GUI.ViewModels;
 
 public class ReserveTableViewModel : RoutablePage {
+    private ReservationService _service;
 
     public ReserveTableViewModel(IHostScreen screen) {
         HostScreen = screen;
         CurrentTable = screen.CurrentTable;
         Time = "00:00";
-
+                
+        _service = new ReservationService();
+        
         /*
          * Guest count can be aqcuired via: screen.GuestCount
          */
@@ -23,7 +28,7 @@ public class ReserveTableViewModel : RoutablePage {
     }
 
     public override IHostScreen HostScreen { get; }
-    public int CurrentTable { get; set; }
+    public Table CurrentTable { get; set; }
     public ReactiveCommand<Unit, Unit> CreateReservation { get; set; }
     public ReactiveCommand<Unit, Unit> GoBack { get; }
     public string Name { get; set; }
@@ -35,20 +40,21 @@ public class ReserveTableViewModel : RoutablePage {
 
     void createReservation() {
         // This will call the db trigger to set the table to occupied
-        Reservation.Create(Name, Phone, Time, HostScreen.GuestCount, CurrentTable);
-        HostScreen.notificationManager.CreateMessage()
-            .Animates(true)
-            .Background("#B4BEFE")
-            .Foreground("#1E1E2E")
-            .HasMessage(
-                $"Reservation for {Name} at {Time} was created!")
-            .Dismiss().WithDelay(TimeSpan.FromSeconds(5))
-            .Queue();
+        // Reservation.Create(Name, Phone, Time, HostScreen.GuestCount, CurrentTable);
+
+        _service.Reserve(
+                new ModelLayer.Tables.Reservation {
+                        Name = Name,
+                        Guests = HostScreen.GuestCount,
+                        Phone = Phone,
+                        Table = CurrentTable
+                }
+        );
         
+        HostScreen.Notify($"Reservation for {Name} at {Time} was created!", 5);
         
         Logger.addRecord(HostScreen.CurrentUserID,$"Created reservation for {Name} at {Time}");
-
-
+        
         HostScreen.GoNext(new TablesViewModel(HostScreen));
     }
 }

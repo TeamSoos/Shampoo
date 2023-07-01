@@ -38,7 +38,7 @@ public class DeliverOrderViewModel : RoutablePage {
     HostScreen = screen;
     BackButton = ReactiveCommand.Create(screen.GoBack);
     DeliverSelected = ReactiveCommand.Create(deliverSelected);
-    CurrentTable = screen.CurrentTable;
+    CurrentTable = screen.CurrentTable.ID;
     
     OrdersList = new OrderModel(
         new List<OrderCardItem>());
