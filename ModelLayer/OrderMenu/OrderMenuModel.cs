@@ -6,12 +6,7 @@ public class OrderMenuModel {
     public bool Delivered { get; set; } // gets directly from the database
     
 
-    List<OrderMenuItemModel> _orderItems = new();
-
-    public List<OrderMenuItemModel> OrderItems {
-        get => _orderItems;
-        protected set { _orderItems = value; }
-    }
+    public List<OrderMenuItemModel> OrderItems = new();
 
     // It would probably be fine if we move the UI layer
     // However it would be convinient to have this code here

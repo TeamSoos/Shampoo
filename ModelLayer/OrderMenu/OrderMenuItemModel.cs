@@ -8,6 +8,14 @@ public class OrderMenuItemModel {
     public int Count { get; set; }
     public EMenuType Menu { get; set; }
 
+    public string? Note { get; set; } = "";
+    private int _orderedCount = 0;
+
+    public int OrderedCount {
+        get => _orderedCount;
+        set => _orderedCount = value <= Count ? value : Count;
+    }
+
     public enum EMenuType {
         Drinks,
         Lunch,

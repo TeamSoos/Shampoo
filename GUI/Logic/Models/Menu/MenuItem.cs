@@ -13,24 +13,24 @@ public class MenuItem {
         Name = menuType.Name;
         Command = ReactiveCommand.Create(() => {
             // Pass in delegates over here
-            screen.GoNext(new OrderItemInfoViewModel(screen, menuType, AddToOrder, AddNote, RemoveAllFromOrder,
-                CurrentAmount));
+            //screen.GoNext(new OrderItemInfoViewModel(screen, menuType, AddToOrder, AddNote, RemoveAllFromOrder,
+             //   CurrentAmount));
         });
         HostScreen = screen;
         Price = menuType.Price;
         MenuItemFull = menuType;
     }
 
-    int CurrentAmount => HostScreen.CurrentOrder.Count(x => x == this);
+    //int CurrentAmount => HostScreen.CurrentOrder.Count(x => x == this);
 
     void AddToOrder(int amount) {
         int amount_display = amount;
 
         // remove all, we then modify it
-        HostScreen.CurrentOrder.RemoveAll(x => x == this);
+        //HostScreen.CurrentOrder.RemoveAll(x => x == this);
 
         while (amount > 0) {
-            HostScreen.CurrentOrder.Add(this);
+            //HostScreen.CurrentOrder.Add(this);
             amount--;
         }
 
@@ -45,7 +45,7 @@ public class MenuItem {
     }
 
     void RemoveAllFromOrder() {
-        HostScreen.CurrentOrder.RemoveAll(i => i == this);
+        //HostScreen.CurrentOrder.RemoveAll(i => i == this);
         HostScreen.notificationManager.CreateMessage()
             .Animates(true)
             .Background("#B4BEFE")

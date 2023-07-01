@@ -20,15 +20,15 @@ public class OrderMenuViewModel : RoutablePage {
     string colour3;
 
     readonly string defaultbtnc = "#B4BEFE";
-    int Table;
-    string Waiter;
 
-    public OrderMenuViewModel(IHostScreen screen, string waiter, int table) {
-        Waiter = waiter;
-        Table = table;
+    public void ViewItemInfo(OrderMenuItemModel item) {
+        HostScreen.GoNext(new OrderItemInfoViewModel(HostScreen, item));
+    }
 
+    public OrderMenuViewModel(IHostScreen screen) {
         // List items for the menu
         _listItems = new();
+        screen.CurrentOrder = new();
 
 
         HostScreen = screen;
@@ -38,7 +38,14 @@ public class OrderMenuViewModel : RoutablePage {
 
         GoBack = ReactiveCommand.Create(() => { HostScreen.GoBack(); });
 
+        ShowItemInfo = ReactiveCommand.Create<OrderMenuItemModel>(ViewItemInfo);
+
         viewOrder = ReactiveCommand.Create(() => {
+            var filteredItems = service.FilterUnorderedItems(listItemsUngrouped!);
+            filteredItems.ForEach(item => {
+                HostScreen.CurrentOrder.OrderItems.Add(item);
+            });
+            listItemsUngrouped!.Clear();
             HostScreen.GoNext(
                 new OrderMenuViewOrderViewModel(HostScreen));
         });
@@ -98,6 +105,7 @@ public class OrderMenuViewModel : RoutablePage {
     public ReactiveCommand<Unit, Unit> getDinner { get; }
     public ReactiveCommand<Unit, Unit> getDrinks { get; }
     public ReactiveCommand<Unit, Unit> viewOrder { get; }
+    public ReactiveCommand<OrderMenuItemModel, Unit> ShowItemInfo { get; }
     public ReactiveCommand<Unit, Unit> GoBack { get; }
 
     public List<GroupedMenuModel> ListItems {
@@ -105,8 +113,10 @@ public class OrderMenuViewModel : RoutablePage {
         set => this.RaiseAndSetIfChanged(ref _listItems, value);
     }
 
+    List<OrderMenuItemModel> listItemsUngrouped;
+
     void SetMenuOnDisplay(OrderMenuItemModel.EMenuType type) {
-        var list = service.GetItemsOfMenuSync(type);
-        ListItems = service.GetFromItemList(list);
+        listItemsUngrouped = service.GetItemsOfMenuSync(type);
+        ListItems = service.GetFromItemList(listItemsUngrouped);
     }
 }

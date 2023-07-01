@@ -4,9 +4,9 @@ using Npgsql;
 namespace DataLayer.OrderMenu;
 
 public class OrderItemSQL : BaseSQL<OrderMenuItemModel> {
-    public async Task<List<OrderMenuItemModel>> get_all() {
+    public List<OrderMenuItemModel> get_all() {
         var cmd = new NpgsqlCommand("SELECT * FROM allmenu");
-        return await QueryMultiple(cmd);
+        return QueryMultiple(cmd);
     }
 
     public async Task<List<OrderMenuItemModel>> get_of_menu(OrderMenuItemModel.EMenuType menu) {

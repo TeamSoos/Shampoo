@@ -33,7 +33,7 @@
                 Content="Drinks" Command="{Binding getDrinks}" Margin="6" />
 
         <!-- List -->
-        <ScrollViewer Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">
+        <ScrollViewer Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Tag="{Binding ShowItemInfo}">
 
             <ItemsControl Items="{Binding ListItems}" Padding="10,4">
                 <ItemsControl.Styles>
@@ -61,7 +61,9 @@
                                                 <TextBlock Text="{Binding Name}" FontSize="16" TextWrapping="Wrap" />
                                             </Label>
                                             <Button Grid.Column="1" Content="Add to order"
-                                                    HorizontalContentAlignment="Center" />
+                                                    HorizontalContentAlignment="Center"
+                                                    Command="{Binding $parent[ScrollViewer].Tag}"
+                                                    CommandParameter="{Binding}" />
                                         </Grid>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
