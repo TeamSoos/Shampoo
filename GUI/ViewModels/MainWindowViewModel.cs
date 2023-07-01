@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Reactive;
 using Avalonia.Notification;
 using GUI.Logic.Models.Menu;
 using ModelLayer;
+using ModelLayer.Tables;
 using ModelLayer.OrderMenu;
 using ReactiveUI;
 using RoutedApp;
@@ -23,11 +23,8 @@ public class MainWindowViewModel : ReactiveObject, IHostScreen {
         // Navigate to the first page
         Router.Navigate.Execute(new LoginPageViewModel(this));
         GoNext(new LoginPageViewModel(this));
+        // GoNext(new TablesViewModel(this));
         UIController ncontroller = UIController.GetInstance(null);
-
-        CurrentTable = 1;
-        GoNext(new OrderMenuViewModel(this));
-        ncontroller.ResizeWindow(400, 800);
         
         GoBackPage = ReactiveCommand.CreateFromObservable(
             () => {
@@ -90,6 +87,6 @@ public class MainWindowViewModel : ReactiveObject, IHostScreen {
         get => CurrentUser.ID;
         set {} 
     }
-    public int CurrentTable { get; set; }
+    public Table CurrentTable { get; set; }
     public int GuestCount { get; set; }
 }
