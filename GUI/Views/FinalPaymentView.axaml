@@ -20,10 +20,6 @@
         <Button HorizontalAlignment="Stretch" Margin="6" Command="{Binding Pay}">Debit Card</Button>
         
         <Button HorizontalAlignment="Stretch" Margin="6" Command="{Binding GoBack}">Back</Button>
-        <Button HorizontalAlignment="Stretch" Margin="6" Command="{Binding GoBack}">Back</Button>
-        <Button HorizontalAlignment="Stretch" Margin="6" Command="{Binding GoBack}">Back</Button>
-
-
     </StackPanel>
     
 </UserControl>
