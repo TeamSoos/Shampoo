@@ -6,29 +6,54 @@ using ModelLayer.Tables;
 using ReactiveUI;
 using ServiceLayer.Tables;
 
-namespace GUI.Views;
+namespace GUI.ViewModels;
 
-public class FinalPaymentViewModel : RoutablePage {
+public class FinalPaymentViewModel : RoutablePage
+{
     public TablesService service = new();
     public override IHostScreen HostScreen { get; }
-
     public ReactiveCommand<Unit, Unit> GoBack { get; set; }
-
     public ReactiveCommand<Unit, Unit> Pay { get; set; }
+    
+    private string total;
+    public string Total
+    {
+        get => total;
+        private set => this.RaiseAndSetIfChanged(ref total, value);
+    }
 
-    public FinalPaymentViewModel(IHostScreen screen) {
+    private string pricePerPerson;
+    public string PricePerPerson
+    {
+        get => pricePerPerson;
+        private set => this.RaiseAndSetIfChanged(ref pricePerPerson, value);
+    }
+
+    
+    public FinalPaymentViewModel(IHostScreen screen)
+    {
         HostScreen = screen;
 
-        GoBack = ReactiveCommand.Create(() => // setting value
+        GoBack = ReactiveCommand.Create(() => 
         {
             screen.GoBack();
         });
 
-        Pay = ReactiveCommand.Create(() => {
+        Pay = ReactiveCommand.Create(() =>
+        {
             screen.GoNext(new TransactionPaymentViewModel(screen));
 
-            // free ta le
-            service.Free(HostScreen.CurrentTable);
+            // free table
+            service.Free(new Table()
+            {
+                ID = HostScreen.CurrentTable.ID
+            });
         });
+    }
+    
+    public FinalPaymentViewModel(IHostScreen screen, string totalPrice, string pricePerPerson) : this(screen)
+    {
+        Total = totalPrice;
+        PricePerPerson = pricePerPerson;
     }
 }

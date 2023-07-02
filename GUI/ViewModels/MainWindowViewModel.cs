@@ -23,10 +23,10 @@ public class MainWindowViewModel : ReactiveObject, IHostScreen {
         CurrentOrder = new();
 
         // Navigate to the first page
-        Router.Navigate.Execute(new LoginPageViewModel(this));
+        Router.Navigate.Execute(new LoginPageViewModel(this)); 
         GoNext(new LoginPageViewModel(this));
-      //  GoNext(new PaymentsViewModel(this));      
-        //  UIController ncontroller = UIController.GetInstance(null);
+        //  GoNext(new PaymentsViewModel(this));      
+        // UIController ncontroller = UIController.GetInstance(null);
         
         GoBackPage = ReactiveCommand.CreateFromObservable(
             () => {

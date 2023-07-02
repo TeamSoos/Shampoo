@@ -7,9 +7,9 @@ using ReactiveUI;
 
 namespace GUI.Views;
 
-public partial class TransactionPayment : ReactiveUserControl<TransactionPaymentViewModel>
+public partial class SplitBill : ReactiveUserControl<SplitBillViewModel>
 {
-    public TransactionPayment()
+    public SplitBill()
     {
         InitializeComponent();
     }
