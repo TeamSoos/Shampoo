@@ -2,7 +2,7 @@ using System.Reactive;
 using GUI.ViewModels;
 using ReactiveUI;
 
-namespace GUI.Views;
+namespace GUI.ViewModels;
 
 public class TransactionPaymentViewModel : RoutablePage
 {
@@ -13,7 +13,7 @@ public class TransactionPaymentViewModel : RoutablePage
     public TransactionPaymentViewModel(IHostScreen screen)
     {
         HostScreen = screen;
-        GoBack = ReactiveCommand.Create(() => // setting value
+        GoBack = ReactiveCommand.Create(() => 
         {
             screen.GoBack();
         });

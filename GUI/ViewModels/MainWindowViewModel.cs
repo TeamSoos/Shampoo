@@ -15,6 +15,7 @@ namespace GUI.ViewModels;
 public class MainWindowViewModel : ReactiveObject, IHostScreen {
 
     readonly NavigationStack stack;
+    private IHostScreen _hostScreenImplementation;
 
     public MainWindowViewModel() {
         stack = new NavigationStack(new LoginPageViewModel(this));
@@ -22,10 +23,10 @@ public class MainWindowViewModel : ReactiveObject, IHostScreen {
         CurrentOrder = new();
 
         // Navigate to the first page
-        Router.Navigate.Execute(new LoginPageViewModel(this));
+        Router.Navigate.Execute(new LoginPageViewModel(this)); 
         GoNext(new LoginPageViewModel(this));
-        // GoNext(new TablesViewModel(this));
-        UIController ncontroller = UIController.GetInstance(null);
+        //  GoNext(new PaymentsViewModel(this));      
+        // UIController ncontroller = UIController.GetInstance(null);
         
         GoBackPage = ReactiveCommand.CreateFromObservable(
             () => {
@@ -46,6 +47,11 @@ public class MainWindowViewModel : ReactiveObject, IHostScreen {
 
     public OrderMenuModel CurrentOrder { get; set; }
 
+    public void LogoutUserAction()
+    {
+        throw new NotImplementedException();
+    }
+
     public void GoNext(RoutablePage page) {
         stack.GetTopPage().OnUnload();
         stack.GoTo(page);
@@ -65,18 +71,6 @@ public class MainWindowViewModel : ReactiveObject, IHostScreen {
                 .HasMessage(msg)
                 .Dismiss().WithDelay(TimeSpan.FromSeconds(timeout))
                 .Queue();
-    }
-    
-    public void LogoutUserAction() {
-        this.notificationManager.CreateMessage()
-                .Animates(true)
-                .Background("#B4BEFE")
-                .Foreground("#1E1E2E")
-                .HasMessage(
-                        $"Logging out. Good bye {this.CurrentUser.Name}!")
-                .Dismiss().WithDelay(TimeSpan.FromSeconds(5))
-                .Queue();
-        this.GoNext(new LoginPageViewModel(this));
     }
 
     public bool mobileUI { get; set; }

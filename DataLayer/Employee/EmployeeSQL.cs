@@ -56,13 +56,13 @@ public class EmployeeSQL : BaseSQL<ModelLayer.Employee> {
     return await QueryMultipleAsync(cmd);
   }
   
-  public async Task<List<ModelLayer.Employee>> get_all_by_job(EmployeeJob job) {
-    var cmd = new NpgsqlCommand("SELECT id FROM employees where job=($1)"){
+  public List<ModelLayer.Employee> get_all_by_job(EmployeeJob job) {
+    var cmd = new NpgsqlCommand("SELECT id, name, job, login FROM employees where job=($1)"){
         Parameters = {
             new NpgsqlParameter { Value = job.ToString() }
         }
     };
-    return await QueryMultipleAsync(cmd);
+    return QueryMultiple(cmd);
   }
 
   public void delete(ModelLayer.Employee employee) {

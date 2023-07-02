@@ -15,7 +15,7 @@ public class ReserveTableViewModel : RoutablePage {
     public ReserveTableViewModel(IHostScreen screen) {
         HostScreen = screen;
         CurrentTable = screen.CurrentTable;
-        Time = "00:00";
+        Time = "00:00"; // hardcoded value for time to be set as default
                 
         _service = new ReservationService();
         
@@ -32,16 +32,11 @@ public class ReserveTableViewModel : RoutablePage {
     public ReactiveCommand<Unit, Unit> CreateReservation { get; set; }
     public ReactiveCommand<Unit, Unit> GoBack { get; }
     public string Name { get; set; }
-
     public string Phone { get; set; }
-
-    // Time will need to be of some specific type. Idk what yet, for now placeholder
     public string Time { get; set; }
 
     void createReservation() {
-        // This will call the db trigger to set the table to occupied
-        // Reservation.Create(Name, Phone, Time, HostScreen.GuestCount, CurrentTable);
-
+        // This will call the db trigger to set the table to reserved
         _service.Reserve(
                 new ModelLayer.Tables.Reservation {
                         Name = Name,

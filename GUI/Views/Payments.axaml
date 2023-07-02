@@ -14,20 +14,26 @@
         </LinearGradientBrush>
     </UserControl.Background>
 
-    <Grid ColumnDefinitions="*,*" RowDefinitions="*,Auto,Auto,Auto">
+    <Grid ColumnDefinitions="*,*" RowDefinitions="*,Auto,Auto,Auto,Auto,Auto">
         <StackPanel Orientation="Vertical">
-            <TextBlock Text="{Binding  TableNr}" />
+            <TextBlock Text="{Binding TableNr}" />
             <TextBlock Text="{Binding Waiter}" />
             <TextBlock Text="{Binding Total}" />
         </StackPanel>
 
         <Button Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="1" Content="Split Bill" HorizontalAlignment="Stretch"
-                Margin="8" Padding="2,8" />
+                Margin="8" Padding="2,8" Command="{ Binding SplitBillScreen}" />
+        
         <Button Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="1" Content="Pay" HorizontalAlignment="Stretch" Margin="8"
                 Padding="2,8" Command="{ Binding PayScreen}" />
-        <Button Grid.Row="2" Grid.ColumnSpan="2" Content="Preview Order" HorizontalAlignment="Stretch" Margin="8"
-                Padding="2,8" />
-        <Button Grid.Row="3" Grid.ColumnSpan="2" Content="Back" HorizontalAlignment="Stretch" Margin="8" Padding="2,8" 
+
+        <Button Grid.Row="2" Grid.ColumnSpan="2" Content="Add Comment" HorizontalAlignment="Stretch" Margin="8"
+                Padding="2,8" Command="{ Binding AddCommentScreen}" />
+
+        <Button Grid.Row="3" Grid.ColumnSpan="2" Content="Preview Order" HorizontalAlignment="Stretch" Margin="8"
+                Padding="2,8" Command="{ Binding ViewOrderScreen}"/>
+
+        <Button Grid.Row="4" Grid.ColumnSpan="2" Content="Back" HorizontalAlignment="Stretch" Margin="8" Padding="2,8" 
                 Command="{Binding GoBack}" />
     </Grid>
 </UserControl>

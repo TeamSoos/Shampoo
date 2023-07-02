@@ -26,9 +26,9 @@ public class EmployeeService {
     return await _sql.get_all();
   }
   
-  public async Task<List<ModelLayer.Employee>> GetAllByJob(EmployeeJob job) {
+  public List<ModelLayer.Employee> GetAllByJob(EmployeeJob job) {
     // Get all Employees
-    return await _sql.get_all_by_job(job);
+    return  _sql.get_all_by_job(job);
   }
 
   public void Create(ModelLayer.Employee employee) {

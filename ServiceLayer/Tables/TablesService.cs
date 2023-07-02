@@ -10,11 +10,11 @@ public class TablesService {
   public TablesService() {
     _sql = new TablesSQL();
   }
-  public Table GetOne(int tableID) {
-    if (!_sql.exists(tableID))
+  public Table GetOne(int tableNumber) {
+    if (!_sql.exists_number(tableNumber))
       return new Table();
     
-    return _sql.get_one(tableID);
+    return _sql.get_one_by_number(tableNumber);
   }
   public async Task<Table> GetOneAsync(int tableID) {
     return await _sql.get_one_async(tableID);

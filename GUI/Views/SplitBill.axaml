@@ -1,0 +1,42 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:GUI.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="viewModels:SplitBillViewModel"
+             x:Class="GUI.Views.SplitBill">
+    
+    <UserControl.Background>
+        <LinearGradientBrush StartPoint="0%,0%" EndPoint="0%,100%">
+            <GradientStop Offset="0" Color="#1E1E2E" />
+            <GradientStop Offset="1" Color="#1E1E2E" />
+        </LinearGradientBrush>
+    </UserControl.Background>
+
+    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <TextBlock x:Name="TotalPrice" Margin="0,0,0,20" />
+        <TextBlock Text="{Binding Total}"/>
+        
+        <TextBlock Text="Split Between: " />
+        
+        <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
+            <Button Content="-" Width="50" Command="{Binding DecrementButton}"/>
+            <TextBlock x:Name="SplitCount" Width="50" HorizontalAlignment="Center" Text="{Binding SplitCount}" />
+            <Button Content="+" Width="50" Command="{Binding IncrementButton}"/>
+        </StackPanel>
+        
+        <Button Content="Calculate" Width="200" Command="{Binding CalculateButton}" Margin="0,0,0,20" />
+        
+        <TextBlock Text="Each Person Pays: " />
+        <TextBox x:Name="EachPersonPays" Width="200" IsReadOnly="True" Text="{Binding EachPersonPays}" Margin="0,0,0,20" />
+
+        <Button Content="Confirm" Width="200" Command="{Binding ConfirmSplitBillButton}" Margin="0,0,0,20" />
+        <TextBlock Text="Or " Margin="0,0,0,20"/>
+        <TextBlock Text="Enter amount customer wishes to pay:  " Margin="0,0,0,20"/>
+        <TextBox x:Name="AmountCustomerPays" Width="200"  Margin="0,0,0,20" />
+        <Button Content="Confirm" Width="200" Command="{Binding ConfirmButton}" Margin="0,0,0,20" />
+        <Button Content="Back" Width="200" Command="{Binding GoBack}" Margin="0,0,0,20" />
+        
+    </StackPanel>
+</UserControl>
