@@ -3,30 +3,30 @@ using Npgsql;
 
 namespace DataLayer.OrderMenu;
 
-public class OrderItemSQL : BaseSQL<OrderMenuItem> {
-    public async Task<List<OrderMenuItem>> get_all() {
+public class OrderItemSQL : BaseSQL<OrderMenuItemModel> {
+    public List<OrderMenuItemModel> get_all() {
         var cmd = new NpgsqlCommand("SELECT * FROM allmenu");
-        return await QueryMultipleAsync(cmd);
+        return QueryMultiple(cmd);
     }
 
-    public async Task<List<OrderMenuItem>> get_of_menu(OrderMenuItem.EMenuType menu) {
+    public async Task<List<OrderMenuItemModel>> get_of_menu(OrderMenuItemModel.EMenuType menu) {
         var cmd = new NpgsqlCommand("SELECT * FROM allmenu WHERE menu = @menu");
-        cmd.Parameters.AddWithValue("menu", OrderMenuItem.StringFromMenu(menu));
+        cmd.Parameters.AddWithValue("menu", OrderMenuItemModel.StringFromMenu(menu));
         return await QueryMultipleAsync(cmd);
     }
 
 
-    protected override OrderMenuItem ReadTables(NpgsqlDataReader reader) {
+    protected override OrderMenuItemModel ReadTables(NpgsqlDataReader reader) {
 
         // need to convert reader["type"] to an enum
 
-        return new OrderMenuItem {
+        return new OrderMenuItemModel {
             ID = (int)reader["id"],
             Count = (int)reader["count"],
             Price = (decimal)reader["price"],
             Name = (string)reader["name"],
             Type = (string)reader["type"],
-            Menu = OrderMenuItem.MenuFromString((string)reader["menu"]),
+            Menu = OrderMenuItemModel.MenuFromString((string)reader["menu"]),
         };
     }
 }

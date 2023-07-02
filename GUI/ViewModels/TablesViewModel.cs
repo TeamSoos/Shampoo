@@ -143,10 +143,10 @@ public class TablesViewModel : RoutablePage {
     // }
   }
 
-  public Unit tableSelect(Int32 x) {
+  public Unit tableSelect(Int32 id) {
     Console.WriteLine("Button pressed");
     // Load next
-    HostScreen.CurrentTable = x;
+    HostScreen.CurrentTable = _tableService.GetOne(id);
     HostScreen.GoNext(new SelectTableViewModel(HostScreen));
     // return val bypass
     return new Unit();

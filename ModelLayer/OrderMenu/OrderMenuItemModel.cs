@@ -1,12 +1,20 @@
 namespace ModelLayer.OrderMenu;
 
-public class OrderMenuItem {
+public class OrderMenuItemModel {
     public int ID { get; set; }
     public string Name { get; set; } = "";
     public decimal Price { get; set; }
     public string Type { get; set; } = "";
     public int Count { get; set; }
     public EMenuType Menu { get; set; }
+
+    public string? Note { get; set; } = "";
+    private int _orderedCount = 0;
+
+    public int OrderedCount {
+        get => _orderedCount;
+        set => _orderedCount = value <= Count ? value : Count;
+    }
 
     public enum EMenuType {
         Drinks,
@@ -15,7 +23,7 @@ public class OrderMenuItem {
     }
 
     // STATIC CLASS FOR UTILITY
-    public static Dictionary<string, List<OrderMenuItem>> ItemsListGrouped(IEnumerable<OrderMenuItem> Items) {
+    public static Dictionary<string, List<OrderMenuItemModel>> ItemsListGrouped(IEnumerable<OrderMenuItemModel> Items) {
         return Items
             .GroupBy(x => x.Type)
             .ToDictionary(

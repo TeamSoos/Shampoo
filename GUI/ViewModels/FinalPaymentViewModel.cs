@@ -1,5 +1,6 @@
 using System.Reactive;
 using ExCSS;
+using GUI.Logic.Models.Order;
 using GUI.ViewModels;
 using ModelLayer.Tables;
 using ReactiveUI;

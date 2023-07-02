@@ -22,7 +22,7 @@ public class SelectTableViewModel : RoutablePage {
   public int guestCount;
 
   int selected_index;
-  
+
 
   public TableType Table { get; set; }
 
@@ -58,7 +58,7 @@ public class SelectTableViewModel : RoutablePage {
   public ReactiveCommand<Unit, Unit> FreeTable { get; }
   public bool IsFreeable { get; set; }
   public bool IsOccupiable { get; set; }
-  public ReactiveCommand<Unit, Unit>  DeliverOrder { get; set; }
+  public ReactiveCommand<Unit, Unit> DeliverOrder { get; set; }
   public int UnpaidOrders { get; set; }
 
 #pragma warning disable CS8618
@@ -67,7 +67,7 @@ public class SelectTableViewModel : RoutablePage {
 
     GuestCount = 0;
     HostScreen = screen;
-    CurrentTable = screen.CurrentTable;
+    CurrentTable = screen.CurrentTable.ID;
     CreateOrder = ReactiveCommand.Create(createOrder);
     GoToReserve = ReactiveCommand.Create(() =>
     {
@@ -112,14 +112,7 @@ public class SelectTableViewModel : RoutablePage {
   private async void freeTable() {
     // We need to check if the table has any unpaid orders first
     if ((await TableType.getOrders(CurrentTable)).Count > 0) {
-      HostScreen.notificationManager.CreateMessage()
-          .Animates(true)
-          .Background("#B4BEFE")
-          .Foreground("#1E1E2E")
-          .HasMessage(
-              $"Table {CurrentTable} is ready to finish dinning")
-          .Dismiss().WithDelay(TimeSpan.FromSeconds(2))
-          .Queue();
+      HostScreen.Notify($"Table {CurrentTable} is ready to finish dinning", 2);
       // Go to payment
       // Unfortunatly need to do this here since the payment part fails to free table
       TableType.free_single(CurrentTable);
@@ -129,14 +122,7 @@ public class SelectTableViewModel : RoutablePage {
     else {
       // Otherwise just free the table
       TableType.free_single(CurrentTable);
-      HostScreen.notificationManager.CreateMessage()
-          .Animates(true)
-          .Background("#B4BEFE")
-          .Foreground("#1E1E2E")
-          .HasMessage(
-              $"Table {CurrentTable} has been freed")
-          .Dismiss().WithDelay(TimeSpan.FromSeconds(2))
-          .Queue();
+      HostScreen.Notify($"Table {CurrentTable} has been freed", 2);
 
       Logger.addRecord(HostScreen.CurrentUserID, $"Freed table {CurrentTable}");
       HostScreen.GoNext(new TablesViewModel(HostScreen));
@@ -144,14 +130,7 @@ public class SelectTableViewModel : RoutablePage {
   }
   private void occupyTable() {
     TableType.occupy_single(CurrentTable);
-    HostScreen.notificationManager.CreateMessage()
-        .Animates(true)
-        .Background("#B4BEFE")
-        .Foreground("#1E1E2E")
-        .HasMessage(
-            $"Table {CurrentTable} has been occupied")
-        .Dismiss().WithDelay(TimeSpan.FromSeconds(2))
-        .Queue();
+    HostScreen.Notify($"Table {CurrentTable} has been occupied", 2);
 
     Logger.addRecord(HostScreen.CurrentUserID, $"Occupied table {CurrentTable}");
 
@@ -161,13 +140,13 @@ public class SelectTableViewModel : RoutablePage {
   void createOrder() {
     string Employee = (string)ComboBoxItems[SelectedIndex].Content;
     // You can get the table id like this
-    int table_id = HostScreen.CurrentTable;
+    int table_id = HostScreen.CurrentTable.ID;
     // Logged in employee is always contained like this
     string current_employee = HostScreen.CurrentUser.Name;
 
     // Move to your page here
     Console.WriteLine($"{Employee} for {table_id} by {current_employee}");
-    HostScreen.GoNext(new OrderMenuViewModel(HostScreen, current_employee, table_id));
+    HostScreen.GoNext(new OrderMenuViewModel(HostScreen));
   }
 
   void loadWaiters() {
