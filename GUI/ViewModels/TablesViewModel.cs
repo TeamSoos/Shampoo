@@ -135,13 +135,7 @@ public class TablesViewModel : RoutablePage {
     }
   }
 
-  void showUserTables() {
-    // foreach (TableType table in Tables) {
-    //
-    //   // Kunal is on this
-    //   // Check issue at https://github.com/TeamSoos/Shampoo/issues/16
-    // }
-  }
+  void showUserTables() {}
 
   public Unit tableSelect(Int32 id) {
     Console.WriteLine("Button pressed");
