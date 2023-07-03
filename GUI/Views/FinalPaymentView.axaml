@@ -19,9 +19,9 @@
         <TextBlock Text="{Binding Total}" Margin="0,20,0,10"/>
         <TextBlock Text="{Binding PricePerPerson}" Margin="0,0,0,20"/>
         
-        <Button HorizontalAlignment="Stretch" Margin="6" Command="{Binding Pay}">Cash</Button>
-        <Button HorizontalAlignment="Stretch" Margin="6" Command="{Binding Pay}">Credit Card</Button>
-        <Button HorizontalAlignment="Stretch" Margin="6" Command="{Binding Pay}">Debit Card</Button>
+        <Button HorizontalAlignment="Stretch" Margin="6" Command="{Binding Pay}" CommandParameter="'cash'">Cash</Button>
+        <Button HorizontalAlignment="Stretch" Margin="6" Command="{Binding Pay}" CommandParameter="'credit'">Credit Card</Button>
+        <Button HorizontalAlignment="Stretch" Margin="6" Command="{Binding Pay}" CommandParameter="'debit'">Debit Card</Button>
         
         <Button HorizontalAlignment="Stretch" Margin="6" Command="{Binding GoBack}">Back</Button>
     </StackPanel>

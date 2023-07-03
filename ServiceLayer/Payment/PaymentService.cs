@@ -17,4 +17,9 @@ public class PaymentService
         }).Wait();
         return result!;
     }
+
+    public void Create(PaymentModel payment)
+    {
+        sql.CreatePayment(payment);
+    }
 }

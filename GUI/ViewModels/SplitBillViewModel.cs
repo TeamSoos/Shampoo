@@ -19,8 +19,15 @@ namespace GUI.ViewModels
         public ReactiveCommand<Unit, Unit> ConfirmSplitBillButton { get; set; }
         public ReactiveCommand<Unit, Unit> ConfirmButton { get; set; }
         public ReactiveCommand<Unit, Unit> CalculateButton { get; set; }
+        
+        public string customerTotal;
+        public string CustomerTotal
+        {
+            get { return customerTotal;}
+            set => this.RaiseAndSetIfChanged(ref customerTotal, value);
+        }
 
-        private string _total;
+        public string _total;
         
         public string Total
         {
@@ -31,7 +38,7 @@ namespace GUI.ViewModels
             }
         }
 
-        private int splitCount = 0;
+        private int splitCount = 1;
         public int SplitCount
         {
             get => splitCount;
@@ -41,7 +48,7 @@ namespace GUI.ViewModels
             }
         }
 
-        private string eachPersonPays;
+        public string eachPersonPays;
         public string EachPersonPays
         {
             get => eachPersonPays;
@@ -59,6 +66,7 @@ namespace GUI.ViewModels
             {
                 SplitCount++;
             });
+            
             DecrementButton = ReactiveCommand.Create(() =>
             {
                 if (SplitCount > 1)
@@ -77,17 +85,14 @@ namespace GUI.ViewModels
             
             ConfirmSplitBillButton = ReactiveCommand.Create(() =>
             {
-                screen.GoNext(new FinalPaymentViewModel(screen, Total, EachPersonPays ));
-            });
-            
-            ConfirmSplitBillButton = ReactiveCommand.Create(() =>
-            {
-                screen.GoNext(new FinalPaymentViewModel(screen));
+                string total = _total.Replace("Total: €", ""); // get only the numeric part
+                string eachPays = eachPersonPays.Replace("€", ""); // get only the numeric part
+                screen.GoNext(new FinalPaymentViewModel(screen, total, eachPays));
             });
             
             ConfirmButton = ReactiveCommand.Create(() =>
             {
-                screen.GoNext(new FinalPaymentViewModel(screen));
+                screen.GoNext(new FinalPaymentViewModel(screen, CustomerTotal, EachPersonPays));
             });
             
             int table = screen.CurrentTable.ID;
@@ -99,10 +104,22 @@ namespace GUI.ViewModels
             Total = res.TotalAmount.ToString("00.00");
         }
 
-        private void CalculateEachPersonPays()
+        public void CalculateEachPersonPays()
         {
-            decimal totalPrice = decimal.Parse(Total.Replace("Total: €", "0.00"));
+            decimal totalPrice;
+
+            // If the user has entered a custom total, use it. Otherwise, use the total from the bill.
+            if (decimal.TryParse(CustomerTotal, out decimal customerTotal))
+            {
+                totalPrice = customerTotal;
+            }
+            else
+            {
+                totalPrice = decimal.Parse(_total.Replace("Total: €", ""));
+            }
+    
             EachPersonPays = (totalPrice / SplitCount).ToString("0.##€");
         }
+
     }
 }
