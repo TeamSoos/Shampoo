@@ -22,6 +22,6 @@ public class TransactionPaymentViewModel : RoutablePage
 
         
 
-        service.Create(payment);
+        //service.Create(payment);
     }
 }

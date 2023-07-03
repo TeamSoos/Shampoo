@@ -51,7 +51,7 @@ public class FinalPaymentViewModel : RoutablePage
             screen.GoNext(new TransactionPaymentViewModel(screen, 
                     new PaymentModel()
                     {
-                        TotalAmount = int.Parse(total ?? ""),
+                        TotalAmount = 0,
                         EmployeeId = screen.CurrentUser.ID,
                         TableId = screen.CurrentTable.ID,
                         PaymentType = paymentType,
