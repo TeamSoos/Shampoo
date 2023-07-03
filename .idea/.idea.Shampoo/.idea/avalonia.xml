@@ -6,6 +6,7 @@
         <entry key="GUI/App.axaml" value="GUI/GUI.csproj" />
         <entry key="GUI/ViewModels/PopUpReservation.axaml" value="GUI/GUI.csproj" />
         <entry key="GUI/Views/AddComment.axaml" value="GUI/GUI.csproj" />
+        <entry key="GUI/Views/AddItemView.axaml" value="GUI/GUI.csproj" />
         <entry key="GUI/Views/AddNewComment.axaml" value="GUI/GUI.csproj" />
         <entry key="GUI/Views/BasicAppView.axaml" value="GUI/GUI.csproj" />
         <entry key="GUI/Views/FinalPaymentView.axaml" value="GUI/GUI.csproj" />

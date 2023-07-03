@@ -5,14 +5,17 @@ using System.Threading.Tasks;
 using Logic.Models.Item;
 using ReactiveUI;
 using GUI.ViewModels;
+using ModelLayer.OrderMenu;
+using ServiceLayer.OrderMenu;
 
 namespace GUI.ViewModels;
 
 public class InventoryItemsListViewModel: RoutablePage
 {
     public override IHostScreen HostScreen { get; }
-    
+    public MenuItemService _service = new MenuItemService();
     public ReactiveCommand<Unit, Unit> LogoutUser { get; set; }
+    public ReactiveCommand<Unit, Unit> AddStock { get; set; }
     public ReactiveCommand<Unit, Unit> AddItem { get; set; }
     public ReactiveCommand<Unit, Unit> GoBack { get; }
     private ItemListViewModel _allItem;
@@ -31,15 +34,22 @@ public class InventoryItemsListViewModel: RoutablePage
                 screen.GoNext(new LoginPageViewModel(screen));
             }
             );
-        AddItem =ReactiveCommand.Create(
+        AddStock =ReactiveCommand.Create(
             () =>
             {
                 screen.GoNext(new InventoryAddItemViewModel(screen));
             }
         );
+        AddItem =ReactiveCommand.Create(
+            () =>
+            {
+                screen.GoNext(new AddItemViewModel(screen));
+            }
+        );
         AllItems = new ItemListViewModel(
             new List<ListItem>()
         );
+        _service = new MenuItemService();
         reloadItems();
     }
 
@@ -47,18 +57,17 @@ public class InventoryItemsListViewModel: RoutablePage
     {
         AllItems.Items.Clear();
 
-        List<ItemType> items = new List<ItemType>();
-        
-        Task.Run(async () => { items =  await ItemType.GetAll(); }).Wait();
+        List<OrderMenuItemModel> items = new List<OrderMenuItemModel>();
+        items = _service.GetAll();
 
-        foreach (ItemType item in items)
+        foreach (OrderMenuItemModel item in items)
         {
             AllItems.Items.Add(
                 new ListItem()
                 {
                     Count = item.Count,
                     Title = item.Name,
-                    Notes = $"ID: {item.Id}"
+                    Notes = $"ID: {item.ID}"
                 }
             );
         }
