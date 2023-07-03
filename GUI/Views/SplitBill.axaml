@@ -34,7 +34,7 @@
         <Button Content="Confirm" Width="200" Command="{Binding ConfirmSplitBillButton}" Margin="0,0,0,20" />
         <TextBlock Text="Or " Margin="0,0,0,20"/>
         <TextBlock Text="Enter amount customer wishes to pay:  " Margin="0,0,0,20"/>
-        <TextBox x:Name="AmountCustomerPays" Width="200"  Margin="0,0,0,20" />
+        <TextBox x:Name="AmountCustomerPays" Width="200" Text="{Binding CustomerTotal}" Margin="0,0,0,20" />
         <Button Content="Confirm" Width="200" Command="{Binding ConfirmButton}" Margin="0,0,0,20" />
         <Button Content="Back" Width="200" Command="{Binding GoBack}" Margin="0,0,0,20" />
         

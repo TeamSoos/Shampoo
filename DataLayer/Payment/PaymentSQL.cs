@@ -11,7 +11,6 @@ public class PaymentSQL : BaseSQL<PaymentModel>
         var cmd = new NpgsqlCommand("SELECT SUM(price) AS total_price FROM orders JOIN ordered_items oi ON orders.id = oi.order_id JOIN allmenu a ON oi.item_id = a.id WHERE table_id = @a AND paid = false;");
         return await QueryMultipleAsync(cmd);
     }
-    
     public async Task<PaymentModel> get_by_id(int tableid)
     {
         // -1 as id because here we aggregrate an infinite amount theoratically
@@ -21,11 +20,15 @@ public class PaymentSQL : BaseSQL<PaymentModel>
         return result;
     }
     
-    public void CreatePayment(PaymentModel payment) // wait for kunal sql update string
+    public void CreatePayment(PaymentModel payment) 
     {
-        var cmd = new NpgsqlCommand("INSERT INTO transactions (total) VALUES (@amount) RETURNING id, total AS total_price;");
-        cmd.Parameters.AddWithValue("@amount", payment.TotalAmount);
+        var cmd = new NpgsqlCommand("INSERT INTO transactions (employee_id, total, table_id, payment_type) VALUES (@employee_id, @total, @table_id, @payment_type);");
+        cmd.Parameters.AddWithValue("@employee_id", payment.EmployeeId);
+        cmd.Parameters.AddWithValue("@total", payment.TotalAmount);
+        cmd.Parameters.AddWithValue("@table_id", payment.TableId);
+        cmd.Parameters.AddWithValue("@payment_type", payment.PaymentType);
 
+        
         Store(cmd);
     }
     
