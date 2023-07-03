@@ -36,7 +36,7 @@ public class AddItemViewModel : RoutablePage
                 Name = ItemName,
                 Type = ItemCat
             };
-            _service.AddItemToMenu(newItem);
+            _service.AddItemsToMenu(newItem);
             hostScreen.Notify("Added item", 2);
         });
         HostScreen = hostScreen;

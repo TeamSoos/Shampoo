@@ -22,9 +22,8 @@ public class NewPageViewModel: RoutablePage
     public NewPageViewModel(IHostScreen screen)
     {
         HostScreen = screen;
-        Logout = ReactiveCommand.Create(logoutUser);
+        Logout = ReactiveCommand.Create(HostScreen.LogoutUserAction);
         
-            // this (int x) => { return x +1; }  is a lambda
 
         ViewInventory = ReactiveCommand.Create(
             () =>
@@ -53,15 +52,4 @@ public class NewPageViewModel: RoutablePage
         });
     }
     
-    public void logoutUser() {
-        HostScreen.notificationManager.CreateMessage()
-            .Animates(true)
-            .Background("#B4BEFE")
-            .Foreground("#1E1E2E")
-            .HasMessage(
-                $"Logging out. Good bye {HostScreen.CurrentUser}")
-            .Dismiss().WithDelay(TimeSpan.FromSeconds(5))
-            .Queue();
-        HostScreen.GoNext(new LoginPageViewModel(HostScreen));
-    }
 }

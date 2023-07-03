@@ -3,7 +3,9 @@ using System.Reactive;
 using Avalonia.Notification;
 using GUI.Views;
 using Logic.Models.Item;
+using ModelLayer.OrderMenu;
 using ReactiveUI;
+using ServiceLayer.OrderMenu;
 
 namespace GUI.ViewModels;
 
@@ -17,6 +19,8 @@ public class InventoryAddItemViewModel : RoutablePage {
     public string ItemID { get; set; }
     public string ItemQuantity { get; set; }
 
+    public MenuItemService _service;
+
     public InventoryAddItemViewModel(IHostScreen screen) {
         HostScreen = screen;
         BackButton = ReactiveCommand.Create(() =>
@@ -28,17 +32,19 @@ public class InventoryAddItemViewModel : RoutablePage {
         {
             int.TryParse(ItemID, out int id);
             int.TryParse(ItemQuantity, out int quantity);
-            ItemType.Add(id, quantity);
+
+            if (id == 0 || quantity == 0)
+            {
+                HostScreen.Notify( "Invalid input!", 5);
+            }
+            
+            _service.UpdateCount(
+                _service.GetById(id),
+                quantity
+            );
             HostScreen.GoBack();
             
-            HostScreen.notificationManager.CreateMessage()
-                .Animates(true)
-                .Background("#B4BEFE")
-                .Foreground("#1E1E2E")
-                .HasMessage(
-                    "Item added!")
-                .Dismiss().WithDelay(TimeSpan.FromSeconds(5))
-                .Queue();
+            HostScreen.Notify( "Item added!", 5);
         });
     }
 }

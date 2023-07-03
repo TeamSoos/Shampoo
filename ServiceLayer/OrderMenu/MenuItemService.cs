@@ -29,4 +29,24 @@ public class MenuItemService {
             .Where(model => model.OrderedCount > 0)
             .ToList();
     }
+    
+    public void AddItemsToMenu(OrderMenuItemModel item)
+    {
+        sql.add_to_menu(item);
+    }
+
+    public OrderMenuItemModel GetById(int id)
+    {
+        return sql.get_by_id(id);
+    }
+
+    public List<OrderMenuItemModel> GetAll()
+    {
+        return sql.get_all();
+    }
+
+    public void UpdateCount(OrderMenuItemModel item, int count)
+    {
+        sql.add_stock(item, count);
+    }
 }
