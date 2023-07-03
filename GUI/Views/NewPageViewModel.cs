@@ -17,6 +17,7 @@ public class NewPageViewModel: RoutablePage
     public ReactiveCommand<Unit, Unit> AddItemButton { get; set; }
     public ReactiveCommand<Unit, Unit> ViewInventory { get; set; }
     public ReactiveCommand<Unit, Unit> ViewUsers { get; set; }
+    public ReactiveCommand<Unit, Unit> ViewRevenueReport { get; set; }
 
     public NewPageViewModel(IHostScreen screen)
     {
@@ -37,6 +38,13 @@ public class NewPageViewModel: RoutablePage
                 {
                     HostScreen.GoNext(new UserManagementModel(HostScreen));
                 }
+        );
+        
+        ViewRevenueReport = ReactiveCommand.Create(
+            () =>
+            {
+                HostScreen.GoNext(new RevenueReportViewModel(HostScreen));
+            }
         );
 
         AddItemButton = ReactiveCommand.Create(() =>
