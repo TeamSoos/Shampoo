@@ -1,0 +1,29 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:GUI.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="viewModels:AddCommentViewModel"
+             x:Class="GUI.Views.AddComment">
+
+    <UserControl.Background>
+        <LinearGradientBrush StartPoint="0%,0%" EndPoint="0%,100%">
+            <GradientStop Offset="0" Color="#1E1E2E" />
+            <GradientStop Offset="1" Color="#1E1E2E" />
+        </LinearGradientBrush>
+    </UserControl.Background>
+    
+    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <TextBox x:Name="CustomerCommentBox" Width="400" Height="100" Margin="0,0,0,10" 
+                 Watermark="Enter customer comment here..." />
+
+        <Button Width="200" Content="Submit Comment" Margin="0,10,0,0"
+                Command="{Binding SaveComment}"
+                CommandParameter="{Binding Text, ElementName=CustomerCommentBox}" />
+        
+        <Button Width="200" Content="Back" Margin="0,10,0,0"
+                Command="{Binding GoBack}" />
+    </StackPanel>
+    
+</UserControl>

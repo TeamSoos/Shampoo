@@ -46,13 +46,19 @@
 
 
     <DockPanel VerticalAlignment="Stretch" LastChildFill="True">
-        <StackPanel DockPanel.Dock="Top" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-            <ItemsControl Items="{Binding Tables.Items}">
+        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" DockPanel.Dock="Top">
+            <ItemsControl HorizontalAlignment="Center" Items="{Binding Tables.Items}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid HorizontalAlignment="Center" Columns="2" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Button Command="{Binding TableSelect}" CommandParameter="1"
-                                HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="5"
-                                Width="100" Height="100" Background="{Binding Colour}" Foreground="#1E1E2E">
+                                <!-- HorizontalContentAlignment="Center" -->
+                        <Button Command="{Binding TableSelect }" CommandParameter="{Binding Table.Number}"
+                                VerticalContentAlignment="Center" Margin="5"
+                                Width="100" Height="100" Background="{Binding Colour }" Foreground="#1E1E2E">
                             <StackPanel>
                                 <TextBlock Text="{Binding Table.Number}" HorizontalAlignment="Center" />
                                 <TextBlock Text="{Binding OrderStatus}" HorizontalAlignment="Center"/>
@@ -62,7 +68,7 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
 
-        </StackPanel>
+        </WrapPanel>
         <StackPanel
             DockPanel.Dock="Bottom"
             Background="#B4BEFE"

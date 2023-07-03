@@ -9,8 +9,13 @@ using Avalonia.Notification;
 using GUI.Logic.Models.Employee;
 using GUI.Logic.Models.Order;
 using GUI.Logic.Models.Table;
+using ModelLayer;
+using ModelLayer.Tables;
 using ReactiveUI;
 using RoutedApp.Logic.Models.Logging;
+using ServiceLayer.Employee;
+using ServiceLayer.Order;
+using ServiceLayer.Tables;
 
 namespace GUI.ViewModels;
 
@@ -23,106 +28,10 @@ public class SelectTableViewModel : RoutablePage {
 
   int selected_index;
 
-#pragma warning disable CS8618
-  public SelectTableViewModel(IHostScreen screen) {
-#pragma warning restore CS8618
-
-    GuestCount = 0;
-    HostScreen = screen;
-    CurrentTable = screen.CurrentTable;
-    CreateOrder = ReactiveCommand.Create(createOrder);
-    GoToReserve = ReactiveCommand.Create(() =>
-    {
-      HostScreen.GuestCount = GuestCount;
-      HostScreen.GoNext(new ReserveTableViewModel(HostScreen));
-    });
-    
-    DeliverOrder = ReactiveCommand.Create(() =>
-    {
-      HostScreen.GoNext(new DeliverOrderViewModel(HostScreen));
-    });
-
-    CreateOrder = ReactiveCommand.Create(createOrder);
-    OccupyTable = ReactiveCommand.Create(occupyTable);
-    FreeTable = ReactiveCommand.Create(freeTable);
-
-    GoBack = ReactiveCommand.Create(() => { HostScreen.GoBack(); });
-
-    // Load statuses for buttons
-    this.Table = new TableType(CurrentTable);
-
-    // State machine
-    switch (Table.status) {
-      case Status.reserved:
-      case Status.empty:
-        IsFreeable = false;
-        IsOccupiable = true;
-        break;
-      case Status.occupied:
-        IsFreeable = true;
-        IsOccupiable = false;
-        break;
-    }
-
-    // Load orders paid information
-    Task.Run(async void () =>
-    {
-      UnpaidOrders = (await TableType.getOrdersTyped(CurrentTable)).Count(order => !order.Paid);
-    }).Wait();
-
-    // Initialize the ComboBoxItems collection
-    ComboBoxItems = new ObservableCollection<ComboBoxItem>();
-    loadWaiters();
-  }
-  private async void freeTable() {
-    // We need to check if the table has any unpaid orders first
-    if ((await TableType.getOrders(CurrentTable)).Count > 0) {
-      HostScreen.notificationManager.CreateMessage()
-          .Animates(true)
-          .Background("#B4BEFE")
-          .Foreground("#1E1E2E")
-          .HasMessage(
-              $"Table {CurrentTable} is ready to finish dinning")
-          .Dismiss().WithDelay(TimeSpan.FromSeconds(2))
-          .Queue();
-      // Go to payment
-      // Unfortunatly need to do this here since the payment part fails to free table
-      TableType.free_single(CurrentTable);
-      Logger.addRecord(HostScreen.CurrentUserID, $"Freed table {CurrentTable}");
-      HostScreen.GoNext(new PaymentsViewModel(HostScreen));
-    }
-    else {
-      // Otherwise just free the table
-      TableType.free_single(CurrentTable);
-      HostScreen.notificationManager.CreateMessage()
-          .Animates(true)
-          .Background("#B4BEFE")
-          .Foreground("#1E1E2E")
-          .HasMessage(
-              $"Table {CurrentTable} has been freed")
-          .Dismiss().WithDelay(TimeSpan.FromSeconds(2))
-          .Queue();
-
-      Logger.addRecord(HostScreen.CurrentUserID, $"Freed table {CurrentTable}");
-      HostScreen.GoNext(new TablesViewModel(HostScreen));
-    }
-  }
-  private void occupyTable() {
-    TableType.occupy_single(CurrentTable);
-    HostScreen.notificationManager.CreateMessage()
-        .Animates(true)
-        .Background("#B4BEFE")
-        .Foreground("#1E1E2E")
-        .HasMessage(
-            $"Table {CurrentTable} has been occupied")
-        .Dismiss().WithDelay(TimeSpan.FromSeconds(2))
-        .Queue();
-
-    Logger.addRecord(HostScreen.CurrentUserID, $"Occupied table {CurrentTable}");
-
-    HostScreen.GoNext(new TablesViewModel(HostScreen));
-  }
-  public TableType Table { get; set; }
+  public EmployeeService _employeeService;
+  public TablesService _tableService;
+  public OrderService _orderService;
+  public Table Table { get; set; }
 
 
   public override IHostScreen HostScreen { get; }
@@ -156,32 +65,99 @@ public class SelectTableViewModel : RoutablePage {
   public ReactiveCommand<Unit, Unit> FreeTable { get; }
   public bool IsFreeable { get; set; }
   public bool IsOccupiable { get; set; }
-  public ReactiveCommand<Unit, Unit>  DeliverOrder { get; set; }
+  public ReactiveCommand<Unit, Unit> DeliverOrder { get; set; }
   public int UnpaidOrders { get; set; }
 
-  void createOrder() {
-    string Employee = (string)ComboBoxItems[SelectedIndex].Content;
-    // You can get the table id like this
-    int table_id = HostScreen.CurrentTable;
-    // Logged in employee is always contained like this
-    string current_employee = HostScreen.CurrentUser.Name;
+#pragma warning disable CS8618
+  public SelectTableViewModel(IHostScreen screen) {
+#pragma warning restore CS8618
 
-    // Move to your page here
-    Console.WriteLine($"{Employee} for {table_id} by {current_employee}");
-    HostScreen.GoNext(new OrderMenuViewModel(HostScreen, current_employee, table_id));
+    GuestCount = 0;
+    HostScreen = screen;
+    CurrentTable = screen.CurrentTable.Number;
+    CreateOrder = ReactiveCommand.Create(createOrder);
+    GoToReserve = ReactiveCommand.Create(() =>
+    {
+      HostScreen.GuestCount = GuestCount;
+      HostScreen.GoNext(new ReserveTableViewModel(HostScreen));
+    });
+
+    DeliverOrder = ReactiveCommand.Create(() => { HostScreen.GoNext(new DeliverOrderViewModel(HostScreen)); });
+
+    CreateOrder = ReactiveCommand.Create(createOrder);
+    OccupyTable = ReactiveCommand.Create(occupyTable);
+    FreeTable = ReactiveCommand.Create(freeTable);
+    // Create table and order services
+    _tableService = new();
+    _orderService = new ();
+
+    GoBack = ReactiveCommand.Create(() => { HostScreen.GoBack(); });
+
+    // Load statuses for buttons
+    this.Table = HostScreen.CurrentTable;
+
+    // States
+    switch (Table.Status) {
+      case TableStatus.reserved:
+      case TableStatus.empty:
+        IsFreeable = false;
+        IsOccupiable = true;
+        break;
+      case TableStatus.occupied:
+        IsFreeable = true;
+        IsOccupiable = false;
+        break;
+    }
+
+    // Load orders paid information
+    UnpaidOrders = (_orderService.GetAllByTable(screen.CurrentTable)).Count(order => !order.Paid);
+
+    // Initialize the ComboBoxItems collection
+    ComboBoxItems = new ObservableCollection<ComboBoxItem>();
+    // Start loading waiters
+    _employeeService = new EmployeeService();
+    loadWaiters();
+  }
+  private async void freeTable() {
+    // We need to check if the table has any unpaid orders first
+    List<Order> orders = _orderService.GetAllByTable(HostScreen.CurrentTable)
+        .Where(order => !order.Paid)
+        .ToList();
+
+    foreach (var oder in orders) {
+      Console.WriteLine($"{oder.ID} {oder.Paid}");
+    }
+    if (orders.Count > 0) {
+      HostScreen.Notify($"Table {CurrentTable} is ready to finish dinning", 2);
+      // Go to payment
+      Logger.addRecord(HostScreen.CurrentUserID, $"Freed table {CurrentTable}");
+      HostScreen.GoNext(new PaymentsViewModel(HostScreen));
+    }
+    else {
+      _tableService.Free(HostScreen.CurrentTable);
+
+      Logger.addRecord(HostScreen.CurrentUserID, $"Freed table {CurrentTable}");
+      HostScreen.GoNext(new TablesViewModel(HostScreen));
+    }
+  }
+  private void occupyTable() {
+    _tableService.Occupy(HostScreen.CurrentTable);
+
+    Logger.addRecord(HostScreen.CurrentUserID, $"Occupied table {CurrentTable}");
+
+    HostScreen.GoNext(new TablesViewModel(HostScreen));
+  }
+
+  void createOrder() {
+    HostScreen.GoNext(new OrderMenuViewModel(HostScreen));
   }
 
   void loadWaiters() {
     // Collect all waiters
-    List<EmployeeType> employees = new List<EmployeeType>();
-    Task.Run(async () =>
-    {
-      employees = await EmployeeType.getAll("waiter");
+    List<Employee> employees = new List<Employee>();
+    employees = _employeeService.GetAllByJob(EmployeeJob.waiter);
 
-      Console.WriteLine("Done getting waiters");
-    }).Wait();
-
-    foreach (ComboBoxItem item in employees.Select(employee => new ComboBoxItem { Content = employee.name })) {
+    foreach (ComboBoxItem item in employees.Select(employee => new ComboBoxItem { Content = employee.Name })) {
       ComboBoxItems.Add(item);
     }
   }

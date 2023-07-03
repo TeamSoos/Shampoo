@@ -9,6 +9,14 @@ public class OrderMenuItemModel {
     public EMenuType Menu { get; set; }
     public bool Alcoholic { get; set; }
 
+    public string? Note { get; set; } = "";
+    private int _orderedCount = 0;
+
+    public int OrderedCount {
+        get => _orderedCount;
+        set => _orderedCount = value <= Count ? value : Count;
+    }
+
     public enum EMenuType {
         Lunch,
         Dinner,

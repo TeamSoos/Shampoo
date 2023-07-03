@@ -31,6 +31,9 @@ public class AppViewLocator : IViewLocator {
             TransactionPaymentViewModel context => new TransactionPayment {DataContext = context},
             RevenueReportViewModel context => new RevenueReportView {DataContext = context}, 
             AddItemViewModel context => new AddItemView() {DataContext = context}, 
+            TransactionPaymentViewModel context => new TransactionPayment {DataContext = context}, 
+            AddCommentViewModel context => new AddComment {DataContext = context},
+            SplitBillViewModel context => new SplitBill {DataContext = context},
             _ => throw new ArgumentOutOfRangeException($"you forgot to add {nameof(viewModel)} to AppViewLocator")
         };
     }
