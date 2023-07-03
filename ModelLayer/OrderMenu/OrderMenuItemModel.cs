@@ -7,6 +7,7 @@ public class OrderMenuItemModel {
     public string Type { get; set; } = "";
     public int Count { get; set; }
     public EMenuType Menu { get; set; }
+    public bool Alcoholic { get; set; }
 
     public string? Note { get; set; } = "";
     private int _orderedCount = 0;
@@ -17,9 +18,9 @@ public class OrderMenuItemModel {
     }
 
     public enum EMenuType {
-        Drinks,
         Lunch,
         Dinner,
+        Drinks,
     }
 
     // STATIC CLASS FOR UTILITY

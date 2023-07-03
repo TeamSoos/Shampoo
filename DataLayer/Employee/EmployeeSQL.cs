@@ -51,9 +51,9 @@ public class EmployeeSQL : BaseSQL<ModelLayer.Employee> {
       return valid;
   }
   
-  public async Task<List<ModelLayer.Employee>> get_all() {
+  public List<ModelLayer.Employee> get_all() {
     var cmd = new NpgsqlCommand("SELECT * FROM employees");
-    return await QueryMultipleAsync(cmd);
+    return QueryMultiple(cmd);
   }
   
   public List<ModelLayer.Employee> get_all_by_job(EmployeeJob job) {

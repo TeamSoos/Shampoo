@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 using Avalonia.Controls;
 using Avalonia.Notification;
 using GUI.Logic.Models.Employee;
+using ModelLayer;
 using ReactiveUI;
 using RoutedApp.Logic.Models.Logging;
+using ServiceLayer.Employee;
 
 namespace GUI.ViewModels;
 
@@ -32,6 +34,7 @@ public class ManagedUserModel : ViewModelBase
 public class UserManagementModel : RoutablePage
 {
     public override IHostScreen HostScreen { get; }
+    public EmployeeService service;
 
     public UserManagementModel(IHostScreen screen)
     {
@@ -42,6 +45,8 @@ public class UserManagementModel : RoutablePage
         ModifySelected = ReactiveCommand.Create(modifyUser);
         AddUser = ReactiveCommand.Create(addUser);
         UpdateUser = ReactiveCommand.Create(updateUser);
+
+        service = new EmployeeService();
 
         ManagedUserList = new ManagedUserModel(
             new List<ManagedUserCardItem>());
@@ -54,15 +59,9 @@ public class UserManagementModel : RoutablePage
         EmployeeType selectedUser = new EmployeeType(int.Parse(IDField));
 
         selectedUser.Update(LoginField, NameField, (string)JobField.Content);
+        
 
-        HostScreen.notificationManager.CreateMessage()
-            .Animates(true)
-            .Background("#B4BEFE")
-            .Foreground("#1E1E2E")
-            .HasMessage(
-                $"User {NameField} with ID {IDField} has been updated!")
-            .Dismiss().WithDelay(TimeSpan.FromSeconds(5))
-            .Queue();
+        HostScreen.Notify($"User {NameField} with ID {IDField} has been updated!", 5);
 
         loadUsers();
     }
@@ -81,27 +80,20 @@ public class UserManagementModel : RoutablePage
             userCardItem = user;
         }
 
-        EmployeeType employee;
+        Employee employee;
 
         if (userCardItem != null)
         {
-            employee = new EmployeeType(userCardItem.id);
+            employee = service.GetOne(userCardItem.id);
         }
         else
         {
-            HostScreen.notificationManager.CreateMessage()
-                .Animates(true)
-                .Background("#B4BEFE")
-                .Foreground("#1E1E2E")
-                .HasMessage(
-                    $"No user selected to modify!")
-                .Dismiss().WithDelay(TimeSpan.FromSeconds(5))
-                .Queue();
+            HostScreen.Notify($"No user selected to modify!", 5);
             return;
         }
 
-        NameField = employee.name;
-        JobIndex = employee.job switch
+        NameField = employee.Name;
+        JobIndex = employee.Job.ToString() switch
         {
             "chef" => 0,
             "bartender" => 1,
@@ -110,7 +102,7 @@ public class UserManagementModel : RoutablePage
             _ => throw new ArgumentOutOfRangeException()
         };
         LoginField = "[hashed]";
-        IDField = employee.id.ToString();
+        IDField = employee.ID.ToString();
 
         loadUsers();
     }
@@ -121,53 +113,25 @@ public class UserManagementModel : RoutablePage
         IDField = "";
         if (NameField == "")
         {
-            HostScreen.notificationManager.CreateMessage()
-                .Animates(true)
-                .Background("#B4BEFE")
-                .Foreground("#1E1E2E")
-                .HasMessage(
-                    $"Name field can not be empty!")
-                .Dismiss().WithDelay(TimeSpan.FromSeconds(5))
-                .Queue();
+            HostScreen.Notify( $"Name field can not be empty!", 5);
             return;
         }
 
         if ((string)JobField.Content == "")
         {
-            HostScreen.notificationManager.CreateMessage()
-                .Animates(true)
-                .Background("#B4BEFE")
-                .Foreground("#1E1E2E")
-                .HasMessage(
-                    $"Job field can not be empty")
-                .Dismiss().WithDelay(TimeSpan.FromSeconds(5))
-                .Queue();
+            HostScreen.Notify( $"Job field can not be empty", 5);
             return;
         }
 
         if (LoginField == "")
         {
-            HostScreen.notificationManager.CreateMessage()
-                .Animates(true)
-                .Background("#B4BEFE")
-                .Foreground("#1E1E2E")
-                .HasMessage(
-                    $"Login field can not be empty")
-                .Dismiss().WithDelay(TimeSpan.FromSeconds(5))
-                .Queue();
+            HostScreen.Notify( $"Login field can not be empty",5);
             return;
         }
 
         EmployeeType.Create(NameField, (string)JobField.Content, LoginField);
 
-        HostScreen.notificationManager.CreateMessage()
-            .Animates(true)
-            .Background("#B4BEFE")
-            .Foreground("#1E1E2E")
-            .HasMessage(
-                $"New user {NameField} has been created!")
-            .Dismiss().WithDelay(TimeSpan.FromSeconds(5))
-            .Queue();
+        HostScreen.Notify( $"New user {NameField} has been created!", 5);
 
         loadUsers();
     }
@@ -190,28 +154,13 @@ public class UserManagementModel : RoutablePage
         if (count == 0)
             return;
 
-        HostScreen.notificationManager.CreateMessage()
-            .Animates(true)
-            .Background("#B4BEFE")
-            .Foreground("#1E1E2E")
-            .HasMessage(
-                $"Deleted {count} users!")
-            .Dismiss().WithDelay(TimeSpan.FromSeconds(5))
-            .Queue();
-
+        HostScreen.Notify($"Deleted {count} users!", 5);
         loadUsers();
     }
 
     private void logoutUser()
     {
-        HostScreen.notificationManager.CreateMessage()
-            .Animates(true)
-            .Background("#B4BEFE")
-            .Foreground("#1E1E2E")
-            .HasMessage(
-                $"Logging out. Good bye {HostScreen.CurrentUser}!")
-            .Dismiss().WithDelay(TimeSpan.FromSeconds(5))
-            .Queue();
+        HostScreen.Notify($"Logging out. Good bye {HostScreen.CurrentUser}!", 5);
         HostScreen.GoNext(new LoginPageViewModel(HostScreen));
     }
 
@@ -269,18 +218,18 @@ public class UserManagementModel : RoutablePage
     {
         ManagedUserList.Items.Clear();
 
-        List<EmployeeType> users = new List<EmployeeType>();
+        List<Employee> users = new List<Employee>();
         BackButton = ReactiveCommand.Create(() => { HostScreen.GoBack(); });
 
-        Task.Run(async () => { users = await EmployeeType.getAll(); }).Wait();
+        users = service.GetAll();
 
-        foreach (EmployeeType user in users)
+        foreach (Employee user in users)
         {
             ManagedUserList.Items.Add(
                 new ManagedUserCardItem
                 {
-                    Title = user.name, Description = $"ID is {user.id}. Works as {user.job}",
-                    Selected = "False", id = user.id
+                    Title = user.Name, Description = $"ID is {user.ID}. Works as {user.Job.ToString()}",
+                    Selected = "False", id = user.ID
                 }
             );
         }
