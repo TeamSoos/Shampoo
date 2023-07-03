@@ -49,7 +49,8 @@ public class MainWindowViewModel : ReactiveObject, IHostScreen {
 
     public void LogoutUserAction()
     {
-        throw new NotImplementedException();
+        Notify($"Logging out. Good bye {CurrentUser.Name}", 5);
+        GoNext(new LoginPageViewModel(this));
     }
 
     public void GoNext(RoutablePage page) {

@@ -48,7 +48,7 @@ public class LoginPageViewModel : RoutablePage {
         Employee employee = employeeService.GetOne(id_input);
         
         
-        // Job can be null when an empty object is returned
+        // Job is null when an empty object is returned
         // This is to handle employees that do not exist
         if (employee.Login == null || !employeeService.Authenticate(employee, LoginInput)) {
             HostScreen.Notify("Sorry! Invalid credentials", 5);
